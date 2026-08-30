@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="hush-hush-php">
+  <description>PSR-12 floor for the hand-written layer.</description>
+  <arg name="basepath" value="."/>
+  <arg name="colors"/>
+  <arg value="p"/>
+
+  <file>src</file>
+  <file>tests</file>
+  <exclude-pattern>src/Generated/*</exclude-pattern>
+
+  <rule ref="PSR12"/>
+</ruleset>
