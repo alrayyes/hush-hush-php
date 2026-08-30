@@ -18,7 +18,7 @@
     "ergebnis/composer-normalize": "2.52.0",
     "friendsofphp/php-cs-fixer": "3.95.23",
     "league/uri": "7.5.1",
-    "league/uri-interfaces": "7.6.0",
+    "league/uri-interfaces": "7.8.1",
     "pact-foundation/pact-php": "10.2.1",
     "phpdocumentor/phpdocumentor": "3.10.0",
     "phpstan/phpstan": "2.2.9",
