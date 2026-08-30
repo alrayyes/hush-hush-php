@@ -1,0 +1,66 @@
+{
+  "name": "alrayyes/hush-hush",
+  "description": "Official PHP SDK for hush-hush, generated from its OpenAPI spec",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "alrayyes"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "guzzlehttp/guzzle": "7.15.5",
+    "psr/http-client": "1.0.3",
+    "psr/http-factory": "1.1.0"
+  },
+  "require-dev": {
+    "ergebnis/composer-normalize": "2.52.0",
+    "friendsofphp/php-cs-fixer": "3.95.23",
+    "league/uri": "7.5.1",
+    "league/uri-interfaces": "7.6.0",
+    "pact-foundation/pact-php": "10.2.1",
+    "phpdocumentor/phpdocumentor": "3.10.0",
+    "phpstan/phpstan": "2.2.9",
+    "phpunit/phpunit": "13.3.2",
+    "roave/security-advisories": "dev-latest",
+    "squizlabs/php_codesniffer": "4.0.4"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "HushHush\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "HushHush\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true,
+      "pact-foundation/composer-downloads-plugin": true
+    },
+    "platform": {
+      "php": "8.4.99"
+    },
+    "sort-packages": true
+  },
+  "scripts": {
+    "codegen": "bash scripts/generate.sh",
+    "cs-fixer:fix": "php-cs-fixer fix",
+    "cs-fixer:lint": "php-cs-fixer fix --dry-run --diff",
+    "docs": "phpdoc",
+    "normalize:fix": "composer normalize",
+    "normalize:lint": "composer normalize --dry-run",
+    "phpcs:fix": "phpcbf",
+    "phpcs:lint": "phpcs",
+    "phpstan": "phpstan analyse --memory-limit=512M",
+    "test": "phpunit --testsuite unit",
+    "test:contract": "phpunit --testsuite contract",
+    "test:e2e": "phpunit --testsuite e2e",
+    "test:pact": "phpunit --testsuite pact"
+  }
+}

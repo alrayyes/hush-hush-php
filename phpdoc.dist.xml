@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+    configVersion="3"
+    title="hush-hush"
+>
+  <paths>
+    <output>site</output>
+    <cache>.phpdoc/cache</cache>
+  </paths>
+  <version number="1.0.0">
+    <!--
+      Points directly at the hand-written files/directories rather than
+      scanning all of `src` and trying to exclude `src/Generated` —
+      phpDocumentor 3.10.0's `<ignore>` element doesn't actually exclude
+      anything here (confirmed: neither a `src/Generated/*` nor a
+      `Generated/**/*` pattern removed the generated Api/Model classes from
+      the built site), so this is the reliable way to keep the published
+      docs limited to the SDK's real public surface.
+    -->
+    <api>
+      <source dsn=".">
+        <path>src/Client.php</path>
+        <path>src/RetryPolicy.php</path>
+        <path>src/Exception</path>
+      </source>
+    </api>
+  </version>
+</phpdocumentor>

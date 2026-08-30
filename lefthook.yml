@@ -1,0 +1,62 @@
+# The same commands CI runs, so the two cannot drift. The hook catches it
+# early; CI is the gate that cannot be skipped. PHP commands run through
+# scripts/composer.sh (the pinned composer:2.9.5 image) — see rules/php.md's
+# "no PHP interpreter" guidance.
+
+pre-commit:
+  jobs:
+    - name: cs-fixer
+      glob: "*.php"
+      exclude: "src/Generated/*"
+      run: ./scripts/composer.sh exec -- php-cs-fixer fix --config=.php-cs-fixer.dist.php --path-mode=intersection -- {staged_files}
+      stage_fixed: true
+
+    - name: phpcs-fix
+      glob: "*.php"
+      exclude: "src/Generated/*"
+      run: ./scripts/composer.sh exec -- phpcbf --standard=phpcs.xml.dist -- {staged_files}
+      stage_fixed: true
+
+    - name: normalize
+      glob: "composer.json"
+      run: ./scripts/composer.sh normalize
+      stage_fixed: true
+
+    - name: prettier
+      glob: "*.{md,yml,yaml}"
+      run: bunx prettier --write {staged_files}
+      stage_fixed: true
+
+    - name: markdownlint
+      glob: "*.md"
+      run: bunx markdownlint-cli2 {staged_files}
+
+    - name: actionlint
+      glob: ".github/workflows/*.{yml,yaml}"
+      run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.7
+
+commit-msg:
+  jobs:
+    - name: commitlint
+      run: bunx commitlint --edit {1}
+
+pre-push:
+  parallel: true
+  jobs:
+    - name: phpstan
+      run: ./scripts/composer.sh exec -- phpstan analyse --memory-limit=512M
+
+    - name: phpcs
+      run: ./scripts/composer.sh exec -- phpcs
+
+    - name: cs-fixer-check
+      run: ./scripts/composer.sh exec -- php-cs-fixer fix --dry-run --diff
+
+    - name: test
+      run: ./scripts/composer.sh exec -- phpunit --testsuite unit
+
+    - name: format:check
+      run: bun run format:check
+
+    - name: lint:md
+      run: bun run lint:md
