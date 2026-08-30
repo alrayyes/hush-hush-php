@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/alrayyes/hush-hush-php/compare/v1.0.1...v1.1.0) (2026-08-30)
+
+
+### Features
+
+* **ci:** upload coverage to Codecov ([#11](https://github.com/alrayyes/hush-hush-php/issues/11)) ([c299a12](https://github.com/alrayyes/hush-hush-php/commit/c299a12e566a3c1d7dab573d98c08077dcd4df03)), closes [#10](https://github.com/alrayyes/hush-hush-php/issues/10)
+
 ## [1.0.1](https://github.com/alrayyes/hush-hush-php/compare/v1.0.0...v1.0.1) (2026-08-30)
 
 
