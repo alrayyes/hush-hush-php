@@ -1,6 +1,7 @@
 # hush-hush-php
 
 [![ci](https://github.com/alrayyes/hush-hush-php/actions/workflows/ci.yml/badge.svg)](https://github.com/alrayyes/hush-hush-php/actions/workflows/ci.yml)
+[![Codecov](https://codecov.io/gh/alrayyes/hush-hush-php/graph/badge.svg)](https://codecov.io/gh/alrayyes/hush-hush-php)
 [![Packagist](https://img.shields.io/packagist/v/alrayyes/hush-hush)](https://packagist.org/packages/alrayyes/hush-hush)
 [![release](https://img.shields.io/github/v/release/alrayyes/hush-hush-php)](https://github.com/alrayyes/hush-hush-php/releases)
 [![license](https://img.shields.io/github/license/alrayyes/hush-hush-php)](LICENSE)

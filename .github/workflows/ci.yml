@@ -57,9 +57,16 @@ jobs:
           php-version: ${{ env.PHP_VERSION }}
           tools: composer:2.9.5
           extensions: ffi
+          coverage: pcov
       - run: composer install --prefer-dist --no-progress
       - name: phpunit (hand-written layer only; see design.md's testing layers)
-        run: vendor/bin/phpunit --testsuite unit
+        run: vendor/bin/phpunit --testsuite unit --coverage-clover=coverage.xml
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
+          fail_ci_if_error: true
 
   # Proves the generated client wasn't hand-edited: regenerating from the
   # pinned submodule commit must produce a byte-identical tree. See
