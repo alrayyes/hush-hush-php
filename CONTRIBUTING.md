@@ -2,7 +2,12 @@
 
 ## Getting set up
 
-- **PHP 8.2 or newer**, and **[Composer](https://getcomposer.org)** — the
+- **PHP 8.4 or newer** to run the dev tooling — PHPUnit 13 itself needs
+  8.4.1+, newer than the package's own `>=8.2` (`composer.json`'s
+  `require.php`, what a consumer actually needs; `require-dev` is never
+  installed for them). Running the test suite under 8.2 fails before a
+  single test does, on a transitive PHPUnit dependency's own syntax, not
+  this repo's code. And **[Composer](https://getcomposer.org)** — the
   package manager this repo uses. No PHP interpreter on your machine? Run
   everything through `scripts/composer.sh`, which wraps the pinned
   `composer:2.9.5` image (see `rules/php.md`'s "no PHP interpreter"
