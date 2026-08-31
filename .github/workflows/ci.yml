@@ -66,7 +66,15 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
-          fail_ci_if_error: true
+          # A Dependabot PR doesn't get repo secrets by default (GitHub's
+          # own restriction, not a misconfiguration here) - CODECOV_TOKEN
+          # is empty on that run, and this repo's branch protection makes
+          # Codecov refuse a tokenless upload ("Token required because
+          # branch is protected"). That's an upload hiccup on an
+          # unprivileged run, not a real test regression - true here would
+          # fail every Dependabot PR's CI on that basis alone, confirmed
+          # live on PRs #13/#14 where phpunit itself passed clean.
+          fail_ci_if_error: false
 
   # Proves the generated client wasn't hand-edited: regenerating from the
   # pinned submodule commit must produce a byte-identical tree. See
