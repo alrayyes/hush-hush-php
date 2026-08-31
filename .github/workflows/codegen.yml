@@ -1,15 +1,18 @@
 # Regenerates the client whenever hush-hush's spec moves, and opens a pull
-# request with the result — never pushes directly to main. See design.md's
-# "Versioning via spec diff" and "Merge policy" decisions.
+# request with the result — never pushes directly to main, and never merges
+# it either. See design.md's "Versioning via spec diff" and "Merge policy"
+# decisions.
 #
 # oasdiff classifies the spec change as additive or breaking; that
 # classification becomes the commit/PR message's Conventional Commits bump
 # marker (fix: vs fix!: + BREAKING CHANGE:), so release-please computes the
-# right semver bump from a message a human never had to write. Full
-# auto-merge applies to every regeneration PR this repo opens, per the
-# session-scoped auto-merge grant this repo was built under — the
-# classification stays visible in the PR body for after-the-fact review even
-# though it doesn't gate merge.
+# right semver bump from a message a human never had to write, and stays
+# visible in the PR body for the real review rules/sdk-generation.md
+# requires before merge. A session-scoped auto-merge grant was previously
+# wired in here as permanent CI behavior — CLAUDE.md's own rule is explicit
+# that a grant doesn't carry forward past the session or PR it was given
+# for, so that step is gone; a regeneration PR waits for an actual merge
+# the same as any other judgment call.
 name: codegen
 
 on:
@@ -111,9 +114,3 @@ jobs:
           body: ${{ steps.message.outputs.body }}
           branch: codegen/regenerate
           labels: kind/chore,topic/codegen
-
-      - name: Auto-merge on green CI
-        run: gh pr merge --auto --squash "${{ steps.pr.outputs.pull-request-url }}"
-        if: steps.moved.outputs.changed == 'true' && steps.pr.outputs.pull-request-number
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
