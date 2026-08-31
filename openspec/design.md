@@ -33,6 +33,8 @@ See proposal.md for motivation. Same constraints as the other three SDKs (see th
 
 **Merge policy: full auto-merge for this session, scaffolding and all regeneration PRs alike** — an explicit, repeated grant from Ryan, given after being shown the risk that a breaking spec change can produce a small, green-CI-passing diff. The `openapi-diff` classification still runs and is surfaced on every PR for visibility; it doesn't gate merge.
 
+**Correction:** `codegen.yml` had wired this in as a permanent, unconditional CI step (`gh pr merge --auto` on every regeneration PR), not scoped to the session it was granted in. CLAUDE.md's own rule on auto-merge grants is explicit that a grant "doesn't carry forward past its own scope: a grant for one session or one pull request isn't a grant for the next one" — and `rules/sdk-generation.md` separately requires real review on every regeneration PR regardless. The step is removed; a regeneration PR now waits for an actual merge decision like any other judgment call. Leaving the original decision above as-written rather than rewriting history — this note is the correction, not a replacement.
+
 **Auth: bearer token in the constructor with an `HUSH_HUSH_API_KEY` env var fallback (via `getenv()`); `X-Caller` as a per-call option, not client-level config.** Same reasoning as the other SDKs: the token is only required on write paths, and `X-Caller` attributes a specific call, not a client instance.
 
 **Retry: network failures, 5xx, and 429 only; exponential backoff with jitter; honor `Retry-After`.** Never retry other 4xx.
@@ -47,7 +49,7 @@ See proposal.md for motivation. Same constraints as the other three SDKs (see th
 
 - [`openapi-generator`'s PHP templates are less consistently idiomatic than the narrower Go/Python/Node tools] → mitigated by keeping the hand-written wrapper layer as the primary consumer-facing surface; generated classes stay an internal implementation detail behind PSR-4 namespacing.
 - [Guzzle-specific `ClientInterface`, not real PSR-18, is what the generator's stable "guzzle" target actually produces] → accepted after checking the beta `psr-18` alternative's added dependency/architecture cost against this SDK's own retry layer; see the "Transport" decision above.
-- [Full auto-merge applies to all regeneration PRs, so a breaking spec change can auto-merge as a small diff] → accepted risk, per Ryan's explicit repeated auto-merge grant. `openapi-diff`'s classification remains visible after the fact even though it doesn't block.
+- [Full auto-merge applies to all regeneration PRs, so a breaking spec change can auto-merge as a small diff] → resolved, not just mitigated: the blanket `gh pr merge --auto` step is removed from `codegen.yml` (see the Merge policy correction above). `openapi-diff`'s classification stays visible on every PR either way.
 
 ## Open Questions
 
