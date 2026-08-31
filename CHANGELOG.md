@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.0](https://github.com/alrayyes/hush-hush-php/compare/v1.1.0...v2.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* regenerate client from updated hush-hush spec ([#15](https://github.com/alrayyes/hush-hush-php/issues/15))
+
+### Bug Fixes
+
+* **ci:** don't fail CI on a Codecov upload a bot PR can't authenticate ([#17](https://github.com/alrayyes/hush-hush-php/issues/17)) ([f70ce04](https://github.com/alrayyes/hush-hush-php/commit/f70ce04e7c88435c32d4ca940b2113403576559c))
+* **ci:** stop auto-merging every codegen regeneration PR ([#16](https://github.com/alrayyes/hush-hush-php/issues/16)) ([16fedbd](https://github.com/alrayyes/hush-hush-php/commit/16fedbda772d3ace5b02869197e4e158cdf0f75f))
+* **deps-dev:** bump league/uri-interfaces from 7.6.0 to 7.8.1 in the php-dependencies group ([#13](https://github.com/alrayyes/hush-hush-php/issues/13)) ([0f1b4ae](https://github.com/alrayyes/hush-hush-php/commit/0f1b4ae2c86acde6608fa3189aed941671cd15a4))
+* regenerate client from updated hush-hush spec ([#15](https://github.com/alrayyes/hush-hush-php/issues/15)) ([d0314d9](https://github.com/alrayyes/hush-hush-php/commit/d0314d92d6b00361151bc8e5f2451a682e2e291e))
+
 ## [1.1.0](https://github.com/alrayyes/hush-hush-php/compare/v1.0.1...v1.1.0) (2026-08-30)
 
 
