@@ -16,7 +16,16 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PHP_VERSION: "8.2"
+  # composer.json's own require.php stays >=8.2 - that's what a real
+  # consumer needs, and --no-dev never touches phpunit at all. This is
+  # only the interpreter CI itself runs tests under, which has to satisfy
+  # every require-dev tool's own floor too - phpunit 13.3.2 requires
+  # >=8.4.1 (composer.json's config.platform.php already assumed this),
+  # and running it under 8.2 fails before a single test does: a
+  # transitive dependency (sebastian/diff) uses syntax 8.2 can't even
+  # parse, surfacing as spurious failures across lint/test/contract/
+  # pact-consumer that have nothing to do with the code under test.
+  PHP_VERSION: "8.4"
 
 jobs:
   actionlint:
