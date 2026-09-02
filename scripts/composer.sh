@@ -15,4 +15,4 @@ docker run --rm -u "$(id -u):$(id -g)" \
   -e GIT_CONFIG_KEY_0=safe.directory -e GIT_CONFIG_VALUE_0=/app \
   -v "$(pwd):/app" -w /app \
   --entrypoint composer \
-  composer:2.9.5 "$@"
+  composer:2.9.5@sha256:698d3801b2a622ace460c4743c781282fcbcb733a4cbf8b31c44731e846585e8 "$@"
