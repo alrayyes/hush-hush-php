@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.1](https://github.com/alrayyes/hush-hush-php/compare/v3.3.0...v3.3.1) (2026-09-02)
+
+
+### Miscellaneous Chores
+
+* **rector:** auto-detect PHP version, enable deadCode set ([#38](https://github.com/alrayyes/hush-hush-php/issues/38)) ([0afa9ed](https://github.com/alrayyes/hush-hush-php/commit/0afa9ed54eb293a2ebfab6c248eb75a4718ecfb5))
+
 ## [3.3.0](https://github.com/alrayyes/hush-hush-php/compare/v3.2.0...v3.3.0) (2026-09-02)
 
 
