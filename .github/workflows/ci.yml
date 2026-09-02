@@ -88,6 +88,29 @@ jobs:
           # live on PRs #13/#14 where phpunit itself passed clean.
           fail_ci_if_error: false
 
+  # Mutation-tests only the lines a pull request actually touches per
+  # rules/php.md ("run it in CI over the branch's own changes"); mutation.yml
+  # covers the whole hand-written layer on a schedule instead of paying for a
+  # full run on every push.
+  mutation:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          tools: composer:2.9.5
+          coverage: pcov
+      - run: composer install --prefer-dist --no-progress
+      - run: |
+          vendor/bin/infection --threads=max \
+            --test-framework-options="--testsuite unit" \
+            --git-diff-lines --git-diff-base=origin/main \
+            --logger-github
+
   # Proves the generated client wasn't hand-edited: regenerating from the
   # pinned submodule commit must produce a byte-identical tree. See
   # design.md's "Generated/hand-written boundary" decision.

@@ -37,6 +37,10 @@ provide that (the pinned `composer:2.9.5` image has no `ffi` extension), so
 run those specifically through a PHP install that does, matching
 `ci.yml`'s `pact-consumer` job.
 
+Mutation testing (`composer infection`) needs a coverage driver (pcov or
+Xdebug) the same way `ci.yml`'s `test` job does — `scripts/composer.sh`'s
+image has neither, so run it through a PHP install that does.
+
 ## Everyday commands
 
 ```sh
@@ -46,6 +50,7 @@ run those specifically through a PHP install that does, matching
 ./scripts/composer.sh exec -- phpmd src text phpmd.xml.dist --exclude src/Generated
 ./scripts/composer.sh exec -- rector process --dry-run   # drop --dry-run to apply
 ./scripts/composer.sh exec -- phpunit --testsuite unit   # contract/pact/e2e need extra setup, see ci.yml
+composer infection                               # mutation testing; needs pcov/Xdebug, see above
 ./scripts/generate.sh                            # regenerate src/Generated from the pinned spec
 
 bun run format:check   # prettier --check, add :write to fix
