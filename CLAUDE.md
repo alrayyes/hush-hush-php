@@ -86,3 +86,9 @@ specific to this repo.
 - **`HUSH_HUSH_STAGING_URL`/`HUSH_HUSH_STAGING_API_KEY` secrets aren't set
   yet.** `e2e.yml`'s smoke tests skip cleanly until a maintainer adds them —
   Actions secrets can't be read or set by anyone but the repo owner.
+- **No `actions/attest-build-provenance` in `release.yml`, despite
+  `rules/releases.md` asking for it unconditionally on every GitHub repo.**
+  `release.yml` only runs `release-please-action` — tags and a changelog
+  entry, no build step. Packagist installs straight from the tagged git
+  commit; there's no artifact (`subject-path`) for the action to attest.
+  Revisit if a release job ever starts producing one.
