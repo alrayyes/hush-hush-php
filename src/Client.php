@@ -26,15 +26,15 @@ use HushHush\Generated\Model\UsedBy;
  *
  * @see https://github.com/alrayyes/hush-hush
  */
-final class Client
+final readonly class Client
 {
     private const API_KEY_ENV_VAR = 'HUSH_HUSH_API_KEY';
     private const DEFAULT_TIMEOUT = 30.0;
     private const DEFAULT_MAX_RETRIES = 3;
 
-    private readonly ObjectsApi $objectsApi;
-    private readonly HealthApi $healthApi;
-    private readonly AuditLogApi $auditLogApi;
+    private ObjectsApi $objectsApi;
+    private HealthApi $healthApi;
+    private AuditLogApi $auditLogApi;
 
     /**
      * @param string               $baseUrl    hush-hush's base URL, e.g. `https://hush-hush.example.com`.
@@ -246,7 +246,7 @@ final class Client
     private static function expectType(mixed $value, string $class): object
     {
         if (!$value instanceof $class) {
-            $actual = \is_object($value) ? $value::class : get_debug_type($value);
+            $actual = get_debug_type($value);
 
             throw new \UnexpectedValueException("hush-hush: expected {$class}, got {$actual}");
         }

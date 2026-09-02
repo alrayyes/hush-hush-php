@@ -17,7 +17,6 @@ use HushHush\Generated\ApiException as GeneratedApiException;
 final class ApiException extends HushHushException
 {
     private readonly int $status;
-    private readonly ?string $requestId;
 
     /** The parsed `error` field from hush-hush's error body, if present. */
     private readonly ?string $apiMessage;
@@ -25,7 +24,7 @@ final class ApiException extends HushHushException
     /** The raw, unparsed response body, for a caller that needs more than `apiMessage`. */
     private readonly string $body;
 
-    public function __construct(int $status, string $body, ?string $requestId)
+    public function __construct(int $status, string $body, private readonly ?string $requestId)
     {
         $apiMessage = self::parseMessage($body);
         parent::__construct(
@@ -33,7 +32,6 @@ final class ApiException extends HushHushException
             $status,
         );
         $this->status = $status;
-        $this->requestId = $requestId;
         $this->apiMessage = $apiMessage;
         $this->body = $body;
     }
