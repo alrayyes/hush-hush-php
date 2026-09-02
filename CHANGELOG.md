@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.2](https://github.com/alrayyes/hush-hush-php/compare/v3.4.1...v3.4.2) (2026-09-02)
+
+
+### Miscellaneous Chores
+
+* **ci:** disable Codecov project/patch status checks ([#48](https://github.com/alrayyes/hush-hush-php/issues/48)) ([9666c3b](https://github.com/alrayyes/hush-hush-php/commit/9666c3bbc01e6164965432a24e31f58047590481)), closes [#47](https://github.com/alrayyes/hush-hush-php/issues/47)
+
 ## [3.4.1](https://github.com/alrayyes/hush-hush-php/compare/v3.4.0...v3.4.1) (2026-09-02)
 
 
