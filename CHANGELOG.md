@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.1](https://github.com/alrayyes/hush-hush-php/compare/v3.4.0...v3.4.1) (2026-09-02)
+
+
+### Bug Fixes
+
+* **ci:** use RELEASE_TOKEN for the codegen PR, not GITHUB_TOKEN ([#45](https://github.com/alrayyes/hush-hush-php/issues/45)) ([c81c58d](https://github.com/alrayyes/hush-hush-php/commit/c81c58d5de65ecb1a2732902b914c649b2352633)), closes [#44](https://github.com/alrayyes/hush-hush-php/issues/44)
+
 ## [3.4.0](https://github.com/alrayyes/hush-hush-php/compare/v3.3.1...v3.4.0) (2026-09-02)
 
 
