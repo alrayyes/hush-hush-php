@@ -22,6 +22,11 @@ pre-commit:
       run: ./scripts/composer.sh normalize
       stage_fixed: true
 
+    - name: sort-package-json
+      glob: "package.json"
+      run: bunx sort-package-json {staged_files}
+      stage_fixed: true
+
     - name: prettier
       glob: "*.{md,yml,yaml}"
       run: bunx prettier --write {staged_files}
@@ -63,3 +68,6 @@ pre-push:
 
     - name: lint:md
       run: bun run lint:md
+
+    - name: sort-package-json:check
+      run: bun run sort-package-json:check
