@@ -53,6 +53,7 @@ jobs:
       - run: vendor/bin/phpstan analyse --memory-limit=512M
       - run: vendor/bin/phpcs
       - run: vendor/bin/php-cs-fixer fix --dry-run --diff
+      - run: vendor/bin/rector process --dry-run
       - run: composer normalize --dry-run
       - run: composer audit
 

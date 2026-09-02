@@ -57,6 +57,9 @@ pre-push:
     - name: cs-fixer-check
       run: ./scripts/composer.sh exec -- php-cs-fixer fix --dry-run --diff
 
+    - name: rector-check
+      run: ./scripts/composer.sh exec -- rector process --dry-run
+
     - name: audit
       run: ./scripts/composer.sh audit
 
