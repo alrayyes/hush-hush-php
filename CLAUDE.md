@@ -35,13 +35,15 @@ specific to this repo.
   requires `guzzlehttp/psr7: ^2.4.5`, which conflicts with Guzzle 8's own
   `^3.1` requirement. Guzzle 7.15.5 needs `psr7 ^2.13.1`, which is clean of
   every current psr7 security advisory (all affect only `<2.12.3`).
-- **`league/uri` is pinned to `7.5.1` and `league/uri-interfaces` to
-  `7.6.0`** as direct require-dev overrides — newer versions
-  (`7.8.1`, pulled in transitively by `phpdocumentor/phpdocumentor@3.10.0`)
-  crash phpDocumentor with `UriString.php: The base URI must be an
-absolute URI or null` on every invocation, confirmed under both PHP 8.2
-  and 8.5 (not a PHP-version issue — phpDocumentor's own dependency drifted
-  past what 3.10.0 shipped against).
+- **`league/uri` is pinned to `7.5.1`** as a direct require-dev override —
+  a newer version, pulled in transitively by
+  `phpdocumentor/phpdocumentor@3.10.0`, crashed phpDocumentor with
+  `UriString.php: The base URI must be an absolute URI or null` on every
+  invocation, confirmed under both PHP 8.2 and 8.5 (not a PHP-version
+  issue — phpDocumentor's own dependency drifted past what 3.10.0 shipped
+  against). `league/uri-interfaces` no longer needs the same override —
+  Dependabot moved it to `7.8.1` (#13) without reproducing the crash,
+  and `docs.yml` has stayed green since.
 - **phpDocumentor's `--ignore`/`<ignore>` exclusion doesn't work in
   3.10.0** — neither the CLI flag nor the XML config element actually
   excludes `src/Generated` from the built site. `phpdoc.dist.xml` points
