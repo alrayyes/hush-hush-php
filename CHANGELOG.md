@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/alrayyes/hush-hush-php/compare/v3.0.0...v3.0.1) (2026-09-02)
+
+
+### Miscellaneous Chores
+
+* add .gitattributes ([#23](https://github.com/alrayyes/hush-hush-php/issues/23)) ([e7ffbed](https://github.com/alrayyes/hush-hush-php/commit/e7ffbed75616afd1e97fc804a80120992a3cf037))
+* pin composer and prism images to a digest ([#24](https://github.com/alrayyes/hush-hush-php/issues/24)) ([ccf242b](https://github.com/alrayyes/hush-hush-php/commit/ccf242bc10840e841e55855cda22a0c88de70a28))
+
 ## [3.0.0](https://github.com/alrayyes/hush-hush-php/compare/v2.0.0...v3.0.0) (2026-09-02)
 
 
