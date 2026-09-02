@@ -1,0 +1,22 @@
+{
+  // $schema kept for editor completion; infection/infection ships it.
+  $schema: "vendor/infection/infection/resources/schema.json",
+
+  // Generated code isn't exercised by phpunit's unit suite (only
+  // indirectly, through the contract/pact suites) -- mutating it here
+  // would just report untested noise phpstan.dist.neon and
+  // phpmd.xml.dist already exclude for the same reason.
+  source: {
+    directories: ["src"],
+    excludes: ["Generated"],
+  },
+
+  logs: {
+    text: "infection.log",
+    github: true,
+  },
+
+  // No minMsi yet -- this is the first run against this codebase.
+  // Once a real score exists and is worth defending, commit one here
+  // per rules/php.md so it can't quietly slide.
+}

@@ -13,6 +13,10 @@
 .phpunit.cache/
 .phpdoc/
 
+# Written by infection on every run; uploaded as a build artifact by
+# mutation.yml's scheduled job, not committed.
+/infection.log
+
 node_modules/
 .bun-cache/
 
