@@ -1,0 +1,27 @@
+name: Feature request
+description: New capability or request for the SDK
+labels: ["kind/feature"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "As a ‹who›, I want ‹what›, so that ‹why›."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: 3-5 testable, Given/When/Then rules.
+      value: |
+        - Given ..., when ..., then ...
+    validations:
+      required: true
+  - type: textarea
+    id: definition_of_done
+    attributes:
+      label: Definition of done
+      description: Tests written and passing, diff reviewed, docs and README true again, QA'd against the criteria above.
+    validations:
+      required: true
