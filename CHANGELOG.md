@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/alrayyes/hush-hush-php/compare/v3.0.1...v3.1.0) (2026-09-02)
+
+
+### Features
+
+* **ci:** scan for vulnerable dependencies with composer audit ([#26](https://github.com/alrayyes/hush-hush-php/issues/26)) ([94da610](https://github.com/alrayyes/hush-hush-php/commit/94da610980f7681ededea1c05ce931d160c290f0))
+
 ## [3.0.1](https://github.com/alrayyes/hush-hush-php/compare/v3.0.0...v3.0.1) (2026-09-02)
 
 
