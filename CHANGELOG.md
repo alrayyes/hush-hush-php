@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/alrayyes/hush-hush-php/compare/v3.1.1...v3.2.0) (2026-09-02)
+
+
+### Features
+
+* wire up Rector for mechanical PHP upgrades ([#34](https://github.com/alrayyes/hush-hush-php/issues/34)) ([eecc087](https://github.com/alrayyes/hush-hush-php/commit/eecc08755a3654e98f0e275361ed010eb70ab10e))
+
 ## [3.1.1](https://github.com/alrayyes/hush-hush-php/compare/v3.1.0...v3.1.1) (2026-09-02)
 
 
