@@ -52,6 +52,9 @@ pre-push:
     - name: cs-fixer-check
       run: ./scripts/composer.sh exec -- php-cs-fixer fix --dry-run --diff
 
+    - name: audit
+      run: ./scripts/composer.sh audit
+
     - name: test
       run: ./scripts/composer.sh exec -- phpunit --testsuite unit
 

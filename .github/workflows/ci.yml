@@ -54,6 +54,7 @@ jobs:
       - run: vendor/bin/phpcs
       - run: vendor/bin/php-cs-fixer fix --dry-run --diff
       - run: composer normalize --dry-run
+      - run: composer audit
 
   test:
     runs-on: ubuntu-24.04
