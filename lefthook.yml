@@ -51,6 +51,9 @@ pre-push:
     - name: phpstan
       run: ./scripts/composer.sh exec -- phpstan analyse --memory-limit=512M
 
+    - name: phpmd
+      run: ./scripts/composer.sh exec -- phpmd src text phpmd.xml.dist --exclude src/Generated
+
     - name: phpcs
       run: ./scripts/composer.sh exec -- phpcs
 
