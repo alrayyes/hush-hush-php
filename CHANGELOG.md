@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/alrayyes/hush-hush-php/compare/v3.1.0...v3.1.1) (2026-09-02)
+
+
+### Miscellaneous Chores
+
+* keep package.json canonical with sort-package-json ([#28](https://github.com/alrayyes/hush-hush-php/issues/28)) ([cfee7f4](https://github.com/alrayyes/hush-hush-php/commit/cfee7f4b28951a4e874b36c17472f20cb8a7fce0))
+
 ## [3.1.0](https://github.com/alrayyes/hush-hush-php/compare/v3.0.1...v3.1.0) (2026-09-02)
 
 
