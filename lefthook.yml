@@ -71,3 +71,6 @@ pre-push:
 
     - name: sort-package-json:check
       run: bun run sort-package-json:check
+
+    - name: audit:bun
+      run: bun run audit
