@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/alrayyes/hush-hush-php/compare/v3.3.1...v3.4.0) (2026-09-02)
+
+
+### Features
+
+* wire up Infection mutation testing ([#41](https://github.com/alrayyes/hush-hush-php/issues/41)) ([184e073](https://github.com/alrayyes/hush-hush-php/commit/184e07309b4c8f8cff6220303a6cef52407e9d68))
+
 ## [3.3.1](https://github.com/alrayyes/hush-hush-php/compare/v3.3.0...v3.3.1) (2026-09-02)
 
 
