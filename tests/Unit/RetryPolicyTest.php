@@ -87,8 +87,8 @@ final class RetryPolicyTest extends TestCase
     #[Test]
     public function backoffGrowsExponentiallyAcrossAttempts(): void
     {
-        $first = RetryPolicy::delayMs(1, null);
-        $third = RetryPolicy::delayMs(3, null);
+        $first = RetryPolicy::delayMs(1);
+        $third = RetryPolicy::delayMs(3);
 
         self::assertGreaterThan($first, $third);
     }
