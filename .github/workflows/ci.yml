@@ -112,6 +112,8 @@ jobs:
         run: bun run lint:md
       - name: sort-package-json --check
         run: bun run sort-package-json:check
+      - name: bun audit
+        run: bun run audit
 
   # Contract-test the client against a mock server built from the same pinned
   # spec, per rules/sdk-generation.md's "testing against the spec, not a
