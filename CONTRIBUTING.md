@@ -43,6 +43,7 @@ run those specifically through a PHP install that does, matching
 ./scripts/composer.sh exec -- php-cs-fixer fix   # the fixer; --dry-run --diff stays the check
 ./scripts/composer.sh exec -- phpcs              # PSR-12 floor
 ./scripts/composer.sh exec -- phpstan analyse --memory-limit=512M
+./scripts/composer.sh exec -- phpmd src text phpmd.xml.dist --exclude src/Generated
 ./scripts/composer.sh exec -- rector process --dry-run   # drop --dry-run to apply
 ./scripts/composer.sh exec -- phpunit --testsuite unit   # contract/pact/e2e need extra setup, see ci.yml
 ./scripts/generate.sh                            # regenerate src/Generated from the pinned spec

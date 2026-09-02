@@ -51,6 +51,7 @@ jobs:
       # deliberate pin-everything convention (see rules/dependencies.md).
       - run: composer validate
       - run: vendor/bin/phpstan analyse --memory-limit=512M
+      - run: vendor/bin/phpmd src text phpmd.xml.dist --exclude src/Generated
       - run: vendor/bin/phpcs
       - run: vendor/bin/php-cs-fixer fix --dry-run --diff
       - run: vendor/bin/rector process --dry-run

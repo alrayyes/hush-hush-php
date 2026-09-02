@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ruleset name="hush-hush-php"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd">
+  <description>
+    Complexity, coupling and dead-parameter checks for the hand-written
+    layer. naming and controversial are left out per rules/php.md -- they
+    fight Symfony/PSR conventions and produce noise nobody reads.
+  </description>
+
+  <rule ref="rulesets/cleancode.xml">
+    <!-- Guzzle's own API is static factories (HandlerStack::create(),
+         Middleware::retry()); RetryPolicy is deliberately a static
+         utility class with no instance state; ApiException::fromGenerated()
+         is a named constructor. None of that is a smell to refactor away. -->
+    <exclude name="StaticAccess" />
+    <!-- php-cs-fixer's own @PhpCsFixer ruleset (.php-cs-fixer.dist.php)
+         actively rewrites a global-namespace class back to its
+         fully-qualified form and drops the use statement, confirmed
+         live: it undid a use DateTime;/use UnexpectedValueException; on
+         sight. phpcs owns PSR-12 and php-cs-fixer owns the opinionated
+         pass on top per rules/php.md; this rule can't be satisfied
+         without fighting the tool the project already deferred to. -->
+    <exclude name="MissingImport" />
+  </rule>
+  <rule ref="rulesets/codesize.xml" />
+
+  <rule ref="rulesets/design.xml">
+    <!-- Client is a thin facade over 3 generated API classes and 6
+         generated model types, which is what a typed SDK client's
+         surface looks like, not excess coupling to trim. -->
+    <exclude name="CouplingBetweenObjects" />
+  </rule>
+  <rule ref="rulesets/design.xml/CouplingBetweenObjects">
+    <properties>
+      <property name="maximum" value="25" />
+    </properties>
+  </rule>
+</ruleset>
