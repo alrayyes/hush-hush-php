@@ -43,7 +43,7 @@ final class RetryPolicy
 
     public static function delay(): callable
     {
-        return static fn (int $retries, ?ResponseInterface $response = null): int => self::delayMs($retries, $response);
+        return self::delayMs(...);
     }
 
     public static function delayMs(int $retries, ?ResponseInterface $response = null): int
