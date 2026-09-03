@@ -75,11 +75,6 @@ specific to this repo.
   support (confirmed on hush-hush-python; fixed org-wide via
   alrayyes/dotfiles#425/#426, which now pins bun below 1.4 until
   dependabot-core#15848 lands upstream).
-- **Full auto-merge is on for this repo's PRs, scaffolding and regeneration
-  alike** — a session-scoped grant during initial development, not the
-  standing Renovate/Dependabot exception `rules/sdk-generation.md`
-  otherwise requires review for. `oasdiff`'s breaking-change classification
-  still shows up on every regeneration PR; it just doesn't block the merge.
 - **No Vale/ltex prose-quality tier.** Markdown gets Prettier + markdownlint
   (mechanics), not grammar/style checking — same deliberate scope cut as
   the other three SDKs.
