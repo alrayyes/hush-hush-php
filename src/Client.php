@@ -16,6 +16,7 @@ use HushHush\Generated\ApiException as GeneratedApiException;
 use HushHush\Generated\Configuration;
 use HushHush\Generated\Model\AuditLogEntry;
 use HushHush\Generated\Model\CreateObjectRequest;
+use HushHush\Generated\Model\Error;
 use HushHush\Generated\Model\Health;
 use HushHush\Generated\Model\ObjectMetadata;
 use HushHush\Generated\Model\UpdateObjectRequest;
@@ -205,12 +206,20 @@ final readonly class Client
      */
     public function queryAuditLog(array $filter = []): array
     {
-        return $this->call(fn () => $this->auditLogApi->queryAuditLog(
-            $filter['objectId'] ?? null,
-            $filter['caller'] ?? null,
-            isset($filter['from']) ? new \DateTime($filter['from']) : null,
-            isset($filter['to']) ? new \DateTime($filter['to']) : null,
-        ));
+        return $this->call(function () use ($filter): array {
+            $result = $this->auditLogApi->queryAuditLog(
+                $filter['objectId'] ?? null,
+                $filter['caller'] ?? null,
+                isset($filter['from']) ? new \DateTime($filter['from']) : null,
+                isset($filter['to']) ? new \DateTime($filter['to']) : null,
+            );
+
+            if ($result instanceof Error) {
+                throw new ApiException(400, (string) json_encode(['error' => $result->getError()]), null);
+            }
+
+            return $result;
+        });
     }
 
     /**
