@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.6](https://github.com/alrayyes/hush-hush-php/compare/v3.4.5...v3.4.6) (2026-09-03)
+
+
+### Bug Fixes
+
+* **e2e:** treat empty-string secrets as unset in the staging skip check ([#57](https://github.com/alrayyes/hush-hush-php/issues/57)) ([8858060](https://github.com/alrayyes/hush-hush-php/commit/88580601ce7825b9eb074a4e605564d8ca737d44))
+
 ## [3.4.5](https://github.com/alrayyes/hush-hush-php/compare/v3.4.4...v3.4.5) (2026-09-03)
 
 
