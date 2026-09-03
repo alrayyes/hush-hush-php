@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.5](https://github.com/alrayyes/hush-hush-php/compare/v3.4.4...v3.4.5) (2026-09-03)
+
+
+### Bug Fixes
+
+* **ci:** match e2e's PHP version pin to ci.yml's ([#55](https://github.com/alrayyes/hush-hush-php/issues/55)) ([59d166b](https://github.com/alrayyes/hush-hush-php/commit/59d166b4712b89c15bc1f495fdbbe9b001605f9e))
+
 ## [3.4.4](https://github.com/alrayyes/hush-hush-php/compare/v3.4.3...v3.4.4) (2026-09-03)
 
 
