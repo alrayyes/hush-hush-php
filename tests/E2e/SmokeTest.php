@@ -26,7 +26,11 @@ final class SmokeTest extends TestCase
     {
         $baseUrl = getenv('HUSH_HUSH_BASE_URL');
         $apiKey = getenv('HUSH_HUSH_API_KEY');
-        if (false === $baseUrl || false === $apiKey) {
+        // GitHub Actions sets a secret-backed env var to an empty string
+        // when the secret doesn't exist, rather than leaving it unset -
+        // getenv() then returns '', not false. Treat both as "not set",
+        // matching hush-hush-go's e2e_test.go (`baseURL == ""`).
+        if ('' === $baseUrl || false === $baseUrl || '' === $apiKey || false === $apiKey) {
             self::markTestSkipped('HUSH_HUSH_BASE_URL/HUSH_HUSH_API_KEY are not set');
         }
 
