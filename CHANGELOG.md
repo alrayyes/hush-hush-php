@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.3](https://github.com/alrayyes/hush-hush-php/compare/v3.4.2...v3.4.3) (2026-09-03)
+
+
+### Bug Fixes
+
+* **ci:** put oasdiff on PATH so breaking-change detection works ([#51](https://github.com/alrayyes/hush-hush-php/issues/51)) ([5c3ce45](https://github.com/alrayyes/hush-hush-php/commit/5c3ce4515a6cf9367cb7208028e7e4c4ce8f2e9c))
+
 ## [3.4.2](https://github.com/alrayyes/hush-hush-php/compare/v3.4.1...v3.4.2) (2026-09-02)
 
 
