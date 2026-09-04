@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.8](https://github.com/alrayyes/hush-hush-php/compare/v3.4.7...v3.4.8) (2026-09-04)
+
+
+### Miscellaneous Chores
+
+* add .editorconfig ([#62](https://github.com/alrayyes/hush-hush-php/issues/62)) ([f65c71e](https://github.com/alrayyes/hush-hush-php/commit/f65c71e524065e2c2c12ed84bd1ea7b302545739)), closes [#61](https://github.com/alrayyes/hush-hush-php/issues/61)
+
 ## [3.4.7](https://github.com/alrayyes/hush-hush-php/compare/v3.4.6...v3.4.7) (2026-09-04)
 
 
