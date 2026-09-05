@@ -75,9 +75,6 @@ specific to this repo.
   support (confirmed on hush-hush-python; fixed org-wide via
   alrayyes/dotfiles#425/#426, which now pins bun below 1.4 until
   dependabot-core#15848 lands upstream).
-- **No Vale/ltex prose-quality tier.** Markdown gets Prettier + markdownlint
-  (mechanics), not grammar/style checking — same deliberate scope cut as
-  the other three SDKs.
 - **`HUSH_HUSH_STAGING_URL`/`HUSH_HUSH_STAGING_API_KEY` secrets aren't set
   yet.** `e2e.yml`'s smoke tests skip cleanly until a maintainer adds them —
   Actions secrets can't be read or set by anyone but the repo owner.

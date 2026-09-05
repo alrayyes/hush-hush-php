@@ -1,0 +1,38 @@
+{
+	"ltex": {
+		"language": "en-US",
+		"dictionary": {
+			"en-US": [
+				"CI",
+				"Codecov",
+				"OpenAPI",
+				"Quickstart",
+				"Xdebug",
+				"alrayyes",
+				"args",
+				"argv",
+				"ci",
+				"commitlint",
+				"dependabot-core",
+				"dotfiles",
+				"hush-hush-php",
+				"lefthook",
+				"lockfileVersion",
+				"markdownlint",
+				"npm",
+				"openapi-generator",
+				"org-wide",
+				"pcov"
+			]
+		},
+		"disabledRules": {
+			"en-US": [
+				"PASSIVE_VOICE",
+				"UPPERCASE_SENTENCE_START",
+				"EN_COMPOUNDS_HAND_WRITTEN",
+				"PREPOSITION_VERB",
+				"A_INFINITIVE"
+			]
+		}
+	}
+}
