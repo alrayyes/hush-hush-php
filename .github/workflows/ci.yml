@@ -72,7 +72,7 @@ jobs:
           coverage: pcov
       - run: composer install --prefer-dist --no-progress
       - name: phpunit (hand-written layer only; see design.md's testing layers)
-        run: vendor/bin/phpunit --testsuite unit --coverage-clover=coverage.xml
+        run: vendor/bin/phpunit --testsuite unit --coverage-clover=coverage.xml --log-junit=junit.xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         with:
@@ -86,6 +86,19 @@ jobs:
           # unprivileged run, not a real test regression - true here would
           # fail every Dependabot PR's CI on that basis alone, confirmed
           # live on PRs #13/#14 where phpunit itself passed clean.
+          fail_ci_if_error: false
+
+      # Codecov Test Analytics: per-test failure/flake detail, not just a
+      # coverage delta. !cancelled(), not always() - still runs when phpunit
+      # above failed (junit.xml exists either way), but not if the whole run
+      # was cancelled out from under it. Same Dependabot-token gap as above.
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: junit.xml
+          report-type: test_results
           fail_ci_if_error: false
 
   # Mutation-tests only the lines a pull request actually touches per
