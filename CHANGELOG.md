@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.12](https://github.com/alrayyes/hush-hush-php/compare/v3.4.11...v3.4.12) (2026-09-10)
+
+
+### Bug Fixes
+
+* restore docs build broken by league/uri 7.8.1 bump ([#76](https://github.com/alrayyes/hush-hush-php/issues/76)) ([5a4b93f](https://github.com/alrayyes/hush-hush-php/commit/5a4b93f75ebdc8959ceb5ac5f92912fb6d093142))
+
 ## [3.4.11](https://github.com/alrayyes/hush-hush-php/compare/v3.4.10...v3.4.11) (2026-09-10)
 
 
