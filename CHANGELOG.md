@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.10](https://github.com/alrayyes/hush-hush-php/compare/v3.4.9...v3.4.10) (2026-09-10)
+
+
+### Bug Fixes
+
+* **deps-dev:** bump the php-dependencies group with 5 updates ([#68](https://github.com/alrayyes/hush-hush-php/issues/68)) ([b6fdeaa](https://github.com/alrayyes/hush-hush-php/commit/b6fdeaaef4f155e388409451d5985d47433c5b7b))
+
 ## [3.4.9](https://github.com/alrayyes/hush-hush-php/compare/v3.4.8...v3.4.9) (2026-09-05)
 
 
