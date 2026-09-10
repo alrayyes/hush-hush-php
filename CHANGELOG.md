@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.11](https://github.com/alrayyes/hush-hush-php/compare/v3.4.10...v3.4.11) (2026-09-10)
+
+
+### Bug Fixes
+
+* **ci:** report_type, not report-type ([#73](https://github.com/alrayyes/hush-hush-php/issues/73)) ([4febabf](https://github.com/alrayyes/hush-hush-php/commit/4febabfa4719a470c879ab9b80ba95e99bff35e7))
+
 ## [3.4.10](https://github.com/alrayyes/hush-hush-php/compare/v3.4.9...v3.4.10) (2026-09-10)
 
 
