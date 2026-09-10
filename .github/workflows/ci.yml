@@ -98,7 +98,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: junit.xml
-          report-type: test_results
+          report_type: test_results
           fail_ci_if_error: false
 
   # Mutation-tests only the lines a pull request actually touches per
