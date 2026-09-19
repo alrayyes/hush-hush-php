@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.0.0](https://github.com/alrayyes/hush-hush-php/compare/v3.4.16...v4.0.0) (2026-09-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* regenerate client from updated hush-hush spec ([#90](https://github.com/alrayyes/hush-hush-php/issues/90))
+
+### Bug Fixes
+
+* **deps-dev:** re-pin league/uri to 7.5.1 to fix phpdoc build ([#91](https://github.com/alrayyes/hush-hush-php/issues/91)) ([e601e15](https://github.com/alrayyes/hush-hush-php/commit/e601e15b9a403170908ef832a97bd141ff092113))
+* regenerate client from updated hush-hush spec ([#90](https://github.com/alrayyes/hush-hush-php/issues/90)) ([d2a2beb](https://github.com/alrayyes/hush-hush-php/commit/d2a2beb6401f22a641a56bedb19950d61ee0c2e6))
+* regenerate client from updated hush-hush spec ([#95](https://github.com/alrayyes/hush-hush-php/issues/95)) ([f4c288e](https://github.com/alrayyes/hush-hush-php/commit/f4c288eec8366f5cd4e6ed7659d39c6f13dcec2d))
+
 ## [3.4.16](https://github.com/alrayyes/hush-hush-php/compare/v3.4.15...v3.4.16) (2026-09-19)
 
 
