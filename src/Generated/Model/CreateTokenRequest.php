@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 6f3560e36892efd3e8ae80c5dc8e023c44c6831b.
  */
 /**
- * ObjectMetadata
+ * CreateTokenRequest
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * ObjectMetadata Class Doc Comment
+ * CreateTokenRequest Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ObjectMetadata';
+    protected static $openAPIModelName = 'CreateTokenRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,9 +61,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'used_by' => 'string[]',
-        'description' => 'string'
+        'description' => 'string',
+        'ttl_seconds' => 'int'
     ];
 
     /**
@@ -74,9 +73,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'id' => null,
-        'used_by' => null,
-        'description' => null
+        'description' => null,
+        'ttl_seconds' => 'int64'
     ];
 
     /**
@@ -85,9 +83,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'id' => false,
-        'used_by' => false,
-        'description' => false
+        'description' => false,
+        'ttl_seconds' => false
     ];
 
     /**
@@ -176,9 +173,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'used_by' => 'used_by',
-        'description' => 'description'
+        'description' => 'description',
+        'ttl_seconds' => 'ttl_seconds'
     ];
 
     /**
@@ -187,9 +183,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'used_by' => 'setUsedBy',
-        'description' => 'setDescription'
+        'description' => 'setDescription',
+        'ttl_seconds' => 'setTtlSeconds'
     ];
 
     /**
@@ -198,9 +193,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'used_by' => 'getUsedBy',
-        'description' => 'getDescription'
+        'description' => 'getDescription',
+        'ttl_seconds' => 'getTtlSeconds'
     ];
 
     /**
@@ -260,9 +254,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('used_by', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('ttl_seconds', $data ?? [], null);
     }
 
     /**
@@ -292,11 +285,14 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
         }
-        if (!preg_match("/^[a-z0-9][a-z0-9_-]*$/", $this->container['id'])) {
-            $invalidProperties[] = "invalid value for 'id', must be conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.";
+        if ($this->container['ttl_seconds'] === null) {
+            $invalidProperties[] = "'ttl_seconds' can't be null";
+        }
+        if (($this->container['ttl_seconds'] < 1)) {
+            $invalidProperties[] = "invalid value for 'ttl_seconds', must be bigger than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -315,68 +311,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-
-        if ((!preg_match("/^[a-z0-9][a-z0-9_-]*$/", ObjectSerializer::toString($id)))) {
-            throw new \InvalidArgumentException("invalid value for \$id when calling ObjectMetadata., must conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.");
-        }
-
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets used_by
-     *
-     * @return string[]|null
-     */
-    public function getUsedBy()
-    {
-        return $this->container['used_by'];
-    }
-
-    /**
-     * Sets used_by
-     *
-     * @param string[]|null $used_by The consumers (repos or hosts) recorded as depending on this object. Set at creation; unaffected by later value updates.
-     *
-     * @return self
-     */
-    public function setUsedBy($used_by)
-    {
-        if (is_null($used_by)) {
-            throw new \InvalidArgumentException('non-nullable used_by cannot be null');
-        }
-        $this->container['used_by'] = $used_by;
-
-        return $this;
-    }
-
-    /**
      * Gets description
      *
-     * @return string|null
+     * @return string
      */
     public function getDescription()
     {
@@ -386,7 +323,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description A free-text label set at creation, for a reader who only knows the id. Fixed at creation - the same as used_by, it is unaffected by a later value update.
+     * @param string $description description
      *
      * @return self
      */
@@ -396,6 +333,37 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets ttl_seconds
+     *
+     * @return int
+     */
+    public function getTtlSeconds()
+    {
+        return $this->container['ttl_seconds'];
+    }
+
+    /**
+     * Sets ttl_seconds
+     *
+     * @param int $ttl_seconds How long the token stays valid for, starting now.
+     *
+     * @return self
+     */
+    public function setTtlSeconds($ttl_seconds)
+    {
+        if (is_null($ttl_seconds)) {
+            throw new \InvalidArgumentException('non-nullable ttl_seconds cannot be null');
+        }
+        if (($ttl_seconds < 1)) {
+            throw new \InvalidArgumentException('invalid value for $ttl_seconds when calling CreateTokenRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['ttl_seconds'] = $ttl_seconds;
 
         return $this;
     }
