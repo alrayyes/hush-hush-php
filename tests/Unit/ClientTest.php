@@ -173,6 +173,20 @@ final class ClientTest extends TestCase
     }
 
     #[Test]
+    public function sendsAuditLogActorAsQueryParameter(): void
+    {
+        $history = [];
+        $client = self::mockedClient([
+            new Response(200, [], '[]'),
+        ], $history);
+
+        $client->queryAuditLog(['actor' => 'token-123']);
+
+        $query = $history[0]['request']->getUri()->getQuery();
+        self::assertStringContainsString('actor=token-123', $query);
+    }
+
+    #[Test]
     public function raisesTypedErrorWithStatusAndParsedBodyForNonRetryable4xx(): void
     {
         $client = self::mockedClient([

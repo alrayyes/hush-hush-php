@@ -197,10 +197,12 @@ final readonly class Client
      * always returns the full matching result set as a single array, never a page
      * plus a cursor.
      *
-     * @param array{objectId?: string, caller?: string, from?: string, to?: string} $filter
+     * @param array{objectId?: string, caller?: string, actor?: string, from?: string, to?: string} $filter
      *     Optional filters. `objectId` restricts to entries for that object id;
-     *     `caller` to entries recorded with that caller identity; `from`/`to`
-     *     (ISO-8601 timestamps) bound the timestamp range.
+     *     `caller` to entries recorded with that caller identity; `actor` to
+     *     entries authenticated by that verified actor (never self-reported,
+     *     unlike `caller`); `from`/`to` (ISO-8601 timestamps) bound the
+     *     timestamp range.
      *
      * @return AuditLogEntry[]
      */
@@ -210,6 +212,7 @@ final readonly class Client
             $result = $this->auditLogApi->queryAuditLog(
                 $filter['objectId'] ?? null,
                 $filter['caller'] ?? null,
+                $filter['actor'] ?? null,
                 isset($filter['from']) ? new \DateTime($filter['from']) : null,
                 isset($filter['to']) ? new \DateTime($filter['to']) : null,
             );
