@@ -16,6 +16,14 @@ updates:
     commit-message:
       prefix: fix
       include: scope
+    # league/uri carries a base-URI-resolution regression from 7.6 onward
+    # that breaks vendor/bin/phpdoc (thephpleague/uri-src#175) — fixed once
+    # already by re-pinning to 7.5.1 (#91, tracked in #75). Ignored here so
+    # Dependabot stops proposing the same broken bump on a schedule; drop
+    # this once upstream actually fixes the regression.
+    ignore:
+      - dependency-name: "league/uri"
+        versions: [">7.5.1"]
     groups:
       php-dependencies:
         patterns: ["*"]
