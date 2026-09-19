@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.2](https://github.com/alrayyes/hush-hush-php/compare/v4.0.1...v4.0.2) (2026-09-19)
+
+
+### Bug Fixes
+
+* format audit-log from/to as ISO-8601 strings, not raw \DateTime ([5340b05](https://github.com/alrayyes/hush-hush-php/commit/5340b051bc9b1238a7a4f637cfe37c0747c41bad))
+* format audit-log from/to as ISO-8601 strings, not raw \DateTime ([82cd238](https://github.com/alrayyes/hush-hush-php/commit/82cd238ecb39a24c688831a39cd617006d34bd99)), closes [#93](https://github.com/alrayyes/hush-hush-php/issues/93)
+
 ## [4.0.1](https://github.com/alrayyes/hush-hush-php/compare/v4.0.0...v4.0.1) (2026-09-19)
 
 
