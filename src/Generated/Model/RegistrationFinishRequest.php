@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 6f3560e36892efd3e8ae80c5dc8e023c44c6831b.
  */
 /**
- * ObjectMetadata
+ * RegistrationFinishRequest
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * ObjectMetadata Class Doc Comment
+ * RegistrationFinishRequest Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
+class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ObjectMetadata';
+    protected static $openAPIModelName = 'RegistrationFinishRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,9 +61,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'used_by' => 'string[]',
-        'description' => 'string'
+        'credential' => 'array<string,mixed>',
+        'nickname' => 'string'
     ];
 
     /**
@@ -74,9 +73,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'id' => null,
-        'used_by' => null,
-        'description' => null
+        'credential' => null,
+        'nickname' => null
     ];
 
     /**
@@ -85,9 +83,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'id' => false,
-        'used_by' => false,
-        'description' => false
+        'credential' => false,
+        'nickname' => false
     ];
 
     /**
@@ -176,9 +173,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'used_by' => 'used_by',
-        'description' => 'description'
+        'credential' => 'credential',
+        'nickname' => 'nickname'
     ];
 
     /**
@@ -187,9 +183,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'used_by' => 'setUsedBy',
-        'description' => 'setDescription'
+        'credential' => 'setCredential',
+        'nickname' => 'setNickname'
     ];
 
     /**
@@ -198,9 +193,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'used_by' => 'getUsedBy',
-        'description' => 'getDescription'
+        'credential' => 'getCredential',
+        'nickname' => 'getNickname'
     ];
 
     /**
@@ -260,9 +254,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('used_by', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('credential', $data ?? [], null);
+        $this->setIfExists('nickname', $data ?? [], null);
     }
 
     /**
@@ -292,13 +285,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['credential'] === null) {
+            $invalidProperties[] = "'credential' can't be null";
         }
-        if (!preg_match("/^[a-z0-9][a-z0-9_-]*$/", $this->container['id'])) {
-            $invalidProperties[] = "invalid value for 'id', must be conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.";
-        }
-
         return $invalidProperties;
     }
 
@@ -315,87 +304,55 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets credential
      *
-     * @return string
+     * @return array<string,mixed>
      */
-    public function getId()
+    public function getCredential()
     {
-        return $this->container['id'];
+        return $this->container['credential'];
     }
 
     /**
-     * Sets id
+     * Sets credential
      *
-     * @param string $id id
+     * @param array<string,mixed> $credential The browser's attestation response, exactly as `navigator.credentials.create()` returned it.
      *
      * @return self
      */
-    public function setId($id)
+    public function setCredential($credential)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($credential)) {
+            throw new \InvalidArgumentException('non-nullable credential cannot be null');
         }
-
-        if ((!preg_match("/^[a-z0-9][a-z0-9_-]*$/", ObjectSerializer::toString($id)))) {
-            throw new \InvalidArgumentException("invalid value for \$id when calling ObjectMetadata., must conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.");
-        }
-
-        $this->container['id'] = $id;
+        $this->container['credential'] = $credential;
 
         return $this;
     }
 
     /**
-     * Gets used_by
-     *
-     * @return string[]|null
-     */
-    public function getUsedBy()
-    {
-        return $this->container['used_by'];
-    }
-
-    /**
-     * Sets used_by
-     *
-     * @param string[]|null $used_by The consumers (repos or hosts) recorded as depending on this object. Set at creation; unaffected by later value updates.
-     *
-     * @return self
-     */
-    public function setUsedBy($used_by)
-    {
-        if (is_null($used_by)) {
-            throw new \InvalidArgumentException('non-nullable used_by cannot be null');
-        }
-        $this->container['used_by'] = $used_by;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
+     * Gets nickname
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getNickname()
     {
-        return $this->container['description'];
+        return $this->container['nickname'];
     }
 
     /**
-     * Sets description
+     * Sets nickname
      *
-     * @param string|null $description A free-text label set at creation, for a reader who only knows the id. Fixed at creation - the same as used_by, it is unaffected by a later value update.
+     * @param string|null $nickname A human-readable label for this credential, shown in the credentials list.
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setNickname($nickname)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($nickname)) {
+            throw new \InvalidArgumentException('non-nullable nickname cannot be null');
         }
-        $this->container['description'] = $description;
+        $this->container['nickname'] = $nickname;
 
         return $this;
     }

@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 6f3560e36892efd3e8ae80c5dc8e023c44c6831b.
  */
 /**
- * ObjectMetadata
+ * TokenWithValue
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * ObjectMetadata Class Doc Comment
+ * TokenWithValue Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
+class TokenWithValue implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ObjectMetadata';
+    protected static $openAPIModelName = 'TokenWithValue';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -62,8 +62,12 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $openAPITypes = [
         'id' => 'string',
-        'used_by' => 'string[]',
-        'description' => 'string'
+        'description' => 'string',
+        'owner' => 'string',
+        'created_at' => '\DateTime',
+        'expires_at' => '\DateTime',
+        'revoked' => 'bool',
+        'value' => 'string'
     ];
 
     /**
@@ -75,8 +79,12 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $openAPIFormats = [
         'id' => null,
-        'used_by' => null,
-        'description' => null
+        'description' => null,
+        'owner' => null,
+        'created_at' => 'date-time',
+        'expires_at' => 'date-time',
+        'revoked' => null,
+        'value' => null
     ];
 
     /**
@@ -86,8 +94,12 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static array $openAPINullables = [
         'id' => false,
-        'used_by' => false,
-        'description' => false
+        'description' => false,
+        'owner' => false,
+        'created_at' => false,
+        'expires_at' => false,
+        'revoked' => false,
+        'value' => false
     ];
 
     /**
@@ -177,8 +189,12 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'used_by' => 'used_by',
-        'description' => 'description'
+        'description' => 'description',
+        'owner' => 'owner',
+        'created_at' => 'created_at',
+        'expires_at' => 'expires_at',
+        'revoked' => 'revoked',
+        'value' => 'value'
     ];
 
     /**
@@ -188,8 +204,12 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'used_by' => 'setUsedBy',
-        'description' => 'setDescription'
+        'description' => 'setDescription',
+        'owner' => 'setOwner',
+        'created_at' => 'setCreatedAt',
+        'expires_at' => 'setExpiresAt',
+        'revoked' => 'setRevoked',
+        'value' => 'setValue'
     ];
 
     /**
@@ -199,8 +219,12 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'used_by' => 'getUsedBy',
-        'description' => 'getDescription'
+        'description' => 'getDescription',
+        'owner' => 'getOwner',
+        'created_at' => 'getCreatedAt',
+        'expires_at' => 'getExpiresAt',
+        'revoked' => 'getRevoked',
+        'value' => 'getValue'
     ];
 
     /**
@@ -261,8 +285,12 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('used_by', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('expires_at', $data ?? [], null);
+        $this->setIfExists('revoked', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -295,10 +323,25 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
-        if (!preg_match("/^[a-z0-9][a-z0-9_-]*$/", $this->container['id'])) {
-            $invalidProperties[] = "invalid value for 'id', must be conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.";
+        if (!preg_match("/^[0-9a-f]{16}$/", $this->container['id'])) {
+            $invalidProperties[] = "invalid value for 'id', must be conform to the pattern /^[0-9a-f]{16}$/.";
         }
 
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['expires_at'] === null) {
+            $invalidProperties[] = "'expires_at' can't be null";
+        }
+        if ($this->container['revoked'] === null) {
+            $invalidProperties[] = "'revoked' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -337,8 +380,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
 
-        if ((!preg_match("/^[a-z0-9][a-z0-9_-]*$/", ObjectSerializer::toString($id)))) {
-            throw new \InvalidArgumentException("invalid value for \$id when calling ObjectMetadata., must conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.");
+        if ((!preg_match("/^[0-9a-f]{16}$/", ObjectSerializer::toString($id)))) {
+            throw new \InvalidArgumentException("invalid value for \$id when calling TokenWithValue., must conform to the pattern /^[0-9a-f]{16}$/.");
         }
 
         $this->container['id'] = $id;
@@ -347,36 +390,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets used_by
-     *
-     * @return string[]|null
-     */
-    public function getUsedBy()
-    {
-        return $this->container['used_by'];
-    }
-
-    /**
-     * Sets used_by
-     *
-     * @param string[]|null $used_by The consumers (repos or hosts) recorded as depending on this object. Set at creation; unaffected by later value updates.
-     *
-     * @return self
-     */
-    public function setUsedBy($used_by)
-    {
-        if (is_null($used_by)) {
-            throw new \InvalidArgumentException('non-nullable used_by cannot be null');
-        }
-        $this->container['used_by'] = $used_by;
-
-        return $this;
-    }
-
-    /**
      * Gets description
      *
-     * @return string|null
+     * @return string
      */
     public function getDescription()
     {
@@ -386,7 +402,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description A free-text label set at creation, for a reader who only knows the id. Fixed at creation - the same as used_by, it is unaffected by a later value update.
+     * @param string $description description
      *
      * @return self
      */
@@ -396,6 +412,141 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner
+     *
+     * @return string|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     *
+     * @param string|null $owner The admin account that created this token over HTTP. Absent for a token issued via the `token` CLI command, which has no session to attribute to - never a guessed value.
+     *
+     * @return self
+     */
+    public function setOwner($owner)
+    {
+        if (is_null($owner)) {
+            throw new \InvalidArgumentException('non-nullable owner cannot be null');
+        }
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param \DateTime $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return \DateTime
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param \DateTime $expires_at expires_at
+     *
+     * @return self
+     */
+    public function setExpiresAt($expires_at)
+    {
+        if (is_null($expires_at)) {
+            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
+        }
+        $this->container['expires_at'] = $expires_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets revoked
+     *
+     * @return bool
+     */
+    public function getRevoked()
+    {
+        return $this->container['revoked'];
+    }
+
+    /**
+     * Sets revoked
+     *
+     * @param bool $revoked revoked
+     *
+     * @return self
+     */
+    public function setRevoked($revoked)
+    {
+        if (is_null($revoked)) {
+            throw new \InvalidArgumentException('non-nullable revoked cannot be null');
+        }
+        $this->container['revoked'] = $revoked;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param string $value The raw bearer token. Shown here once, at creation, and never again - the same as a token issued via the `token` CLI command.
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        }
+        $this->container['value'] = $value;
 
         return $this;
     }
