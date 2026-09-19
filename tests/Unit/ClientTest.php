@@ -187,6 +187,21 @@ final class ClientTest extends TestCase
     }
 
     #[Test]
+    public function sendsAuditLogFromAndToAsIso8601QueryParameters(): void
+    {
+        $history = [];
+        $client = self::mockedClient([
+            new Response(200, [], '[]'),
+        ], $history);
+
+        $client->queryAuditLog(['from' => '2026-01-01T00:00:00+00:00', 'to' => '2026-01-02T00:00:00+00:00']);
+
+        $query = $history[0]['request']->getUri()->getQuery();
+        self::assertStringContainsString('from=2026-01-01T00%3A00%3A00%2B00%3A00', $query);
+        self::assertStringContainsString('to=2026-01-02T00%3A00%3A00%2B00%3A00', $query);
+    }
+
+    #[Test]
     public function raisesTypedErrorWithStatusAndParsedBodyForNonRetryable4xx(): void
     {
         $client = self::mockedClient([

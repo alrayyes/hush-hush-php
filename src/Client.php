@@ -213,8 +213,10 @@ final readonly class Client
                 $filter['objectId'] ?? null,
                 $filter['caller'] ?? null,
                 $filter['actor'] ?? null,
-                isset($filter['from']) ? new \DateTime($filter['from']) : null,
-                isset($filter['to']) ? new \DateTime($filter['to']) : null,
+                // Iso8601DateTime, not \DateTime — see its docblock for why a
+                // plain \DateTime crashes ObjectSerializer here.
+                isset($filter['from']) ? new Iso8601DateTime($filter['from']) : null,
+                isset($filter['to']) ? new Iso8601DateTime($filter['to']) : null,
             );
 
             if ($result instanceof Error) {
