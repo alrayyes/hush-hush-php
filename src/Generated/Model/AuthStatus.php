@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 45f3cd33541b43bf9705b4121715344372ca32a4.
  */
 /**
- * CredentialRenameRequest
+ * AuthStatus
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * CredentialRenameRequest Class Doc Comment
+ * AuthStatus Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class AuthStatus implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @var string
      */
-    protected static $openAPIModelName = 'CredentialRenameRequest';
+    protected static $openAPIModelName = 'AuthStatus';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,7 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $openAPITypes = [
-        'nickname' => 'string'
+        'bootstrapped' => 'bool'
     ];
 
     /**
@@ -72,7 +72,7 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'nickname' => null
+        'bootstrapped' => null
     ];
 
     /**
@@ -81,7 +81,7 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'nickname' => false
+        'bootstrapped' => false
     ];
 
     /**
@@ -170,7 +170,7 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'nickname' => 'nickname'
+        'bootstrapped' => 'bootstrapped'
     ];
 
     /**
@@ -179,7 +179,7 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'nickname' => 'setNickname'
+        'bootstrapped' => 'setBootstrapped'
     ];
 
     /**
@@ -188,7 +188,7 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'nickname' => 'getNickname'
+        'bootstrapped' => 'getBootstrapped'
     ];
 
     /**
@@ -248,7 +248,7 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('nickname', $data ?? [], null);
+        $this->setIfExists('bootstrapped', $data ?? [], null);
     }
 
     /**
@@ -278,8 +278,8 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        if ($this->container['nickname'] === null) {
-            $invalidProperties[] = "'nickname' can't be null";
+        if ($this->container['bootstrapped'] === null) {
+            $invalidProperties[] = "'bootstrapped' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,28 +297,28 @@ class CredentialRenameRequest implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets nickname
+     * Gets bootstrapped
      *
-     * @return string
+     * @return bool
      */
-    public function getNickname()
+    public function getBootstrapped()
     {
-        return $this->container['nickname'];
+        return $this->container['bootstrapped'];
     }
 
     /**
-     * Sets nickname
+     * Sets bootstrapped
      *
-     * @param string $nickname nickname
+     * @param bool $bootstrapped Whether an admin account has been created yet.
      *
      * @return self
      */
-    public function setNickname($nickname)
+    public function setBootstrapped($bootstrapped)
     {
-        if (is_null($nickname)) {
-            throw new \InvalidArgumentException('non-nullable nickname cannot be null');
+        if (is_null($bootstrapped)) {
+            throw new \InvalidArgumentException('non-nullable bootstrapped cannot be null');
         }
-        $this->container['nickname'] = $nickname;
+        $this->container['bootstrapped'] = $bootstrapped;
 
         return $this;
     }
