@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 2f76c40e4cee5f8696f8fb346111320758d04eb0.
  */
 /**
- * HealthApi
+ * ConsumersApi
  * PHP version 8.1
  *
  * @category Class
@@ -47,14 +47,14 @@ use HushHush\Generated\HeaderSelector;
 use HushHush\Generated\ObjectSerializer;
 
 /**
- * HealthApi Class Doc Comment
+ * ConsumersApi Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class HealthApi
+class ConsumersApi
 {
     /**
      * @var ClientInterface
@@ -78,7 +78,7 @@ class HealthApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'health' => [
+        'listConsumers' => [
             'application/json',
         ],
     ];
@@ -130,36 +130,36 @@ class HealthApi
     }
 
     /**
-     * Operation health
+     * Operation listConsumers
      *
-     * Liveness
+     * List every distinct recorded consumer
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConsumers'] to see the possible values for this operation
      *
      * @throws \HushHush\Generated\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \HushHush\Generated\Model\Health
+     * @return string[]|\HushHush\Generated\Model\Error
      */
-    public function health(string $contentType = self::contentTypes['health'][0])
+    public function listConsumers(string $contentType = self::contentTypes['listConsumers'][0])
     {
-        list($response) = $this->healthWithHttpInfo($contentType);
+        list($response) = $this->listConsumersWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation healthWithHttpInfo
+     * Operation listConsumersWithHttpInfo
      *
-     * Liveness
+     * List every distinct recorded consumer
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConsumers'] to see the possible values for this operation
      *
      * @throws \HushHush\Generated\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \HushHush\Generated\Model\Health, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string[]|\HushHush\Generated\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function healthWithHttpInfo(string $contentType = self::contentTypes['health'][0])
+    public function listConsumersWithHttpInfo(string $contentType = self::contentTypes['listConsumers'][0])
     {
-        $request = $this->healthRequest($contentType);
+        $request = $this->listConsumersRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -187,7 +187,13 @@ class HealthApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\HushHush\Generated\Model\Health',
+                        'string[]',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\HushHush\Generated\Model\Error',
                         $request,
                         $response,
                     );
@@ -209,7 +215,7 @@ class HealthApi
             }
 
             return $this->handleResponseWithDataType(
-                '\HushHush\Generated\Model\Health',
+                'string[]',
                 $request,
                 $response,
             );
@@ -218,7 +224,15 @@ class HealthApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\HushHush\Generated\Model\Health',
+                        'string[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\HushHush\Generated\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -231,18 +245,18 @@ class HealthApi
     }
 
     /**
-     * Operation healthAsync
+     * Operation listConsumersAsync
      *
-     * Liveness
+     * List every distinct recorded consumer
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConsumers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function healthAsync(string $contentType = self::contentTypes['health'][0])
+    public function listConsumersAsync(string $contentType = self::contentTypes['listConsumers'][0])
     {
-        return $this->healthAsyncWithHttpInfo($contentType)
+        return $this->listConsumersAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -251,19 +265,19 @@ class HealthApi
     }
 
     /**
-     * Operation healthAsyncWithHttpInfo
+     * Operation listConsumersAsyncWithHttpInfo
      *
-     * Liveness
+     * List every distinct recorded consumer
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConsumers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function healthAsyncWithHttpInfo(string $contentType = self::contentTypes['health'][0])
+    public function listConsumersAsyncWithHttpInfo(string $contentType = self::contentTypes['listConsumers'][0])
     {
-        $returnType = '\HushHush\Generated\Model\Health';
-        $request = $this->healthRequest($contentType);
+        $returnType = 'string[]';
+        $request = $this->listConsumersRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -302,18 +316,18 @@ class HealthApi
     }
 
     /**
-     * Create request for operation 'health'
+     * Create request for operation 'listConsumers'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConsumers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function healthRequest(string $contentType = self::contentTypes['health'][0])
+    public function listConsumersRequest(string $contentType = self::contentTypes['listConsumers'][0])
     {
 
 
-        $resourcePath = '/healthz';
+        $resourcePath = '/consumers';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -359,6 +373,10 @@ class HealthApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
