@@ -7,9 +7,15 @@
 # breaking) into the commit type before this ever runs -- there's no
 # human judgment left to add.
 #
-# Gated on both the label codegen.yml applies and its fixed branch name,
-# not just one -- topic/codegen alone could plausibly land on an
-# unrelated hand-written PR about the generator pipeline itself.
+# Gated on the label codegen.yml applies, its fixed branch name, AND the
+# PR title's Conventional Commits bump marker -- topic/codegen alone could
+# plausibly land on an unrelated hand-written PR about the generator
+# pipeline itself, and branch name + label alone auto-merged a breaking
+# regen unreviewed at least twice before this gate existed (#115):
+# codegen.yml's own "Build commit message" step titles a breaking
+# regeneration "fix!: ..." specifically so this workflow has something
+# deterministic to gate on, without the two workflows sharing job outputs
+# across separate trigger events.
 #
 # pull_request, not pull_request_target: codegen.yml's pull request comes
 # from a branch on this repo (codegen/regenerate), never a fork.
@@ -25,25 +31,18 @@ jobs:
   auto-merge:
     if: |
       github.event.pull_request.head.ref == 'codegen/regenerate' &&
-      contains(github.event.pull_request.labels.*.name, 'topic/codegen')
+      contains(github.event.pull_request.labels.*.name, 'topic/codegen') &&
+      !startsWith(github.event.pull_request.title, 'fix!:')
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      # A GitHub App installation token, not the default GITHUB_TOKEN: same
-      # anti-recursion-guard gap release-auto-merge.yml documents -- a
-      # GITHUB_TOKEN merge produces a commit GitHub won't re-trigger
-      # workflows on, which would leave this repo's own release.yml never
-      # firing after an auto-merged regeneration lands on main. Previously
-      # RELEASE_TOKEN (a personal PAT); swapped for an App token so this
-      # doesn't share the alrayyes account's API quota with unrelated
-      # gh/API traffic (#94).
-      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      # RELEASE_TOKEN, not the default GITHUB_TOKEN: same anti-recursion-
+      # guard gap release-auto-merge.yml documents -- a GITHUB_TOKEN merge
+      # produces a commit GitHub won't re-trigger workflows on, which
+      # would leave this repo's own release.yml never firing after an
+      # auto-merged regeneration lands on main.
       - name: Enable auto-merge
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
