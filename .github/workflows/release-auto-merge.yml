@@ -24,13 +24,21 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      # RELEASE_TOKEN, not the default GITHUB_TOKEN: GitHub suppresses the
-      # push event a GITHUB_TOKEN-performed merge produces (to stop
-      # recursive runs), which would otherwise leave this repo's own
-      # release workflow's `push` trigger never firing after an
-      # auto-merged release PR lands on main.
+      # A GitHub App installation token, not the default GITHUB_TOKEN:
+      # GitHub suppresses the push event a GITHUB_TOKEN-performed merge
+      # produces (to stop recursive runs), which would otherwise leave
+      # this repo's own release workflow's `push` trigger never firing
+      # after an auto-merged release PR lands on main. Previously
+      # RELEASE_TOKEN (a personal PAT); swapped for an App token so this
+      # doesn't share the alrayyes account's API quota with unrelated
+      # gh/API traffic (#94).
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        id: app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Enable auto-merge
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}

@@ -25,6 +25,15 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      # Installation token for the repo's GitHub App, not a personal PAT:
+      # it draws from its own API quota instead of sharing the alrayyes
+      # account's 5,000/hr bucket with every other gh/API call that
+      # account makes (#94).
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        id: app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       # release-please-action is a `uses:` step, so nick-fields/retry (which
       # only runs a shell command) can't wrap it directly — wretry.action
       # wraps another action's own uses:/with: instead. Retries a secondary
@@ -37,7 +46,7 @@ jobs:
         with:
           action: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7
           with: |
-            token: ${{ secrets.RELEASE_TOKEN }}
+            token: ${{ steps.app-token.outputs.token }}
             config-file: release-please-config.json
             manifest-file: .release-please-manifest.json
           attempt_limit: 3
