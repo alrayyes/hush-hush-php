@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 724c4c00e269c07777b91436bde4e7f6eb91cbdd.
  */
 /**
- * RegistrationFinishRequest
+ * ConsumerEntry
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * RegistrationFinishRequest Class Doc Comment
+ * ConsumerEntry Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ConsumerEntry implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @var string
      */
-    protected static $openAPIModelName = 'RegistrationFinishRequest';
+    protected static $openAPIModelName = 'ConsumerEntry';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,8 +61,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $openAPITypes = [
-        'credential' => 'array<string,mixed>',
-        'nickname' => 'string'
+        'name' => 'string',
+        'secret_count' => 'int'
     ];
 
     /**
@@ -73,8 +73,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'credential' => null,
-        'nickname' => null
+        'name' => null,
+        'secret_count' => 'int32'
     ];
 
     /**
@@ -83,8 +83,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'credential' => false,
-        'nickname' => false
+        'name' => false,
+        'secret_count' => false
     ];
 
     /**
@@ -173,8 +173,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'credential' => 'credential',
-        'nickname' => 'nickname'
+        'name' => 'name',
+        'secret_count' => 'secret_count'
     ];
 
     /**
@@ -183,8 +183,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'credential' => 'setCredential',
-        'nickname' => 'setNickname'
+        'name' => 'setName',
+        'secret_count' => 'setSecretCount'
     ];
 
     /**
@@ -193,8 +193,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'credential' => 'getCredential',
-        'nickname' => 'getNickname'
+        'name' => 'getName',
+        'secret_count' => 'getSecretCount'
     ];
 
     /**
@@ -254,8 +254,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('credential', $data ?? [], null);
-        $this->setIfExists('nickname', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('secret_count', $data ?? [], null);
     }
 
     /**
@@ -285,8 +285,11 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['credential'] === null) {
-            $invalidProperties[] = "'credential' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['secret_count'] === null) {
+            $invalidProperties[] = "'secret_count' can't be null";
         }
         return $invalidProperties;
     }
@@ -304,55 +307,55 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets credential
+     * Gets name
      *
-     * @return array<string,mixed>
+     * @return string
      */
-    public function getCredential()
+    public function getName()
     {
-        return $this->container['credential'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets credential
+     * Sets name
      *
-     * @param array<string,mixed> $credential The browser's attestation response, exactly as `navigator.credentials.create()` returned it.
+     * @param string $name A distinct consumer name recorded in some object's used_by list.
      *
      * @return self
      */
-    public function setCredential($credential)
+    public function setName($name)
     {
-        if (is_null($credential)) {
-            throw new \InvalidArgumentException('non-nullable credential cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['credential'] = $credential;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets nickname
+     * Gets secret_count
      *
-     * @return string|null
+     * @return int
      */
-    public function getNickname()
+    public function getSecretCount()
     {
-        return $this->container['nickname'];
+        return $this->container['secret_count'];
     }
 
     /**
-     * Sets nickname
+     * Sets secret_count
      *
-     * @param string|null $nickname A human-readable label for this credential, shown in the credentials list.
+     * @param int $secret_count How many stored secret objects' used_by list includes this consumer.
      *
      * @return self
      */
-    public function setNickname($nickname)
+    public function setSecretCount($secret_count)
     {
-        if (is_null($nickname)) {
-            throw new \InvalidArgumentException('non-nullable nickname cannot be null');
+        if (is_null($secret_count)) {
+            throw new \InvalidArgumentException('non-nullable secret_count cannot be null');
         }
-        $this->container['nickname'] = $nickname;
+        $this->container['secret_count'] = $secret_count;
 
         return $this;
     }

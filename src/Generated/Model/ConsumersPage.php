@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 724c4c00e269c07777b91436bde4e7f6eb91cbdd.
  */
 /**
- * RegistrationFinishRequest
+ * ConsumersPage
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * RegistrationFinishRequest Class Doc Comment
+ * ConsumersPage Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @var string
      */
-    protected static $openAPIModelName = 'RegistrationFinishRequest';
+    protected static $openAPIModelName = 'ConsumersPage';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,8 +61,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $openAPITypes = [
-        'credential' => 'array<string,mixed>',
-        'nickname' => 'string'
+        'consumers' => '\HushHush\Generated\Model\ConsumerEntry[]',
+        'total' => 'int'
     ];
 
     /**
@@ -73,8 +73,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'credential' => null,
-        'nickname' => null
+        'consumers' => null,
+        'total' => 'int32'
     ];
 
     /**
@@ -83,8 +83,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'credential' => false,
-        'nickname' => false
+        'consumers' => false,
+        'total' => false
     ];
 
     /**
@@ -173,8 +173,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'credential' => 'credential',
-        'nickname' => 'nickname'
+        'consumers' => 'consumers',
+        'total' => 'total'
     ];
 
     /**
@@ -183,8 +183,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'credential' => 'setCredential',
-        'nickname' => 'setNickname'
+        'consumers' => 'setConsumers',
+        'total' => 'setTotal'
     ];
 
     /**
@@ -193,8 +193,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'credential' => 'getCredential',
-        'nickname' => 'getNickname'
+        'consumers' => 'getConsumers',
+        'total' => 'getTotal'
     ];
 
     /**
@@ -254,8 +254,8 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('credential', $data ?? [], null);
-        $this->setIfExists('nickname', $data ?? [], null);
+        $this->setIfExists('consumers', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
     }
 
     /**
@@ -285,8 +285,11 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['credential'] === null) {
-            $invalidProperties[] = "'credential' can't be null";
+        if ($this->container['consumers'] === null) {
+            $invalidProperties[] = "'consumers' can't be null";
+        }
+        if ($this->container['total'] === null) {
+            $invalidProperties[] = "'total' can't be null";
         }
         return $invalidProperties;
     }
@@ -304,55 +307,55 @@ class RegistrationFinishRequest implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets credential
+     * Gets consumers
      *
-     * @return array<string,mixed>
+     * @return \HushHush\Generated\Model\ConsumerEntry[]
      */
-    public function getCredential()
+    public function getConsumers()
     {
-        return $this->container['credential'];
+        return $this->container['consumers'];
     }
 
     /**
-     * Sets credential
+     * Sets consumers
      *
-     * @param array<string,mixed> $credential The browser's attestation response, exactly as `navigator.credentials.create()` returned it.
+     * @param \HushHush\Generated\Model\ConsumerEntry[] $consumers consumers
      *
      * @return self
      */
-    public function setCredential($credential)
+    public function setConsumers($consumers)
     {
-        if (is_null($credential)) {
-            throw new \InvalidArgumentException('non-nullable credential cannot be null');
+        if (is_null($consumers)) {
+            throw new \InvalidArgumentException('non-nullable consumers cannot be null');
         }
-        $this->container['credential'] = $credential;
+        $this->container['consumers'] = $consumers;
 
         return $this;
     }
 
     /**
-     * Gets nickname
+     * Gets total
      *
-     * @return string|null
+     * @return int
      */
-    public function getNickname()
+    public function getTotal()
     {
-        return $this->container['nickname'];
+        return $this->container['total'];
     }
 
     /**
-     * Sets nickname
+     * Sets total
      *
-     * @param string|null $nickname A human-readable label for this credential, shown in the credentials list.
+     * @param int $total The total number of consumers matching the request's filter, across every page - not just this page's own count - so a caller can render page-number navigation.
      *
      * @return self
      */
-    public function setNickname($nickname)
+    public function setTotal($total)
     {
-        if (is_null($nickname)) {
-            throw new \InvalidArgumentException('non-nullable nickname cannot be null');
+        if (is_null($total)) {
+            throw new \InvalidArgumentException('non-nullable total cannot be null');
         }
-        $this->container['nickname'] = $nickname;
+        $this->container['total'] = $total;
 
         return $this;
     }
