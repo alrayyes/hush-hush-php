@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit c67b00db69a5e91ccf27b62041557f3c21f7b6ea.
  */
 /**
- * Error
+ * RenameConsumerRequest
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * Error Class Doc Comment
+ * RenameConsumerRequest Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Error implements ModelInterface, ArrayAccess, \JsonSerializable
+class RenameConsumerRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'Error';
+    protected static $openAPIModelName = 'RenameConsumerRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'error' => 'string'
+        'name' => 'string'
     ];
 
     /**
@@ -72,7 +72,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'error' => null
+        'name' => null
     ];
 
     /**
@@ -81,7 +81,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'error' => false
+        'name' => false
     ];
 
     /**
@@ -170,7 +170,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'error' => 'error'
+        'name' => 'name'
     ];
 
     /**
@@ -179,7 +179,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'error' => 'setError'
+        'name' => 'setName'
     ];
 
     /**
@@ -188,7 +188,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'error' => 'getError'
+        'name' => 'getName'
     ];
 
     /**
@@ -248,7 +248,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -278,8 +278,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['error'] === null) {
-            $invalidProperties[] = "'error' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,28 +297,28 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets error
+     * Gets name
      *
      * @return string
      */
-    public function getError()
+    public function getName()
     {
-        return $this->container['error'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets error
+     * Sets name
      *
-     * @param string $error What went wrong, in terms safe to show a caller. Nothing here handles authentication with a detail worth holding back.
+     * @param string $name The consumer's new name. If it already matches another recorded consumer, the two merge - every object recording either ends up recording just the new name, no duplicates.
      *
      * @return self
      */
-    public function setError($error)
+    public function setName($name)
     {
-        if (is_null($error)) {
-            throw new \InvalidArgumentException('non-nullable error cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['error'] = $error;
+        $this->container['name'] = $name;
 
         return $this;
     }
