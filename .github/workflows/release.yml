@@ -25,29 +25,26 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      # Installation token for the repo's GitHub App, not a personal PAT:
-      # it draws from its own API quota instead of sharing the alrayyes
-      # account's 5,000/hr bucket with every other gh/API call that
-      # account makes (#94).
-      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
-        id: app-token
+      # RELEASE_TOKEN, not the default GITHUB_TOKEN or a GitHub App token:
+      # #94 swapped this for a GitHub App installation token to avoid
+      # sharing the alrayyes account's API quota, but the App's
+      # APP_ID/APP_PRIVATE_KEY secrets were never actually added to this
+      # repo -- reverted back to RELEASE_TOKEN so release automation isn't
+      # stuck on that account-level step; the App swap can happen for real
+      # once it's set up.
+      #
+      # Was also Wandalen/wretry.action-wrapped for the transient-rate-
+      # limit retry rules/releases.md documents — dropped because that
+      # wrapper's nested-action composition doesn't actually invoke
+      # release-please-action at all under GitHub's forced Node 20->24
+      # runtime (2025-09-19 deprecation): the step reports success with
+      # zero output and no release PR ever appears. No fixed wretry.action
+      # release exists upstream (Wandalen/wretry.action#193, still open;
+      # the one PR attempting it, #194, closed unmerged). hush-hush-go#103
+      # has the diagnosis; re-add the wrapper once upstream ships a
+      # Node 24-compatible release.
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-      # release-please-action is a `uses:` step, so nick-fields/retry (which
-      # only runs a shell command) can't wrap it directly — wretry.action
-      # wraps another action's own uses:/with: instead. Retries a secondary
-      # GitHub API rate limit / abuse-detection response, which clears
-      # itself within seconds and has nothing to do with the token's hourly
-      # quota genuinely running out (rules/releases.md's "Retry a release
-      # job through GitHub's transient rate limit"; also mitigates #94's
-      # shared-account-quota failure mode).
-      - uses: Wandalen/wretry.action@e68c23e6309f2871ca8ae4763e7629b9c258e1ea # v3.8.0
-        with:
-          action: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7
-          with: |
-            token: ${{ steps.app-token.outputs.token }}
-            config-file: release-please-config.json
-            manifest-file: .release-please-manifest.json
-          attempt_limit: 3
-          attempt_delay: 30000
+          token: ${{ secrets.RELEASE_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
