@@ -1,5 +1,37 @@
 # Changelog
 
+## [5.0.0](https://github.com/alrayyes/hush-hush-php/compare/v4.0.2...v5.0.0) (2026-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* regenerate client from updated hush-hush spec ([#121](https://github.com/alrayyes/hush-hush-php/issues/121))
+
+### Bug Fixes
+
+* **ci:** gate codegen-auto-merge on the breaking-change marker ([#116](https://github.com/alrayyes/hush-hush-php/issues/116)) ([7d4a74d](https://github.com/alrayyes/hush-hush-php/commit/7d4a74d2ac7f448942ae958da8492bad5afba1fa)), closes [#115](https://github.com/alrayyes/hush-hush-php/issues/115)
+* **ci:** revert to RELEASE_TOKEN and drop the wretry.action wrapper ([#122](https://github.com/alrayyes/hush-hush-php/issues/122)) ([0160166](https://github.com/alrayyes/hush-hush-php/commit/016016678bbf159be2c78739eb9bcb6c1a437299))
+* **deps-dev:** bump the php-dependencies group with 3 updates ([#108](https://github.com/alrayyes/hush-hush-php/issues/108)) ([e2b4499](https://github.com/alrayyes/hush-hush-php/commit/e2b4499adf9f4bac373c09d9e995504cfc698d92))
+* **deps:** ignore league/uri past 7.5.1 until the phpdoc regression clears ([1926551](https://github.com/alrayyes/hush-hush-php/commit/19265518e0c5736b04ba18c29274af22bd4e101a))
+* **deps:** ignore league/uri past 7.5.1 until the phpdoc regression clears ([8f661d0](https://github.com/alrayyes/hush-hush-php/commit/8f661d0545348c743d8a4d9a0bd31f3858ce400c))
+* regenerate client from updated hush-hush spec ([6842ced](https://github.com/alrayyes/hush-hush-php/commit/6842cedaafb04466ebee5dff49ccbb7155c0ed48))
+* regenerate client from updated hush-hush spec ([3a559b9](https://github.com/alrayyes/hush-hush-php/commit/3a559b93c1a03ea3f02b831f879341d15dc4cbe7))
+* regenerate client from updated hush-hush spec ([c9264d2](https://github.com/alrayyes/hush-hush-php/commit/c9264d267da290f0057ce14430c2b0475291fd31))
+* regenerate client from updated hush-hush spec ([374191b](https://github.com/alrayyes/hush-hush-php/commit/374191b60043302def1beab97b94e946ae15fed5))
+* regenerate client from updated hush-hush spec ([#109](https://github.com/alrayyes/hush-hush-php/issues/109)) ([1ca3e23](https://github.com/alrayyes/hush-hush-php/commit/1ca3e23f80920e3f0bbef8bf7a86f74598c7ab68))
+* regenerate client from updated hush-hush spec ([#110](https://github.com/alrayyes/hush-hush-php/issues/110)) ([44b24f5](https://github.com/alrayyes/hush-hush-php/commit/44b24f5260f067750975c4e4b90c492b484f5338))
+* regenerate client from updated hush-hush spec ([#111](https://github.com/alrayyes/hush-hush-php/issues/111)) ([231640f](https://github.com/alrayyes/hush-hush-php/commit/231640f8cf172ed65bfa6274f3ef87f18863c4b9))
+* regenerate client from updated hush-hush spec ([#112](https://github.com/alrayyes/hush-hush-php/issues/112)) ([714a38d](https://github.com/alrayyes/hush-hush-php/commit/714a38d1db9f687b12f10e881e2b45e8184a989d))
+* regenerate client from updated hush-hush spec ([#113](https://github.com/alrayyes/hush-hush-php/issues/113)) ([fd08310](https://github.com/alrayyes/hush-hush-php/commit/fd0831008b3483aea9435f681d7a4e3528550344))
+* regenerate client from updated hush-hush spec ([#117](https://github.com/alrayyes/hush-hush-php/issues/117)) ([e9931db](https://github.com/alrayyes/hush-hush-php/commit/e9931db0e82b706e81690599815c5d09a22af296))
+* regenerate client from updated hush-hush spec ([#121](https://github.com/alrayyes/hush-hush-php/issues/121)) ([ceca051](https://github.com/alrayyes/hush-hush-php/commit/ceca0517ab549e8bcf0040163f2977fb11025f36))
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump prettier from 3.9.7 to 3.9.8 in the tooling group ([#120](https://github.com/alrayyes/hush-hush-php/issues/120)) ([8f99e17](https://github.com/alrayyes/hush-hush-php/commit/8f99e17e29440ed30d8063df7e5131f2444d91a8))
+* **deps-dev:** bump the tooling group with 2 updates ([#103](https://github.com/alrayyes/hush-hush-php/issues/103)) ([b46236a](https://github.com/alrayyes/hush-hush-php/commit/b46236a03181d4c86d7876068492a473a0fe14d6))
+
 ## [4.0.2](https://github.com/alrayyes/hush-hush-php/compare/v4.0.1...v4.0.2) (2026-09-19)
 
 
