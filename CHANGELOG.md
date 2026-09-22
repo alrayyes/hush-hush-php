@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.0.10](https://github.com/alrayyes/hush-hush-php/compare/v5.0.9...v5.0.10) (2026-09-22)
+
+
+### Bug Fixes
+
+* regenerate client from updated hush-hush spec ([e2b06fa](https://github.com/alrayyes/hush-hush-php/commit/e2b06fa1d812a231d9183eb5cad7b733792a5b35))
+* regenerate client from updated hush-hush spec ([4419af0](https://github.com/alrayyes/hush-hush-php/commit/4419af012373199798fc89f7de3a807a3019ae39))
+* regenerate client from updated hush-hush spec ([676e80d](https://github.com/alrayyes/hush-hush-php/commit/676e80d144ea031d5eaf9a20b12c6cd18b9459ca))
+* regenerate client from updated hush-hush spec ([326c30d](https://github.com/alrayyes/hush-hush-php/commit/326c30d233c24c644d9d88002f9f6259db3ee2ef))
+
 ## [5.0.9](https://github.com/alrayyes/hush-hush-php/compare/v5.0.8...v5.0.9) (2026-09-22)
 
 
