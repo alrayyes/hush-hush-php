@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 059e3ef6f94b0af65d226e03118f43996c868cfc.
  */
 /**
- * ObjectMetadata
+ * AddConsumerRequest
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * ObjectMetadata Class Doc Comment
+ * AddConsumerRequest Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
+class AddConsumerRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ObjectMetadata';
+    protected static $openAPIModelName = 'AddConsumerRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,9 +61,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'used_by' => 'string[]',
-        'description' => 'string'
+        'name' => 'string'
     ];
 
     /**
@@ -74,9 +72,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'id' => null,
-        'used_by' => null,
-        'description' => null
+        'name' => null
     ];
 
     /**
@@ -85,9 +81,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'id' => false,
-        'used_by' => false,
-        'description' => false
+        'name' => false
     ];
 
     /**
@@ -176,9 +170,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'used_by' => 'used_by',
-        'description' => 'description'
+        'name' => 'name'
     ];
 
     /**
@@ -187,9 +179,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'used_by' => 'setUsedBy',
-        'description' => 'setDescription'
+        'name' => 'setName'
     ];
 
     /**
@@ -198,9 +188,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'used_by' => 'getUsedBy',
-        'description' => 'getDescription'
+        'name' => 'getName'
     ];
 
     /**
@@ -260,9 +248,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('used_by', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -292,13 +278,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if (!preg_match("/^[a-z0-9][a-z0-9_-]*$/", $this->container['id'])) {
-            $invalidProperties[] = "invalid value for 'id', must be conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.";
-        }
-
         return $invalidProperties;
     }
 
@@ -315,87 +297,28 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets name
      *
      * @return string
      */
-    public function getId()
+    public function getName()
     {
-        return $this->container['id'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets id
+     * Sets name
      *
-     * @param string $id id
+     * @param string $name The consumer's name. Rejected if it already appears in the directory.
      *
      * @return self
      */
-    public function setId($id)
+    public function setName($name)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
-        if ((!preg_match("/^[a-z0-9][a-z0-9_-]*$/", ObjectSerializer::toString($id)))) {
-            throw new \InvalidArgumentException("invalid value for \$id when calling ObjectMetadata., must conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.");
-        }
-
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets used_by
-     *
-     * @return string[]|null
-     */
-    public function getUsedBy()
-    {
-        return $this->container['used_by'];
-    }
-
-    /**
-     * Sets used_by
-     *
-     * @param string[]|null $used_by The consumers (repos or hosts) recorded as depending on this object. Set at creation, and replaceable later via UpdateObjectRequest's own used_by field - a plain value update that omits it leaves the list as it was.
-     *
-     * @return self
-     */
-    public function setUsedBy($used_by)
-    {
-        if (is_null($used_by)) {
-            throw new \InvalidArgumentException('non-nullable used_by cannot be null');
-        }
-        $this->container['used_by'] = $used_by;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description A free-text label set at creation, for a reader who only knows the id. Fixed at creation - there is no way to change it later.
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
+        $this->container['name'] = $name;
 
         return $this;
     }

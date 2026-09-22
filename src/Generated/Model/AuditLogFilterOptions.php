@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 059e3ef6f94b0af65d226e03118f43996c868cfc.
  */
 /**
- * ObjectMetadata
+ * AuditLogFilterOptions
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * ObjectMetadata Class Doc Comment
+ * AuditLogFilterOptions Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
+class AuditLogFilterOptions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ObjectMetadata';
+    protected static $openAPIModelName = 'AuditLogFilterOptions';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,9 +61,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'used_by' => 'string[]',
-        'description' => 'string'
+        'object_ids' => 'string[]',
+        'actors' => '\HushHush\Generated\Model\AuditActorOption[]',
+        'callers' => 'string[]'
     ];
 
     /**
@@ -74,9 +74,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'id' => null,
-        'used_by' => null,
-        'description' => null
+        'object_ids' => null,
+        'actors' => null,
+        'callers' => null
     ];
 
     /**
@@ -85,9 +85,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'id' => false,
-        'used_by' => false,
-        'description' => false
+        'object_ids' => false,
+        'actors' => false,
+        'callers' => false
     ];
 
     /**
@@ -176,9 +176,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'used_by' => 'used_by',
-        'description' => 'description'
+        'object_ids' => 'object_ids',
+        'actors' => 'actors',
+        'callers' => 'callers'
     ];
 
     /**
@@ -187,9 +187,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'used_by' => 'setUsedBy',
-        'description' => 'setDescription'
+        'object_ids' => 'setObjectIds',
+        'actors' => 'setActors',
+        'callers' => 'setCallers'
     ];
 
     /**
@@ -198,9 +198,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'used_by' => 'getUsedBy',
-        'description' => 'getDescription'
+        'object_ids' => 'getObjectIds',
+        'actors' => 'getActors',
+        'callers' => 'getCallers'
     ];
 
     /**
@@ -260,9 +260,9 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('used_by', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('object_ids', $data ?? [], null);
+        $this->setIfExists('actors', $data ?? [], null);
+        $this->setIfExists('callers', $data ?? [], null);
     }
 
     /**
@@ -292,13 +292,15 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['object_ids'] === null) {
+            $invalidProperties[] = "'object_ids' can't be null";
         }
-        if (!preg_match("/^[a-z0-9][a-z0-9_-]*$/", $this->container['id'])) {
-            $invalidProperties[] = "invalid value for 'id', must be conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.";
+        if ($this->container['actors'] === null) {
+            $invalidProperties[] = "'actors' can't be null";
         }
-
+        if ($this->container['callers'] === null) {
+            $invalidProperties[] = "'callers' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -315,87 +317,82 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets object_ids
      *
-     * @return string
+     * @return string[]
      */
-    public function getId()
+    public function getObjectIds()
     {
-        return $this->container['id'];
+        return $this->container['object_ids'];
     }
 
     /**
-     * Sets id
+     * Sets object_ids
      *
-     * @param string $id id
+     * @param string[] $object_ids Every distinct object id currently recorded in the audit log.
      *
      * @return self
      */
-    public function setId($id)
+    public function setObjectIds($object_ids)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($object_ids)) {
+            throw new \InvalidArgumentException('non-nullable object_ids cannot be null');
         }
-
-        if ((!preg_match("/^[a-z0-9][a-z0-9_-]*$/", ObjectSerializer::toString($id)))) {
-            throw new \InvalidArgumentException("invalid value for \$id when calling ObjectMetadata., must conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.");
-        }
-
-        $this->container['id'] = $id;
+        $this->container['object_ids'] = $object_ids;
 
         return $this;
     }
 
     /**
-     * Gets used_by
+     * Gets actors
      *
-     * @return string[]|null
+     * @return \HushHush\Generated\Model\AuditActorOption[]
      */
-    public function getUsedBy()
+    public function getActors()
     {
-        return $this->container['used_by'];
+        return $this->container['actors'];
     }
 
     /**
-     * Sets used_by
+     * Sets actors
      *
-     * @param string[]|null $used_by The consumers (repos or hosts) recorded as depending on this object. Set at creation, and replaceable later via UpdateObjectRequest's own used_by field - a plain value update that omits it leaves the list as it was.
+     * @param \HushHush\Generated\Model\AuditActorOption[] $actors Every distinct actor currently recorded in the audit log.
      *
      * @return self
      */
-    public function setUsedBy($used_by)
+    public function setActors($actors)
     {
-        if (is_null($used_by)) {
-            throw new \InvalidArgumentException('non-nullable used_by cannot be null');
+        if (is_null($actors)) {
+            throw new \InvalidArgumentException('non-nullable actors cannot be null');
         }
-        $this->container['used_by'] = $used_by;
+        $this->container['actors'] = $actors;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets callers
      *
-     * @return string|null
+     * @return string[]
      */
-    public function getDescription()
+    public function getCallers()
     {
-        return $this->container['description'];
+        return $this->container['callers'];
     }
 
     /**
-     * Sets description
+     * Sets callers
      *
-     * @param string|null $description A free-text label set at creation, for a reader who only knows the id. Fixed at creation - there is no way to change it later.
+     * @param string[] $callers Every distinct caller currently recorded in the audit log.
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setCallers($callers)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($callers)) {
+            throw new \InvalidArgumentException('non-nullable callers cannot be null');
         }
-        $this->container['description'] = $description;
+        $this->container['callers'] = $callers;
 
         return $this;
     }
