@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 059e3ef6f94b0af65d226e03118f43996c868cfc.
  */
 /**
- * ObjectMetadata
+ * AuditActorOption
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * ObjectMetadata Class Doc Comment
+ * AuditActorOption Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
+class AuditActorOption implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ObjectMetadata';
+    protected static $openAPIModelName = 'AuditActorOption';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,9 +61,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'used_by' => 'string[]',
-        'description' => 'string'
+        'value' => 'string',
+        'label' => 'string'
     ];
 
     /**
@@ -74,9 +73,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'id' => null,
-        'used_by' => null,
-        'description' => null
+        'value' => null,
+        'label' => null
     ];
 
     /**
@@ -85,9 +83,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'id' => false,
-        'used_by' => false,
-        'description' => false
+        'value' => false,
+        'label' => false
     ];
 
     /**
@@ -176,9 +173,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'used_by' => 'used_by',
-        'description' => 'description'
+        'value' => 'value',
+        'label' => 'label'
     ];
 
     /**
@@ -187,9 +183,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'used_by' => 'setUsedBy',
-        'description' => 'setDescription'
+        'value' => 'setValue',
+        'label' => 'setLabel'
     ];
 
     /**
@@ -198,9 +193,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'used_by' => 'getUsedBy',
-        'description' => 'getDescription'
+        'value' => 'getValue',
+        'label' => 'getLabel'
     ];
 
     /**
@@ -260,9 +254,8 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('used_by', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('label', $data ?? [], null);
     }
 
     /**
@@ -292,13 +285,12 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
-        if (!preg_match("/^[a-z0-9][a-z0-9_-]*$/", $this->container['id'])) {
-            $invalidProperties[] = "invalid value for 'id', must be conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.";
+        if ($this->container['label'] === null) {
+            $invalidProperties[] = "'label' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -315,87 +307,55 @@ class ObjectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets value
      *
      * @return string
      */
-    public function getId()
+    public function getValue()
     {
-        return $this->container['id'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets id
+     * Sets value
      *
-     * @param string $id id
+     * @param string $value What to send back as the `actor` query parameter to select this actor.
      *
      * @return self
      */
-    public function setId($id)
+    public function setValue($value)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
-
-        if ((!preg_match("/^[a-z0-9][a-z0-9_-]*$/", ObjectSerializer::toString($id)))) {
-            throw new \InvalidArgumentException("invalid value for \$id when calling ObjectMetadata., must conform to the pattern /^[a-z0-9][a-z0-9_-]*$/.");
-        }
-
-        $this->container['id'] = $id;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets used_by
+     * Gets label
      *
-     * @return string[]|null
+     * @return string
      */
-    public function getUsedBy()
+    public function getLabel()
     {
-        return $this->container['used_by'];
+        return $this->container['label'];
     }
 
     /**
-     * Sets used_by
+     * Sets label
      *
-     * @param string[]|null $used_by The consumers (repos or hosts) recorded as depending on this object. Set at creation, and replaceable later via UpdateObjectRequest's own used_by field - a plain value update that omits it leaves the list as it was.
+     * @param string $label What to show the user - \"admin\", \"token:<id>\", or \"none\".
      *
      * @return self
      */
-    public function setUsedBy($used_by)
+    public function setLabel($label)
     {
-        if (is_null($used_by)) {
-            throw new \InvalidArgumentException('non-nullable used_by cannot be null');
+        if (is_null($label)) {
+            throw new \InvalidArgumentException('non-nullable label cannot be null');
         }
-        $this->container['used_by'] = $used_by;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description A free-text label set at creation, for a reader who only knows the id. Fixed at creation - there is no way to change it later.
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
+        $this->container['label'] = $label;
 
         return $this;
     }
