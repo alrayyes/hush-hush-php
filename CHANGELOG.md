@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.0.14](https://github.com/alrayyes/hush-hush-php/compare/v5.0.13...v5.0.14) (2026-09-25)
+
+
+### Bug Fixes
+
+* regenerate client from updated hush-hush spec ([f2bcffa](https://github.com/alrayyes/hush-hush-php/commit/f2bcffa2e658287f6fa207e50fa84710bb26a4f4))
+* regenerate client from updated hush-hush spec ([f52ce7a](https://github.com/alrayyes/hush-hush-php/commit/f52ce7ad294ef7410eb0e38c1239a8ce4a04dfee))
+
+
+### Miscellaneous Chores
+
+* **ci:** trigger codegen only on spec-updated dispatch ([#155](https://github.com/alrayyes/hush-hush-php/issues/155)) ([74fd91d](https://github.com/alrayyes/hush-hush-php/commit/74fd91d21557f0744e52d78b30ff153e44fd1737)), closes [#152](https://github.com/alrayyes/hush-hush-php/issues/152)
+
 ## [5.0.13](https://github.com/alrayyes/hush-hush-php/compare/v5.0.12...v5.0.13) (2026-09-25)
 
 
