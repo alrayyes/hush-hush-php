@@ -13,11 +13,13 @@
 # that a grant doesn't carry forward past the session or PR it was given
 # for, so that step is gone; a regeneration PR waits for an actual merge
 # the same as any other judgment call.
+#
+# No cron: Hush-Hush's release.yml fires repository_dispatch
+# (spec-updated) on every release, so a schedule fallback only added
+# noise once that path was proven working (alrayyes/Hush-Hush#224).
 name: codegen
 
 on:
-  schedule:
-    - cron: "0 6 * * *" # daily, 06:00 UTC
   workflow_dispatch:
   repository_dispatch:
     types: [spec-updated]
