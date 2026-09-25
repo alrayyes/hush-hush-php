@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.13](https://github.com/alrayyes/hush-hush-php/compare/v5.0.12...v5.0.13) (2026-09-25)
+
+
+### Miscellaneous Chores
+
+* **ci:** trigger codegen only on spec-updated dispatch ([a5a5f86](https://github.com/alrayyes/hush-hush-php/commit/a5a5f86f17f25848c0e0321df02035eea357a601))
+* **ci:** trigger codegen only on spec-updated dispatch ([b289c72](https://github.com/alrayyes/hush-hush-php/commit/b289c726c2d2b623218a9d0eb79408bdbf238ede))
+
 ## [5.0.12](https://github.com/alrayyes/hush-hush-php/compare/v5.0.11...v5.0.12) (2026-09-23)
 
 
