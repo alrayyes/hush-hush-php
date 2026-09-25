@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 251f12c07ec7f9f58a2c483c58bb41110c1c51a7.
  */
 /**
- * HealthApi
+ * McpApi
  * PHP version 8.1
  *
  * @category Class
@@ -47,14 +47,14 @@ use HushHush\Generated\HeaderSelector;
 use HushHush\Generated\ObjectSerializer;
 
 /**
- * HealthApi Class Doc Comment
+ * McpApi Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class HealthApi
+class McpApi
 {
     /**
      * @var ClientInterface
@@ -78,7 +78,7 @@ class HealthApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'health' => [
+        'mcp' => [
             'application/json',
         ],
     ];
@@ -130,36 +130,38 @@ class HealthApi
     }
 
     /**
-     * Operation health
+     * Operation mcp
      *
-     * Liveness
+     * MCP (Model Context Protocol) endpoint
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  object $body body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mcp'] to see the possible values for this operation
      *
      * @throws \HushHush\Generated\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \HushHush\Generated\Model\Health
+     * @return object|\HushHush\Generated\Model\Error
      */
-    public function health(string $contentType = self::contentTypes['health'][0])
+    public function mcp($body, string $contentType = self::contentTypes['mcp'][0])
     {
-        list($response) = $this->healthWithHttpInfo($contentType);
+        list($response) = $this->mcpWithHttpInfo($body, $contentType);
         return $response;
     }
 
     /**
-     * Operation healthWithHttpInfo
+     * Operation mcpWithHttpInfo
      *
-     * Liveness
+     * MCP (Model Context Protocol) endpoint
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mcp'] to see the possible values for this operation
      *
      * @throws \HushHush\Generated\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \HushHush\Generated\Model\Health, HTTP status code, HTTP response headers (array of strings)
+     * @return array of object|\HushHush\Generated\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function healthWithHttpInfo(string $contentType = self::contentTypes['health'][0])
+    public function mcpWithHttpInfo($body, string $contentType = self::contentTypes['mcp'][0])
     {
-        $request = $this->healthRequest($contentType);
+        $request = $this->mcpRequest($body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -187,7 +189,13 @@ class HealthApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\HushHush\Generated\Model\Health',
+                        'object',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\HushHush\Generated\Model\Error',
                         $request,
                         $response,
                     );
@@ -209,7 +217,7 @@ class HealthApi
             }
 
             return $this->handleResponseWithDataType(
-                '\HushHush\Generated\Model\Health',
+                'object',
                 $request,
                 $response,
             );
@@ -218,7 +226,15 @@ class HealthApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\HushHush\Generated\Model\Health',
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\HushHush\Generated\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -231,18 +247,19 @@ class HealthApi
     }
 
     /**
-     * Operation healthAsync
+     * Operation mcpAsync
      *
-     * Liveness
+     * MCP (Model Context Protocol) endpoint
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mcp'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function healthAsync(string $contentType = self::contentTypes['health'][0])
+    public function mcpAsync($body, string $contentType = self::contentTypes['mcp'][0])
     {
-        return $this->healthAsyncWithHttpInfo($contentType)
+        return $this->mcpAsyncWithHttpInfo($body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -251,19 +268,20 @@ class HealthApi
     }
 
     /**
-     * Operation healthAsyncWithHttpInfo
+     * Operation mcpAsyncWithHttpInfo
      *
-     * Liveness
+     * MCP (Model Context Protocol) endpoint
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mcp'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function healthAsyncWithHttpInfo(string $contentType = self::contentTypes['health'][0])
+    public function mcpAsyncWithHttpInfo($body, string $contentType = self::contentTypes['mcp'][0])
     {
-        $returnType = '\HushHush\Generated\Model\Health';
-        $request = $this->healthRequest($contentType);
+        $returnType = 'object';
+        $request = $this->mcpRequest($body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -302,18 +320,26 @@ class HealthApi
     }
 
     /**
-     * Create request for operation 'health'
+     * Create request for operation 'mcp'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['health'] to see the possible values for this operation
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mcp'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function healthRequest(string $contentType = self::contentTypes['health'][0])
+    public function mcpRequest($body, string $contentType = self::contentTypes['mcp'][0])
     {
 
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling mcp'
+            );
+        }
 
-        $resourcePath = '/healthz';
+
+        $resourcePath = '/mcp';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -325,13 +351,24 @@ class HealthApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/json', 'text/event-stream', ],
             $contentType,
             $multipart
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                try {
+                    $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($body), JSON_THROW_ON_ERROR);
+                } catch (\JsonException $e) {
+                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
+                }
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -359,6 +396,10 @@ class HealthApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -374,7 +415,7 @@ class HealthApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'GET',
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
