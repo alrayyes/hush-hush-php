@@ -1,0 +1,23 @@
+# hush-hush PHP SDK
+
+> Official PHP SDK for [hush-hush](https://github.com/alrayyes/hush-hush), a
+> secret-storage service, generated from its OpenAPI spec. This site is the
+> phpDocumentor API reference for the SDK's hand-written public surface —
+> `Client`, `RetryPolicy` and the exception types it throws; the generated
+> API/model classes underneath aren't part of the published docs.
+
+Install with `composer require alrayyes/hush-hush` (PHP 8.2+). `Client` is
+the entry point: construct it with a base URL and API key, then call
+create/get/update/delete on objects or query the audit log.
+
+## Docs
+
+- [API reference home](https://alrayyes.github.io/hush-hush-php/index.html): entry point to the generated phpDocumentor site.
+- [Client](https://alrayyes.github.io/hush-hush-php/classes/HushHush-Client.html): the SDK's main entry point — create, get, update, delete objects, and query the audit log.
+- [RetryPolicy](https://alrayyes.github.io/hush-hush-php/classes/HushHush-RetryPolicy.html): configures retry/backoff behavior for the underlying Guzzle HTTP client.
+- [Exceptions](https://alrayyes.github.io/hush-hush-php/namespaces/hushhush-exception.html): `ApiException` and `HushHushException`, thrown by `Client` calls.
+
+## Source
+
+- [GitHub repository](https://github.com/alrayyes/hush-hush-php): source, README quickstart, and CONTRIBUTING.md.
+- [Packagist package](https://packagist.org/packages/alrayyes/hush-hush): install instructions and release history.
