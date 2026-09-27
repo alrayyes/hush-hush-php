@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.0.0](https://github.com/alrayyes/hush-hush-php/compare/v5.0.16...v6.0.0) (2026-09-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* regenerate client from updated hush-hush spec
+
+### Bug Fixes
+
+* regenerate client from updated hush-hush spec ([6b3c307](https://github.com/alrayyes/hush-hush-php/commit/6b3c3077fe3161b0f9525729b438b71d884dee0d))
+* **test:** update hand-written layer for the id/slug rename ([dafa985](https://github.com/alrayyes/hush-hush-php/commit/dafa985fecaf64a3677d64e7a207f1c9c4f5af85))
+
 ## [5.0.16](https://github.com/alrayyes/hush-hush-php/compare/v5.0.15...v5.0.16) (2026-09-27)
 
 
