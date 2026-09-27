@@ -9,19 +9,27 @@
   </paths>
   <version number="1.0.0">
     <!--
-      Points directly at the hand-written files/directories rather than
-      scanning all of `src` and trying to exclude `src/Generated` —
-      phpDocumentor 3.10.0's `<ignore>` element doesn't actually exclude
-      anything here (confirmed: neither a `src/Generated/*` nor a
-      `Generated/**/*` pattern removed the generated Api/Model classes from
-      the built site), so this is the reliable way to keep the published
-      docs limited to the SDK's real public surface.
+      Points directly at the hand-written files/directories, plus
+      src/Generated/Model, rather than scanning all of `src` and trying to
+      exclude just src/Generated/Api — phpDocumentor 3.10.0's `<ignore>`
+      element doesn't actually exclude anything here (confirmed: neither a
+      `src/Generated/Api/*` nor a `Generated/Api/**/*` pattern removed the
+      generated Api classes from the built site), so this is the reliable
+      way to keep the published docs limited to the SDK's real public
+      surface.
+
+      src/Generated/Model IS part of that public surface, unlike
+      src/Generated/Api: Client's own methods return these types directly
+      (ObjectMetadata, Health, ...), so leaving them out of the scan meant
+      phpDocumentor had no page to link to when Client's own signatures
+      referenced them by name — the type rendered as plain, unlinked text.
     -->
     <api>
       <source dsn=".">
         <path>src/Client.php</path>
         <path>src/RetryPolicy.php</path>
         <path>src/Exception</path>
+        <path>src/Generated/Model</path>
       </source>
     </api>
   </version>
