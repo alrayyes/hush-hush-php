@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 76b7da029b93c5e724b83db4aee8e60e0984872d.
  */
 /**
- * ConsumersPage
+ * OwnerIdentity
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * ConsumersPage Class Doc Comment
+ * OwnerIdentity Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
+class OwnerIdentity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ConsumersPage';
+    protected static $openAPIModelName = 'OwnerIdentity';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,8 +61,7 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'consumers' => '\HushHush\Generated\Model\ConsumerEntry[]',
-        'total' => 'int'
+        'public_key' => 'string'
     ];
 
     /**
@@ -73,8 +72,7 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'consumers' => null,
-        'total' => 'int32'
+        'public_key' => null
     ];
 
     /**
@@ -83,8 +81,7 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'consumers' => false,
-        'total' => false
+        'public_key' => false
     ];
 
     /**
@@ -173,8 +170,7 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'consumers' => 'consumers',
-        'total' => 'total'
+        'public_key' => 'public_key'
     ];
 
     /**
@@ -183,8 +179,7 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'consumers' => 'setConsumers',
-        'total' => 'setTotal'
+        'public_key' => 'setPublicKey'
     ];
 
     /**
@@ -193,8 +188,7 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'consumers' => 'getConsumers',
-        'total' => 'getTotal'
+        'public_key' => 'getPublicKey'
     ];
 
     /**
@@ -254,8 +248,7 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('consumers', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('public_key', $data ?? [], null);
     }
 
     /**
@@ -285,12 +278,6 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['consumers'] === null) {
-            $invalidProperties[] = "'consumers' can't be null";
-        }
-        if ($this->container['total'] === null) {
-            $invalidProperties[] = "'total' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -307,55 +294,28 @@ class ConsumersPage implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets consumers
+     * Gets public_key
      *
-     * @return \HushHush\Generated\Model\ConsumerEntry[]
+     * @return string|null
      */
-    public function getConsumers()
+    public function getPublicKey()
     {
-        return $this->container['consumers'];
+        return $this->container['public_key'];
     }
 
     /**
-     * Sets consumers
+     * Sets public_key
      *
-     * @param \HushHush\Generated\Model\ConsumerEntry[] $consumers consumers
+     * @param string|null $public_key The session's user's escrowed writer identity public key (an age recipient string), absent if that user hasn't completed a first registration yet.
      *
      * @return self
      */
-    public function setConsumers($consumers)
+    public function setPublicKey($public_key)
     {
-        if (is_null($consumers)) {
-            throw new \InvalidArgumentException('non-nullable consumers cannot be null');
+        if (is_null($public_key)) {
+            throw new \InvalidArgumentException('non-nullable public_key cannot be null');
         }
-        $this->container['consumers'] = $consumers;
-
-        return $this;
-    }
-
-    /**
-     * Gets total
-     *
-     * @return int
-     */
-    public function getTotal()
-    {
-        return $this->container['total'];
-    }
-
-    /**
-     * Sets total
-     *
-     * @param int $total The total number of consumers matching the request's filter, across every page - not just this page's own count - so a caller can render page-number navigation.
-     *
-     * @return self
-     */
-    public function setTotal($total)
-    {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
-        }
-        $this->container['total'] = $total;
+        $this->container['public_key'] = $public_key;
 
         return $this;
     }
