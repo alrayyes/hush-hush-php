@@ -78,10 +78,12 @@ final readonly class Client
     }
 
     /**
-     * Stores an already-sealed value under a new object id. Requires a credential.
+     * Stores an already-sealed value under a new object slug. Requires a credential.
      *
-     * @param string        $id     The new object's id. Must match hush-hush's id pattern
-     *                              (lowercase alphanumeric, `-`/`_`).
+     * @param string        $slug   The new object's user-facing slug. Must match hush-hush's
+     *                              slug pattern (lowercase alphanumeric, `-`/`_`). The object's
+     *                              internal id is a separate, opaque value never exposed to or
+     *                              accepted from a caller.
      * @param string        $value  The already-sealed (encrypted) value, as raw bytes. This SDK
      *                              never encrypts or decrypts anything.
      * @param null|string[] $usedBy Consumers (repos or hosts) recorded as depending on
@@ -90,16 +92,16 @@ final readonly class Client
      *                              self-reported identity. Not verified by the server.
      *
      * @throws ApiException If the server responds with anything other than 201
-     *                      (e.g. 409 if the id already exists).
+     *                      (e.g. 409 if the slug already exists).
      */
     public function createObject(
-        string $id,
+        string $slug,
         string $value,
         ?array $usedBy = null,
         ?string $caller = null,
     ): ObjectMetadata {
         $request = new CreateObjectRequest([
-            'id' => $id,
+            'slug' => $slug,
             'value' => base64_encode($value),
             'used_by' => $usedBy,
         ]);
@@ -114,17 +116,17 @@ final readonly class Client
      * Fetches an object's sealed ciphertext exactly as stored — this SDK never
      * decrypts it, the same as the server. Needs no credential.
      *
-     * @param string      $id     the object's id
+     * @param string      $slug   the object's slug
      * @param null|string $caller recorded in the audit log as the calling program's
      *                            self-reported identity
      *
      * @throws ApiException If the server responds with anything other than 200
-     *                      (e.g. 404 if no object exists under that id).
+     *                      (e.g. 404 if no object exists under that slug).
      */
-    public function getObject(string $id, ?string $caller = null): string
+    public function getObject(string $slug, ?string $caller = null): string
     {
-        return $this->call(function () use ($id, $caller): string {
-            $file = self::expectType($this->objectsApi->getObject($id, $caller), \SplFileObject::class);
+        return $this->call(function () use ($slug, $caller): string {
+            $file = self::expectType($this->objectsApi->getObject($slug, $caller), \SplFileObject::class);
             $contents = file_get_contents($file->getPathname());
             unlink($file->getPathname());
 
@@ -133,10 +135,10 @@ final readonly class Client
     }
 
     /**
-     * Replaces the stored ciphertext for an existing object. The object's id and
+     * Replaces the stored ciphertext for an existing object. The object's slug and
      * used-by metadata are unchanged. Requires a credential.
      *
-     * @param string      $id     the existing object's id
+     * @param string      $slug   the existing object's slug
      * @param string      $value  the new already-sealed (encrypted) value, as raw bytes
      * @param null|string $caller recorded in the audit log as the calling program's
      *                            self-reported identity
@@ -144,31 +146,31 @@ final readonly class Client
      * @throws ApiException If the server responds with anything other than 200
      *                      (e.g. 401 or 404).
      */
-    public function updateObject(string $id, string $value, ?string $caller = null): ObjectMetadata
+    public function updateObject(string $slug, string $value, ?string $caller = null): ObjectMetadata
     {
         $request = new UpdateObjectRequest(['value' => base64_encode($value)]);
 
         return $this->call(fn () => self::expectType(
-            $this->objectsApi->updateObject($id, $request, $caller),
+            $this->objectsApi->updateObject($slug, $request, $caller),
             ObjectMetadata::class,
         ));
     }
 
     /**
-     * Permanently removes an object. A subsequent fetch by this id returns 404.
+     * Permanently removes an object. A subsequent fetch by this slug returns 404.
      * Requires a credential.
      *
-     * @param string      $id     the object's id
+     * @param string      $slug   the object's slug
      * @param null|string $caller recorded in the audit log as the calling program's
      *                            self-reported identity
      *
      * @throws ApiException If the server responds with anything other than 204
      *                      (e.g. 401 or 404).
      */
-    public function deleteObject(string $id, ?string $caller = null): void
+    public function deleteObject(string $slug, ?string $caller = null): void
     {
-        $this->call(function () use ($id, $caller): null {
-            $this->objectsApi->deleteObject($id, $caller);
+        $this->call(function () use ($slug, $caller): null {
+            $this->objectsApi->deleteObject($slug, $caller);
 
             return null;
         });
@@ -178,14 +180,14 @@ final readonly class Client
      * Returns the recorded list of consumers for an object — the "what depends on
      * this" mapping set at creation. Needs no credential.
      *
-     * @param string $id the object's id
+     * @param string $slug the object's slug
      *
      * @throws ApiException If the server responds with anything other than 200
      *                      (e.g. 404).
      */
-    public function getObjectUsedBy(string $id): UsedBy
+    public function getObjectUsedBy(string $slug): UsedBy
     {
-        return $this->call(fn () => self::expectType($this->objectsApi->getObjectUsedBy($id), UsedBy::class));
+        return $this->call(fn () => self::expectType($this->objectsApi->getObjectUsedBy($slug), UsedBy::class));
     }
 
     /**
