@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 1e3f5409c8a2ee171ec4b88f67dff8a16012d220.
  */
 /**
- * UsedBy
+ * RotateTokenRequest
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * UsedBy Class Doc Comment
+ * RotateTokenRequest Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
+class RotateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'UsedBy';
+    protected static $openAPIModelName = 'RotateTokenRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,7 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'used_by' => 'string[]'
+        'ttl_seconds' => 'int'
     ];
 
     /**
@@ -72,7 +72,7 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'used_by' => null
+        'ttl_seconds' => 'int64'
     ];
 
     /**
@@ -81,7 +81,7 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'used_by' => false
+        'ttl_seconds' => false
     ];
 
     /**
@@ -170,7 +170,7 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'used_by' => 'used_by'
+        'ttl_seconds' => 'ttl_seconds'
     ];
 
     /**
@@ -179,7 +179,7 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'used_by' => 'setUsedBy'
+        'ttl_seconds' => 'setTtlSeconds'
     ];
 
     /**
@@ -188,7 +188,7 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'used_by' => 'getUsedBy'
+        'ttl_seconds' => 'getTtlSeconds'
     ];
 
     /**
@@ -248,7 +248,7 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('used_by', $data ?? [], null);
+        $this->setIfExists('ttl_seconds', $data ?? [], null);
     }
 
     /**
@@ -278,9 +278,13 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['used_by'] === null) {
-            $invalidProperties[] = "'used_by' can't be null";
+        if ($this->container['ttl_seconds'] === null) {
+            $invalidProperties[] = "'ttl_seconds' can't be null";
         }
+        if (($this->container['ttl_seconds'] < 1)) {
+            $invalidProperties[] = "invalid value for 'ttl_seconds', must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -297,28 +301,32 @@ class UsedBy implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets used_by
+     * Gets ttl_seconds
      *
-     * @return string[]
+     * @return int
      */
-    public function getUsedBy()
+    public function getTtlSeconds()
     {
-        return $this->container['used_by'];
+        return $this->container['ttl_seconds'];
     }
 
     /**
-     * Sets used_by
+     * Sets ttl_seconds
      *
-     * @param string[] $used_by The consumers (repos or hosts) recorded as depending on this object. Set at creation, and replaceable later via UpdateObjectRequest's own used_by field - a plain value update that omits it leaves the list as it was.
+     * @param int $ttl_seconds How long the rotated token stays valid for, starting now.
      *
      * @return self
      */
-    public function setUsedBy($used_by)
+    public function setTtlSeconds($ttl_seconds)
     {
-        if (is_null($used_by)) {
-            throw new \InvalidArgumentException('non-nullable used_by cannot be null');
+        if (is_null($ttl_seconds)) {
+            throw new \InvalidArgumentException('non-nullable ttl_seconds cannot be null');
         }
-        $this->container['used_by'] = $used_by;
+        if (($ttl_seconds < 1)) {
+            throw new \InvalidArgumentException('invalid value for $ttl_seconds when calling RotateTokenRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['ttl_seconds'] = $ttl_seconds;
 
         return $this;
     }
