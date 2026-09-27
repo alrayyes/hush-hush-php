@@ -32,7 +32,7 @@ final class ClientTest extends TestCase
     {
         putenv(self::ENV_VAR . '=env-token');
         $history = [];
-        $client = self::mockedClient([new Response(201, [], '{"id":"x"}')], $history);
+        $client = self::mockedClient([new Response(201, [], '{"slug":"x"}')], $history);
 
         $client->createObject('x', 'sealed');
 
@@ -44,7 +44,7 @@ final class ClientTest extends TestCase
     {
         putenv(self::ENV_VAR . '=env-token');
         $history = [];
-        $client = self::mockedClient([new Response(201, [], '{"id":"x"}')], $history, 'explicit-token');
+        $client = self::mockedClient([new Response(201, [], '{"slug":"x"}')], $history, 'explicit-token');
 
         $client->createObject('x', 'sealed');
 
@@ -56,14 +56,14 @@ final class ClientTest extends TestCase
     {
         $history = [];
         $client = self::mockedClient(
-            [new Response(201, [], '{"id":"my-object","used_by":["repo/a"]}')],
+            [new Response(201, [], '{"slug":"my-object","used_by":["repo/a"]}')],
             $history,
             'token',
         );
 
         $result = $client->createObject('my-object', 'sealed-bytes', ['repo/a']);
 
-        self::assertSame('my-object', $result->getId());
+        self::assertSame('my-object', $result->getSlug());
         self::assertSame(['repo/a'], $result->getUsedBy());
         self::assertSame('POST', $history[0]['request']->getMethod());
         $body = json_decode((string) $history[0]['request']->getBody(), true);
@@ -124,11 +124,11 @@ final class ClientTest extends TestCase
     public function replacesAnObjectsValue(): void
     {
         $history = [];
-        $client = self::mockedClient([new Response(200, [], '{"id":"my-object"}')], $history, 'token');
+        $client = self::mockedClient([new Response(200, [], '{"slug":"my-object"}')], $history, 'token');
 
         $result = $client->updateObject('my-object', 'new-sealed');
 
-        self::assertSame('my-object', $result->getId());
+        self::assertSame('my-object', $result->getSlug());
         self::assertSame('PUT', $history[0]['request']->getMethod());
     }
 

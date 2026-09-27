@@ -51,13 +51,13 @@ final class ClientTest extends TestCase
             ['contract-test'],
             'hush-hush-php-contract-test',
         );
-        self::assertIsString($created->getId());
+        self::assertIsString($created->getSlug());
 
         $fetched = $this->client->getObject('contract-test-object');
         self::assertIsString($fetched);
 
         $updated = $this->client->updateObject('contract-test-object', 'new-sealed');
-        self::assertIsString($updated->getId());
+        self::assertIsString($updated->getSlug());
 
         $this->client->deleteObject('contract-test-object');
     }

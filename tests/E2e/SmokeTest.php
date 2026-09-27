@@ -37,9 +37,9 @@ final class SmokeTest extends TestCase
         $client = new Client($baseUrl, $apiKey);
         self::assertSame('ok', $client->health()->getStatus());
 
-        $id = 'hush-hush-php-e2e-' . bin2hex(random_bytes(4));
-        $client->createObject($id, 'sealed-bytes');
-        self::assertSame('sealed-bytes', $client->getObject($id));
-        $client->deleteObject($id);
+        $slug = 'hush-hush-php-e2e-' . bin2hex(random_bytes(4));
+        $client->createObject($slug, 'sealed-bytes');
+        self::assertSame('sealed-bytes', $client->getObject($slug));
+        $client->deleteObject($slug);
     }
 }
