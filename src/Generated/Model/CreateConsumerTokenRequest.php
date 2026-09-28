@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 0288709cff290e0b0f20f0c62779bb2137c6c85b.
  */
 /**
- * CreateTokenRequest
+ * CreateConsumerTokenRequest
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * CreateTokenRequest Class Doc Comment
+ * CreateConsumerTokenRequest Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @var string
      */
-    protected static $openAPIModelName = 'CreateTokenRequest';
+    protected static $openAPIModelName = 'CreateConsumerTokenRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,6 +61,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $openAPITypes = [
+        'consumer' => 'string',
         'description' => 'string',
         'ttl_seconds' => 'int'
     ];
@@ -73,6 +74,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'consumer' => null,
         'description' => null,
         'ttl_seconds' => 'int64'
     ];
@@ -83,6 +85,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'consumer' => false,
         'description' => false,
         'ttl_seconds' => false
     ];
@@ -173,6 +176,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
+        'consumer' => 'consumer',
         'description' => 'description',
         'ttl_seconds' => 'ttl_seconds'
     ];
@@ -183,6 +187,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
+        'consumer' => 'setConsumer',
         'description' => 'setDescription',
         'ttl_seconds' => 'setTtlSeconds'
     ];
@@ -193,6 +198,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
+        'consumer' => 'getConsumer',
         'description' => 'getDescription',
         'ttl_seconds' => 'getTtlSeconds'
     ];
@@ -254,6 +260,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('consumer', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('ttl_seconds', $data ?? [], null);
     }
@@ -285,6 +292,9 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        if ($this->container['consumer'] === null) {
+            $invalidProperties[] = "'consumer' can't be null";
+        }
         if ($this->container['description'] === null) {
             $invalidProperties[] = "'description' can't be null";
         }
@@ -309,6 +319,33 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets consumer
+     *
+     * @return string
+     */
+    public function getConsumer()
+    {
+        return $this->container['consumer'];
+    }
+
+    /**
+     * Sets consumer
+     *
+     * @param string $consumer The consumer this token is scoped to - it authorizes `getObject` only for an object whose `used_by` list includes this name. Free text, matching how a consumer name is stored elsewhere (`used_by`, `/consumers`); the consumer doesn't have to already exist.
+     *
+     * @return self
+     */
+    public function setConsumer($consumer)
+    {
+        if (is_null($consumer)) {
+            throw new \InvalidArgumentException('non-nullable consumer cannot be null');
+        }
+        $this->container['consumer'] = $consumer;
+
+        return $this;
+    }
 
     /**
      * Gets description
@@ -360,7 +397,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable ttl_seconds cannot be null');
         }
         if (($ttl_seconds < 1)) {
-            throw new \InvalidArgumentException('invalid value for $ttl_seconds when calling CreateTokenRequest., must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for $ttl_seconds when calling CreateConsumerTokenRequest., must be bigger than or equal to 1.');
         }
 
         $this->container['ttl_seconds'] = $ttl_seconds;

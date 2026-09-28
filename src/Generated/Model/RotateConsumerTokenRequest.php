@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 0288709cff290e0b0f20f0c62779bb2137c6c85b.
  */
 /**
- * CreateTokenRequest
+ * RotateConsumerTokenRequest
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * CreateTokenRequest Class Doc Comment
+ * RotateConsumerTokenRequest Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @var string
      */
-    protected static $openAPIModelName = 'CreateTokenRequest';
+    protected static $openAPIModelName = 'RotateConsumerTokenRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $openAPITypes = [
-        'description' => 'string',
         'ttl_seconds' => 'int'
     ];
 
@@ -73,7 +72,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'description' => null,
         'ttl_seconds' => 'int64'
     ];
 
@@ -83,7 +81,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'description' => false,
         'ttl_seconds' => false
     ];
 
@@ -173,7 +170,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
         'ttl_seconds' => 'ttl_seconds'
     ];
 
@@ -183,7 +179,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
         'ttl_seconds' => 'setTtlSeconds'
     ];
 
@@ -193,7 +188,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
         'ttl_seconds' => 'getTtlSeconds'
     ];
 
@@ -254,7 +248,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('ttl_seconds', $data ?? [], null);
     }
 
@@ -285,9 +278,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
         if ($this->container['ttl_seconds'] === null) {
             $invalidProperties[] = "'ttl_seconds' can't be null";
         }
@@ -311,33 +301,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string $description description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
      * Gets ttl_seconds
      *
      * @return int
@@ -350,7 +313,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets ttl_seconds
      *
-     * @param int $ttl_seconds How long the token stays valid for, starting now.
+     * @param int $ttl_seconds How long the rotated token stays valid for, starting now.
      *
      * @return self
      */
@@ -360,7 +323,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable ttl_seconds cannot be null');
         }
         if (($ttl_seconds < 1)) {
-            throw new \InvalidArgumentException('invalid value for $ttl_seconds when calling CreateTokenRequest., must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for $ttl_seconds when calling RotateConsumerTokenRequest., must be bigger than or equal to 1.');
         }
 
         $this->container['ttl_seconds'] = $ttl_seconds;
