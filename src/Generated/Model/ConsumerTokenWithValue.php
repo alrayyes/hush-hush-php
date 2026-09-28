@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 0288709cff290e0b0f20f0c62779bb2137c6c85b.
  */
 /**
- * CreateTokenRequest
+ * ConsumerTokenWithValue
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * CreateTokenRequest Class Doc Comment
+ * ConsumerTokenWithValue Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ConsumerTokenWithValue implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @var string
      */
-    protected static $openAPIModelName = 'CreateTokenRequest';
+    protected static $openAPIModelName = 'ConsumerTokenWithValue';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,8 +61,14 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $openAPITypes = [
+        'id' => 'string',
+        'consumer' => 'string',
         'description' => 'string',
-        'ttl_seconds' => 'int'
+        'created_at' => '\DateTime',
+        'expires_at' => '\DateTime',
+        'revoked' => 'bool',
+        'last_used_at' => '\DateTime',
+        'value' => 'string'
     ];
 
     /**
@@ -73,8 +79,14 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'id' => null,
+        'consumer' => null,
         'description' => null,
-        'ttl_seconds' => 'int64'
+        'created_at' => 'date-time',
+        'expires_at' => 'date-time',
+        'revoked' => null,
+        'last_used_at' => 'date-time',
+        'value' => null
     ];
 
     /**
@@ -83,8 +95,14 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'id' => false,
+        'consumer' => false,
         'description' => false,
-        'ttl_seconds' => false
+        'created_at' => false,
+        'expires_at' => false,
+        'revoked' => false,
+        'last_used_at' => false,
+        'value' => false
     ];
 
     /**
@@ -173,8 +191,14 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
+        'consumer' => 'consumer',
         'description' => 'description',
-        'ttl_seconds' => 'ttl_seconds'
+        'created_at' => 'created_at',
+        'expires_at' => 'expires_at',
+        'revoked' => 'revoked',
+        'last_used_at' => 'last_used_at',
+        'value' => 'value'
     ];
 
     /**
@@ -183,8 +207,14 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
+        'consumer' => 'setConsumer',
         'description' => 'setDescription',
-        'ttl_seconds' => 'setTtlSeconds'
+        'created_at' => 'setCreatedAt',
+        'expires_at' => 'setExpiresAt',
+        'revoked' => 'setRevoked',
+        'last_used_at' => 'setLastUsedAt',
+        'value' => 'setValue'
     ];
 
     /**
@@ -193,8 +223,14 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
+        'consumer' => 'getConsumer',
         'description' => 'getDescription',
-        'ttl_seconds' => 'getTtlSeconds'
+        'created_at' => 'getCreatedAt',
+        'expires_at' => 'getExpiresAt',
+        'revoked' => 'getRevoked',
+        'last_used_at' => 'getLastUsedAt',
+        'value' => 'getValue'
     ];
 
     /**
@@ -254,8 +290,14 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('consumer', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('ttl_seconds', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('expires_at', $data ?? [], null);
+        $this->setIfExists('revoked', $data ?? [], null);
+        $this->setIfExists('last_used_at', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -285,16 +327,31 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if (!preg_match("/^[0-9a-f]{16}$/", $this->container['id'])) {
+            $invalidProperties[] = "invalid value for 'id', must be conform to the pattern /^[0-9a-f]{16}$/.";
+        }
+
+        if ($this->container['consumer'] === null) {
+            $invalidProperties[] = "'consumer' can't be null";
+        }
         if ($this->container['description'] === null) {
             $invalidProperties[] = "'description' can't be null";
         }
-        if ($this->container['ttl_seconds'] === null) {
-            $invalidProperties[] = "'ttl_seconds' can't be null";
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
         }
-        if (($this->container['ttl_seconds'] < 1)) {
-            $invalidProperties[] = "invalid value for 'ttl_seconds', must be bigger than or equal to 1.";
+        if ($this->container['expires_at'] === null) {
+            $invalidProperties[] = "'expires_at' can't be null";
         }
-
+        if ($this->container['revoked'] === null) {
+            $invalidProperties[] = "'revoked' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -309,6 +366,65 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+
+        if ((!preg_match("/^[0-9a-f]{16}$/", ObjectSerializer::toString($id)))) {
+            throw new \InvalidArgumentException("invalid value for \$id when calling ConsumerTokenWithValue., must conform to the pattern /^[0-9a-f]{16}$/.");
+        }
+
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets consumer
+     *
+     * @return string
+     */
+    public function getConsumer()
+    {
+        return $this->container['consumer'];
+    }
+
+    /**
+     * Sets consumer
+     *
+     * @param string $consumer consumer
+     *
+     * @return self
+     */
+    public function setConsumer($consumer)
+    {
+        if (is_null($consumer)) {
+            throw new \InvalidArgumentException('non-nullable consumer cannot be null');
+        }
+        $this->container['consumer'] = $consumer;
+
+        return $this;
+    }
 
     /**
      * Gets description
@@ -338,32 +454,136 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets ttl_seconds
+     * Gets created_at
      *
-     * @return int
+     * @return \DateTime
      */
-    public function getTtlSeconds()
+    public function getCreatedAt()
     {
-        return $this->container['ttl_seconds'];
+        return $this->container['created_at'];
     }
 
     /**
-     * Sets ttl_seconds
+     * Sets created_at
      *
-     * @param int $ttl_seconds How long the token stays valid for, starting now.
+     * @param \DateTime $created_at created_at
      *
      * @return self
      */
-    public function setTtlSeconds($ttl_seconds)
+    public function setCreatedAt($created_at)
     {
-        if (is_null($ttl_seconds)) {
-            throw new \InvalidArgumentException('non-nullable ttl_seconds cannot be null');
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
-        if (($ttl_seconds < 1)) {
-            throw new \InvalidArgumentException('invalid value for $ttl_seconds when calling CreateTokenRequest., must be bigger than or equal to 1.');
-        }
+        $this->container['created_at'] = $created_at;
 
-        $this->container['ttl_seconds'] = $ttl_seconds;
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return \DateTime
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param \DateTime $expires_at expires_at
+     *
+     * @return self
+     */
+    public function setExpiresAt($expires_at)
+    {
+        if (is_null($expires_at)) {
+            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
+        }
+        $this->container['expires_at'] = $expires_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets revoked
+     *
+     * @return bool
+     */
+    public function getRevoked()
+    {
+        return $this->container['revoked'];
+    }
+
+    /**
+     * Sets revoked
+     *
+     * @param bool $revoked revoked
+     *
+     * @return self
+     */
+    public function setRevoked($revoked)
+    {
+        if (is_null($revoked)) {
+            throw new \InvalidArgumentException('non-nullable revoked cannot be null');
+        }
+        $this->container['revoked'] = $revoked;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_used_at
+     *
+     * @return \DateTime|null
+     */
+    public function getLastUsedAt()
+    {
+        return $this->container['last_used_at'];
+    }
+
+    /**
+     * Sets last_used_at
+     *
+     * @param \DateTime|null $last_used_at Absent if this token has never authenticated a request.
+     *
+     * @return self
+     */
+    public function setLastUsedAt($last_used_at)
+    {
+        if (is_null($last_used_at)) {
+            throw new \InvalidArgumentException('non-nullable last_used_at cannot be null');
+        }
+        $this->container['last_used_at'] = $last_used_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param string $value The raw consumer token. Shown here once, at creation, and never again.
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        }
+        $this->container['value'] = $value;
 
         return $this;
     }
