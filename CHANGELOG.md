@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.0.3](https://github.com/alrayyes/hush-hush-php/compare/v6.0.2...v6.0.3) (2026-09-28)
+
+
+### Bug Fixes
+
+* **deps-dev:** bump the php-dependencies group with 3 updates ([#176](https://github.com/alrayyes/hush-hush-php/issues/176)) ([f04fa35](https://github.com/alrayyes/hush-hush-php/commit/f04fa350829ef545c459016a632c1e3d09bd7b8c))
+* regenerate client from updated hush-hush spec ([3608efd](https://github.com/alrayyes/hush-hush-php/commit/3608efdf72083d583f140c0269b89e5411ef318a))
+* regenerate client from updated hush-hush spec ([ff442f0](https://github.com/alrayyes/hush-hush-php/commit/ff442f0551921c5f37b8227d051a3c7dcccf3057))
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump the tooling group with 4 updates ([#177](https://github.com/alrayyes/hush-hush-php/issues/177)) ([2766088](https://github.com/alrayyes/hush-hush-php/commit/2766088578e872f818ce0258ee52c0ab44a3c109))
+
 ## [6.0.2](https://github.com/alrayyes/hush-hush-php/compare/v6.0.1...v6.0.2) (2026-09-27)
 
 
