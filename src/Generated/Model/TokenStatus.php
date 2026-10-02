@@ -4,12 +4,12 @@
  * Generated from hush-hush spec commit a3cc1ceb36b145b65cc63e609d88cadab7b91058.
  */
 /**
- * ModelInterface
+ * TokenStatus
  *
  * PHP version 8.1
  *
  * @category Class
- * @package  HushHush\Generated\Model
+ * @package  HushHush\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -31,85 +31,40 @@
  */
 
 namespace HushHush\Generated\Model;
+use \HushHush\Generated\ObjectSerializer;
 
 /**
- * Interface abstracting model access.
+ * TokenStatus Class Doc Comment
  *
- * @package HushHush\Generated\Model
- * @author  OpenAPI Generator team
+ * @category Class
+ * @description What the token is right now, by the server&#39;s own clock: &#x60;revoked&#x60; if it was revoked (even if it has also expired), &#x60;expired&#x60; if its &#x60;expires_at&#x60; has passed, &#x60;active&#x60; otherwise. Always sent by this server; optional in the schema so a client generated from it still reads a response from an older one.
+ * @package  HushHush\Generated
+ * @author   OpenAPI Generator team
+ * @link     https://openapi-generator.tech
  */
-interface ModelInterface
+class TokenStatus
 {
     /**
-     * The original name of the model.
-     *
-     * @return string
+     * Possible values of this enum
      */
-    public function getModelName();
+    public const ACTIVE = 'active';
+
+    public const EXPIRED = 'expired';
+
+    public const REVOKED = 'revoked';
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
+     * Gets allowable values of the enum
+     * @return string[]
      */
-    public static function openAPITypes();
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats();
-
-    /**
-     * Array of attributes where the key is the local name, and the value is the original name
-     *
-     * @return array
-     */
-    public static function attributeMap();
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters();
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters();
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array
-     */
-    public function listInvalidProperties();
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool
-     */
-    public function valid();
-
-    /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
-     */
-    public static function isNullable(string $property): bool;
-
-    /**
-     * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
-     */
-    public function isNullableSetToNull(string $property): bool;
+    public static function getAllowableEnumValues()
+    {
+        return [
+            self::ACTIVE,
+            self::EXPIRED,
+            self::REVOKED
+        ];
+    }
 }
+
+
