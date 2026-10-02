@@ -64,9 +64,10 @@ final class ClientTest extends TestCase
         $request
             ->setMethod('GET')
             ->setPath('/audit-log')
-            // Client::queryAuditLog() doesn't expose $limit, so the generated
-            // AuditLogApi always sends its default (50) on every real call.
-            ->setQuery(['limit' => '50'])
+            // Client::queryAuditLog() doesn't expose $limit or $order, so the
+            // generated AuditLogApi always sends its defaults (50, asc) on
+            // every real call.
+            ->setQuery(['limit' => '50', 'order' => 'asc'])
         ;
 
         $response = new ProviderResponse();
