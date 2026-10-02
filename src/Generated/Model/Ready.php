@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 60c16caa834105cd20146b316f01e526f6f1646c.
  */
 /**
- * RotateConsumerTokenRequest
+ * Ready
  *
  * PHP version 8.1
  *
@@ -36,7 +36,7 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * RotateConsumerTokenRequest Class Doc Comment
+ * Ready Class Doc Comment
  *
  * @category Class
  * @package  HushHush\Generated
@@ -44,7 +44,7 @@ use \HushHush\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class Ready implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @var string
      */
-    protected static $openAPIModelName = 'RotateConsumerTokenRequest';
+    protected static $openAPIModelName = 'Ready';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,7 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $openAPITypes = [
-        'ttl_seconds' => 'int'
+        'status' => 'string'
     ];
 
     /**
@@ -72,7 +72,7 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'ttl_seconds' => 'int64'
+        'status' => null
     ];
 
     /**
@@ -81,7 +81,7 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'ttl_seconds' => false
+        'status' => false
     ];
 
     /**
@@ -170,7 +170,7 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
-        'ttl_seconds' => 'ttl_seconds'
+        'status' => 'status'
     ];
 
     /**
@@ -179,7 +179,7 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $setters = [
-        'ttl_seconds' => 'setTtlSeconds'
+        'status' => 'setStatus'
     ];
 
     /**
@@ -188,7 +188,7 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $getters = [
-        'ttl_seconds' => 'getTtlSeconds'
+        'status' => 'getStatus'
     ];
 
     /**
@@ -232,6 +232,21 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
+    public const STATUS_OK = 'ok';
+    public const STATUS_UNAVAILABLE = 'unavailable';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_OK,
+            self::STATUS_UNAVAILABLE,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -248,7 +263,7 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('ttl_seconds', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -278,11 +293,16 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
-        if ($this->container['ttl_seconds'] === null) {
-            $invalidProperties[] = "'ttl_seconds' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
-        if (($this->container['ttl_seconds'] < 1)) {
-            $invalidProperties[] = "invalid value for 'ttl_seconds', must be bigger than or equal to 1.";
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -301,32 +321,38 @@ class RotateConsumerTokenRequest implements ModelInterface, ArrayAccess, \JsonSe
 
 
     /**
-     * Gets ttl_seconds
+     * Gets status
      *
-     * @return int
+     * @return string
      */
-    public function getTtlSeconds()
+    public function getStatus()
     {
-        return $this->container['ttl_seconds'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets ttl_seconds
+     * Sets status
      *
-     * @param int $ttl_seconds How long the rotated token stays valid for, starting now.
+     * @param string $status status
      *
      * @return self
      */
-    public function setTtlSeconds($ttl_seconds)
+    public function setStatus($status)
     {
-        if (is_null($ttl_seconds)) {
-            throw new \InvalidArgumentException('non-nullable ttl_seconds cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        if (($ttl_seconds < 1)) {
-            throw new \InvalidArgumentException('invalid value for $ttl_seconds when calling RotateConsumerTokenRequest., must be bigger than or equal to 1.');
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
-
-        $this->container['ttl_seconds'] = $ttl_seconds;
+        $this->container['status'] = $status;
 
         return $this;
     }
