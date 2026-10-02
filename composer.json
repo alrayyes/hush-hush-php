@@ -47,6 +47,11 @@
       "infection/extension-installer": true,
       "pact-foundation/composer-downloads-plugin": true
     },
+    "audit": {
+      "ignore": {
+        "PKSA-w9tt-7782-78jx": "GHSA-cxf4-7mrp-vvpr, low. league/flysystem 1.x is pulled in by phpdocumentor/phpdocumentor 3.10.0 (requires ^1.0, latest release), dev-only docs tooling. No 1.x fix exists; revisit when phpdocumentor drops flysystem 1."
+      }
+    },
     "platform": {
       "php": "8.4.99"
     },
