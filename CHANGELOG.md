@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.0.6](https://github.com/alrayyes/hush-hush-php/compare/v6.0.5...v6.0.6) (2026-10-02)
+
+
+### Bug Fixes
+
+* **deps:** bump fast-uri to 3.1.8 ([160a41c](https://github.com/alrayyes/hush-hush-php/commit/160a41cb1f7d425f79dbf61d7f71ab32f2751f69))
+* **deps:** clear bun and composer audit advisories ([8acdc8e](https://github.com/alrayyes/hush-hush-php/commit/8acdc8e2e5c7881ec479241da7bd226dacfb175b))
+* **deps:** update league/commonmark and ignore unfixable flysystem advisory ([5a99726](https://github.com/alrayyes/hush-hush-php/commit/5a9972618ff804057644a47788481ac3f5d432a6)), closes [#186](https://github.com/alrayyes/hush-hush-php/issues/186)
+
 ## [6.0.5](https://github.com/alrayyes/hush-hush-php/compare/v6.0.4...v6.0.5) (2026-09-28)
 
 
