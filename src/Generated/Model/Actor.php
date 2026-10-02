@@ -4,7 +4,7 @@
  * Generated from hush-hush spec commit 48d35e54991dda6390c419ab11904dfd4060bfd4.
  */
 /**
- * UpdateObjectRequest
+ * Actor
  *
  * PHP version 8.1
  *
@@ -36,15 +36,16 @@ use \ArrayAccess;
 use \HushHush\Generated\ObjectSerializer;
 
 /**
- * UpdateObjectRequest Class Doc Comment
+ * Actor Class Doc Comment
  *
  * @category Class
+ * @description Who performed an audited write. &#x60;type&#x60; is &#x60;session&#x60; (the admin account, &#x60;id&#x60; is its actor id), &#x60;token&#x60; (a write token, &#x60;id&#x60; is its token id) or &#x60;consumer_token&#x60; (a consumer token, &#x60;id&#x60; is its id) - the same values &#x60;GET /audit-log&#x60; reports.
  * @package  HushHush\Generated
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class Actor implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +54,7 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @var string
      */
-    protected static $openAPIModelName = 'UpdateObjectRequest';
+    protected static $openAPIModelName = 'Actor';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,10 +62,8 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $openAPITypes = [
-        'value' => 'string',
-        'used_by' => 'string[]',
-        'tags' => 'string[]',
-        'keep_readable_copy' => 'bool'
+        'type' => 'string',
+        'id' => 'string'
     ];
 
     /**
@@ -75,10 +74,8 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'value' => 'byte',
-        'used_by' => null,
-        'tags' => null,
-        'keep_readable_copy' => null
+        'type' => null,
+        'id' => null
     ];
 
     /**
@@ -87,10 +84,8 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'value' => false,
-        'used_by' => false,
-        'tags' => false,
-        'keep_readable_copy' => false
+        'type' => false,
+        'id' => false
     ];
 
     /**
@@ -179,10 +174,8 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'value' => 'value',
-        'used_by' => 'used_by',
-        'tags' => 'tags',
-        'keep_readable_copy' => 'keep_readable_copy'
+        'type' => 'type',
+        'id' => 'id'
     ];
 
     /**
@@ -191,10 +184,8 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'value' => 'setValue',
-        'used_by' => 'setUsedBy',
-        'tags' => 'setTags',
-        'keep_readable_copy' => 'setKeepReadableCopy'
+        'type' => 'setType',
+        'id' => 'setId'
     ];
 
     /**
@@ -203,10 +194,8 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'value' => 'getValue',
-        'used_by' => 'getUsedBy',
-        'tags' => 'getTags',
-        'keep_readable_copy' => 'getKeepReadableCopy'
+        'type' => 'getType',
+        'id' => 'getId'
     ];
 
     /**
@@ -266,10 +255,8 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('value', $data ?? [], null);
-        $this->setIfExists('used_by', $data ?? [], null);
-        $this->setIfExists('tags', $data ?? [], null);
-        $this->setIfExists('keep_readable_copy', $data ?? [], false);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
     }
 
     /**
@@ -299,13 +286,12 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-        if (!is_null($this->container['tags']) && (count($this->container['tags']) > 10)) {
-            $invalidProperties[] = "invalid value for 'tags', number of items must be less than or equal to 10.";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -322,112 +308,55 @@ class UpdateObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets value
+     * Gets type
      *
      * @return string
      */
-    public function getValue()
+    public function getType()
     {
-        return $this->container['value'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets value
+     * Sets type
      *
-     * @param string $value The new sealed (encrypted) value, base64-encoded.
+     * @param string $type type
      *
      * @return self
      */
-    public function setValue($value)
+    public function setType($type)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['value'] = $value;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets used_by
+     * Gets id
      *
-     * @return string[]|null
+     * @return string
      */
-    public function getUsedBy()
+    public function getId()
     {
-        return $this->container['used_by'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets used_by
+     * Sets id
      *
-     * @param string[]|null $used_by Replaces the object's recorded used_by list, the same way CreateObjectRequest's used_by sets it initially - omit this field entirely to leave the existing list untouched. An empty array clears it.
+     * @param string $id id
      *
      * @return self
      */
-    public function setUsedBy($used_by)
+    public function setId($id)
     {
-        if (is_null($used_by)) {
-            throw new \InvalidArgumentException('non-nullable used_by cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['used_by'] = $used_by;
-
-        return $this;
-    }
-
-    /**
-     * Gets tags
-     *
-     * @return string[]|null
-     */
-    public function getTags()
-    {
-        return $this->container['tags'];
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param string[]|null $tags Replaces the object's tags - omit this field entirely to leave them untouched. An empty array clears them.
-     *
-     * @return self
-     */
-    public function setTags($tags)
-    {
-        if (is_null($tags)) {
-            throw new \InvalidArgumentException('non-nullable tags cannot be null');
-        }
-        if ((count($tags) > 10)) {
-            throw new \InvalidArgumentException('invalid value for $tags when calling UpdateObjectRequest., number of items must be less than or equal to 10.');
-        }
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Gets keep_readable_copy
-     *
-     * @return bool|null
-     */
-    public function getKeepReadableCopy()
-    {
-        return $this->container['keep_readable_copy'];
-    }
-
-    /**
-     * Sets keep_readable_copy
-     *
-     * @param bool|null $keep_readable_copy Requests that the owner's own escrowed identity public key be included as an additional decrypt recipient, alongside whatever consumer recipients the client already resolved (specs/secret-objects/spec.md's \"Opt-in owner-recipient inclusion at create time\" requirement). Omitting this field (the default) means the owner is not added as a recipient - this service never makes ownership imply decrypt access on its own.  This is a client-side sealing instruction, not something this service enforces or verifies: it never decrypts, and never adds a recipient to `value` itself - the caller has to add the owner's public key (`GET /auth/identity`) to its own recipient list before sealing. A create or update response echoes back exactly what that same request asked for; it isn't persisted, so a later fetch never carries this field.
-     *
-     * @return self
-     */
-    public function setKeepReadableCopy($keep_readable_copy)
-    {
-        if (is_null($keep_readable_copy)) {
-            throw new \InvalidArgumentException('non-nullable keep_readable_copy cannot be null');
-        }
-        $this->container['keep_readable_copy'] = $keep_readable_copy;
+        $this->container['id'] = $id;
 
         return $this;
     }
