@@ -156,6 +156,11 @@ jobs:
         run: bun run lint:md
       - name: sort-package-json --check
         run: bun run sort-package-json:check
+      # `bun run audit` carries `--ignore GHSA-vfj7-8cjw-p6xm` (braces): no
+      # patched release exists (the range is <= 3.0.3, the latest), and the
+      # only path is markdownlint-cli2 > micromatch, which globs this repo's own
+      # fixed patterns in dev tooling that doesn't ship. Remove the flag from
+      # package.json once braces has a fix (alrayyes/hush-hush-php#199).
       - name: bun audit
         run: bun run audit
 
