@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.24](https://github.com/alrayyes/hush-hush-php/compare/v6.0.23...v6.0.24) (2026-10-06)
+
+
+### Bug Fixes
+
+* **ci:** run the docs build on PHP 8.4 ([a5f13be](https://github.com/alrayyes/hush-hush-php/commit/a5f13be7a6873f266c2d32d2ae458ea318a8d6de))
+* **ci:** run the docs build on PHP 8.4 ([a71158e](https://github.com/alrayyes/hush-hush-php/commit/a71158e89a47aee32e184b16df7ca5637e349ef9))
+
 ## [6.0.23](https://github.com/alrayyes/hush-hush-php/compare/v6.0.22...v6.0.23) (2026-10-06)
 
 
