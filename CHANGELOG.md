@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.23](https://github.com/alrayyes/hush-hush-php/compare/v6.0.22...v6.0.23) (2026-10-06)
+
+
+### Bug Fixes
+
+* **deps-dev:** override katex and smol-toml past their advisories ([2a99ce2](https://github.com/alrayyes/hush-hush-php/commit/2a99ce2731bd97514d6655bfae680f6a168f5591))
+* **deps-dev:** override katex and smol-toml past their advisories ([1ccb675](https://github.com/alrayyes/hush-hush-php/commit/1ccb6759d41e7f5de1d6fff7cec39aa3c6e2c732))
+
 ## [6.0.22](https://github.com/alrayyes/hush-hush-php/compare/v6.0.21...v6.0.22) (2026-10-05)
 
 
