@@ -43,7 +43,7 @@ specific to this repo.
   issue — phpDocumentor's own dependency drifted past what 3.10.0 shipped
   against). `league/uri-interfaces` no longer needs the same override —
   Dependabot moved it to `7.8.1` (#13) without reproducing the crash,
-  and `docs.yml` has stayed green since.
+  and the docs build has stayed green since.
 - **phpDocumentor's `--ignore`/`<ignore>` exclusion doesn't work in
   3.10.0** — neither the CLI flag nor the XML config element actually
   excludes `src/Generated` from the built site. `phpdoc.dist.xml` points
@@ -84,9 +84,14 @@ specific to this repo.
   entry, no build step. Packagist installs straight from the tagged git
   commit; there's no artifact (`subject-path`) for the action to attest.
   Revisit if a release job ever starts producing one.
-- **`docs.yml` also publishes the test and coverage reports** under
-  `/reports/` of the same Pages site, on a push to `main` only: its build job
-  runs the `unit` suite under pcov, so a red run deploys nothing. A deploy
-  replaces the whole site, which is why the reports ride along on every one
-  rather than getting a deployment of their own. The contract, pact and
-  mutation runs aren't in them.
+- **`ci.yml` publishes the API reference and the test and coverage reports
+  as one Pages site**, per `rules/published-reports.md`. The `test` job
+  writes the reports on every run and uploads them as the `reports`
+  artifact. `build` needs every other job, downloads that into
+  `site/reports/`, builds the phpDocumentor reference into `site/` and
+  stages the site. It runs on pull requests too, so a broken step fails
+  before the merge. `pages-deploy` runs on a push to `main` only (the
+  `github-pages` environment admits nothing else) and then fetches the
+  live `coverage.xml`. A deploy replaces the whole site, which is why the
+  reports are rebuilt on every push to `main` whatever changed. The
+  contract, pact and mutation runs aren't in them.
