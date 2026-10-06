@@ -44,7 +44,8 @@ The API key is only required for write operations (create/update/delete);
 reads (get, used-by, audit-log query) work without one. A per-call `$caller`
 argument, accepted by create/get/update/delete, is optional. See the
 [full API reference](https://alrayyes.github.io/hush-hush-php/) for
-everything else.
+everything else. The latest green run's test and coverage reports are at
+<https://apis.ryankes.eu/hush-hush-php/reports/>.
 
 ## Versioning
 

@@ -2,6 +2,11 @@
 # Pages. Separate from ci.yml's own jobs since this deploys something
 # (a live site), not just checks a diff.
 #
+# On a push to main the same build also stages the test and coverage reports
+# under /reports/. A Pages deploy replaces the whole site, so they have to
+# ship with every one. The reports step runs phpunit itself, so a red test
+# run fails the build and nothing deploys.
+#
 # Also runs on pull_request (build only, deploy stays push-to-main-only)
 # so a dependency bump that breaks phpdoc itself — league/uri 7.8.1 did,
 # see #75 — fails PR checks instead of only main's push-triggered run.
@@ -33,6 +38,9 @@ jobs:
           php-version: "8.2"
           tools: composer:2.9.5
           extensions: ffi
+          # pcov only on a push: it's what the reports step needs, and a
+          # pull request's own coverage is ci.yml's job.
+          coverage: ${{ github.event_name == 'push' && 'pcov' || 'none' }}
       - run: composer install --prefer-dist --no-progress
       - run: vendor/bin/phpdoc
       # phpDocumentor 3.10.0's config schema has no element for injecting an
@@ -41,6 +49,18 @@ jobs:
       # data/xsd/phpdoc.xsd), so llms.txt (llmstxt.org) is copied into the
       # output here instead of being made part of the phpdoc run itself.
       - run: cp llms.txt site/llms.txt
+      - name: Build the test and coverage reports
+        if: github.event_name == 'push'
+        # Same suite as ci.yml's test job. Clover is PHPUnit's native
+        # coverage file, Cobertura is the one other tools read.
+        run: |
+          mkdir -p site/reports/tests site/reports/coverage
+          vendor/bin/phpunit --testsuite unit \
+            --log-junit site/reports/tests/junit.xml \
+            --coverage-html site/reports/coverage \
+            --coverage-cobertura site/reports/coverage/coverage.xml \
+            --coverage-clover site/reports/coverage/clover.xml
+          cp scripts/reports-index.html site/reports/index.html
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: site
