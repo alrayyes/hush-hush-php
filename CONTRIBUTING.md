@@ -107,5 +107,4 @@ even though it doesn't gate the merge.
 Conventional Commits on `main` and keeps a release pull request open with
 the next version and changelog entry; merging that one tags the release.
 Nobody picks a version by hand. Publishing the tagged release to Packagist
-is a deliberate manual step (see hush-hush issue #76), not automated in this
-repo's CI.
+is a manual step for now, not automated in this repo's CI.
