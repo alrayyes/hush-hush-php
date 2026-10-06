@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.25](https://github.com/alrayyes/hush-hush-php/compare/v6.0.24...v6.0.25) (2026-10-06)
+
+
+### Bug Fixes
+
+* **ci:** run pages-deploy on a push to main ([#242](https://github.com/alrayyes/hush-hush-php/issues/242)) ([e426a8d](https://github.com/alrayyes/hush-hush-php/commit/e426a8d0ada0510e35b2b8a1a86694fee180f353))
+
 ## [6.0.24](https://github.com/alrayyes/hush-hush-php/compare/v6.0.23...v6.0.24) (2026-10-06)
 
 
