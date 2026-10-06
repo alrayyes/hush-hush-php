@@ -84,3 +84,9 @@ specific to this repo.
   entry, no build step. Packagist installs straight from the tagged git
   commit; there's no artifact (`subject-path`) for the action to attest.
   Revisit if a release job ever starts producing one.
+- **`docs.yml` also publishes the test and coverage reports** under
+  `/reports/` of the same Pages site, on a push to `main` only: its build job
+  runs the `unit` suite under pcov, so a red run deploys nothing. A deploy
+  replaces the whole site, which is why the reports ride along on every one
+  rather than getting a deployment of their own. The contract, pact and
+  mutation runs aren't in them.
