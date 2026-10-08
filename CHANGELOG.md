@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.26](https://github.com/alrayyes/hush-hush-php/compare/v6.0.25...v6.0.26) (2026-10-08)
+
+
+### Miscellaneous Chores
+
+* silence lefthook on a clean run ([#245](https://github.com/alrayyes/hush-hush-php/issues/245)) ([820e2cd](https://github.com/alrayyes/hush-hush-php/commit/820e2cdfab626ca254cedf5511dc1a4c9db74ce4))
+
 ## [6.0.25](https://github.com/alrayyes/hush-hush-php/compare/v6.0.24...v6.0.25) (2026-10-06)
 
 
