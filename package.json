@@ -7,7 +7,8 @@
     "format:check": "prettier --check \"**/*.{md,yml,yaml}\"",
     "lint:md": "markdownlint-cli2",
     "prepare": "lefthook install",
-    "sort-package-json:check": "sort-package-json --check"
+    "sort-package-json:check": "sort-package-json --check",
+    "test:hooks": "./scripts/test-pre-commit-staged-only.sh"
   },
   "overrides": {
     "katex": "0.19.0",

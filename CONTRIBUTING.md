@@ -27,6 +27,15 @@ bun install
 The `prepare` script runs `lefthook install` for you — an uninstalled hook
 silently does nothing, which is worse than not having one.
 
+The `pre-commit` hook judges only what the commit contains: each job runs on
+the staged files and fetches nothing, so a half-finished file elsewhere can't
+fail a commit. Whole-tree checks (`phpstan`, `actionlint`, the full Vale and
+`ltex` runs and the rest) run at `pre-push`, and CI runs them all. Vale's style
+packages aren't committed, and the hook won't fetch them, so run
+`./scripts/lint-vale.sh` once on a fresh clone or the first Markdown commit
+fails with `style 'Google' does not exist`. `bun run test:hooks` proves the
+staged-only behavior against a dirty tree.
+
 This repo pulls hush-hush's OpenAPI spec in as a git submodule. Clone with
 `git clone --recurse-submodules`, or run `git submodule update --init` after
 a plain clone.

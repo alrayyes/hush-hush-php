@@ -169,6 +169,8 @@ jobs:
         run: bun run lint:md
       - name: sort-package-json --check
         run: bun run sort-package-json:check
+      - name: pre-commit hook judges only staged content
+        run: bun run test:hooks
       # `bun run audit` carries `--ignore GHSA-vfj7-8cjw-p6xm` (braces): no
       # patched release exists (the range is <= 3.0.3, the latest), and the
       # only path is markdownlint-cli2 > micromatch, which globs this repo's own

@@ -1,5 +1,7 @@
 # The same commands CI runs, so the two cannot drift. The hook catches it
-# early; CI is the gate that cannot be skipped. PHP commands run through
+# early; CI is the gate that cannot be skipped. pre-commit judges only what
+# the commit contains ({staged_files}, never the tree, never the network);
+# whole-tree checks live in pre-push. PHP commands run through
 # scripts/composer.sh (the pinned composer:2.9.5 image) — see rules/php.md's
 # "no PHP interpreter" guidance.
 
@@ -40,15 +42,11 @@ pre-commit:
 
     - name: markdownlint
       glob: "*.md"
-      run: bunx markdownlint-cli2 {staged_files}
+      run: bunx markdownlint-cli2 --no-globs {staged_files}
 
     - name: vale
       glob: "*.md"
-      run: ./scripts/lint-vale.sh
-
-    - name: actionlint
-      glob: ".github/workflows/*.{yml,yaml}"
-      run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.7
+      run: ./scripts/lint-vale.sh {staged_files}
 
 commit-msg:
   jobs:
@@ -87,6 +85,9 @@ pre-push:
 
     - name: vale
       run: ./scripts/lint-vale.sh
+
+    - name: actionlint
+      run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.7
 
     - name: ltex
       run: ./scripts/lint-ltex.sh
