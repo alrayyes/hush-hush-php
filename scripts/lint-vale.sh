@@ -3,18 +3,34 @@
 # knows. Advice, not a gate - Vale only fails on error-severity alerts
 # (MinAlertLevel in .vale.ini), which is why this script's own exit code is
 # the real signal and nothing here downgrades it.
+#
+# No arguments: sync the style packages and lint the whole set (pre-push, CI).
+# With file arguments: lint just those and fetch nothing (pre-commit, so a
+# commit judges only what it contains). The packages must already be synced,
+# which any earlier no-argument run does.
 set -eu
 
-# The official image, pinned by tag and digest so a moved tag can't change the run
-# unnoticed. The comment is what Renovate reads to bump both together.
-IMAGE=jdkato/vale:v3.17.1@sha256:7dba3c9104ba366f172d119022c4ec53a005f7d14dc1b80e285421a3f0b71657 # renovate: datasource=docker depName=jdkato/vale
+VERSION=v3.17.1
+IMAGE="jdkato/vale:$VERSION"
 
 cd "$(dirname "$0")/.."
 
+if [ "$#" -eq 0 ]; then
+  sync="vale sync && "
+  files="README.md CONTRIBUTING.md CLAUDE.md SECURITY.md"
+else
+  sync=""
+  files="$*"
+  if [ ! -d styles/Google ]; then
+    echo "Vale styles aren't synced yet: run ./scripts/lint-vale.sh once." >&2
+    exit 1
+  fi
+fi
+
 if command -v vale >/dev/null 2>&1; then
-  vale sync
-  vale README.md CONTRIBUTING.md CLAUDE.md SECURITY.md
+  # shellcheck disable=SC2086
+  eval "$sync" vale $files
 else
   docker run --rm -v "$PWD:/work" -w /work --entrypoint sh "$IMAGE" \
-    -c "vale sync && vale README.md CONTRIBUTING.md CLAUDE.md SECURITY.md"
+    -c "${sync}vale $files"
 fi
