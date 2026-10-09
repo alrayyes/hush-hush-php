@@ -27,6 +27,16 @@ bun install
 The `prepare` script runs `lefthook install` for you — an uninstalled hook
 silently does nothing, which is worse than not having one.
 
+`pre-commit` judges only what the commit contains: every job takes
+`{staged_files}`, fixers restage what they change, and nothing touches the
+network. Checks that scan the whole tree (`actionlint`, the full Vale and
+grammar runs, static analysis and the rest) run at `pre-push`, and CI runs
+them all regardless. Run `./scripts/lint-vale.sh` once on a fresh clone to
+sync Vale's style packages, or the first commit that stages a Markdown file
+fails.
+`./scripts/test-precommit-staged-only.sh` checks the staged-only promise
+against a deliberately broken, unstaged file.
+
 This repo pulls hush-hush's OpenAPI spec in as a git submodule. Clone with
 `git clone --recurse-submodules`, or run `git submodule update --init` after
 a plain clone.
