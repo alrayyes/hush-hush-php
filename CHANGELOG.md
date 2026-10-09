@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.27](https://github.com/alrayyes/hush-hush-php/compare/v6.0.26...v6.0.27) (2026-10-09)
+
+
+### Miscellaneous Chores
+
+* **hooks:** lint only staged content at pre-commit ([82aed1e](https://github.com/alrayyes/hush-hush-php/commit/82aed1e4583fe51afaa3a95346449b3bbe8b11c9))
+* **hooks:** lint only staged content at pre-commit ([8c266db](https://github.com/alrayyes/hush-hush-php/commit/8c266dbf022b75e23711fc87b6fadd7c4b51323e))
+
 ## [6.0.26](https://github.com/alrayyes/hush-hush-php/compare/v6.0.25...v6.0.26) (2026-10-08)
 
 
