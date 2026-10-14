@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.37](https://github.com/alrayyes/hush-hush-php/compare/v6.0.36...v6.0.37) (2026-10-14)
+
+
+### Bug Fixes
+
+* regenerate client from updated hush-hush spec ([#278](https://github.com/alrayyes/hush-hush-php/issues/278)) ([2ea0946](https://github.com/alrayyes/hush-hush-php/commit/2ea0946bde671778abe39b60403763029afda0d4))
+
 ## [6.0.36](https://github.com/alrayyes/hush-hush-php/compare/v6.0.35...v6.0.36) (2026-10-14)
 
 
