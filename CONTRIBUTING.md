@@ -102,6 +102,13 @@ not by a person — its bump marker (`fix:` vs. `fix!:` + `BREAKING CHANGE:`)
 comes from `oasdiff`'s classification of the underlying spec change, not
 from guessing at the generated-code diff's size.
 
+## Dependency advisories
+
+The `audit` job fails a pull request only for advisories it adds to
+`composer.lock` or `bun.lock`, so one published overnight doesn't turn
+unrelated pull requests red. `advisory-scan.yml` audits `main` and keeps one
+open "Dependency advisories" issue. There is no ignore list.
+
 ## Branching, review, and release
 
 Every change goes through a pull request — nothing is pushed straight to

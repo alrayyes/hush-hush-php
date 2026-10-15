@@ -75,13 +75,14 @@ specific to this repo.
   support (confirmed on hush-hush-python; fixed org-wide via
   alrayyes/dotfiles#425/#426, which now pins bun below 1.4 until
   dependabot-core#15848 lands upstream).
-- **`bun run audit` ignores `GHSA-vfj7-8cjw-p6xm` (`braces <= 3.0.3`).**
-  No patched `braces` exists yet, and the only path to it is dev tooling
-  (`markdownlint-cli2 > globby > fast-glob > micromatch > braces`) that globs
-  this repo's own fixed patterns. `package.json` can't hold a comment, so the
-  reason lives here. Remove the `--ignore` once `braces` has a patched
-  release (alrayyes/hush-hush-php#199 tracks it); any other advisory still
-  fails the audit.
+- **Dependency audits have no ignore list.** `ci.yml`'s `audit` job runs
+  `composer audit` and `bun audit` through
+  [advisory-scan](https://github.com/alrayyes/advisory-scan) on the pull
+  request and its base, and fails only on advisories the pull request adds.
+  It runs when `composer.json`, `composer.lock`, `package.json` or `bun.lock`
+  change. `advisory-scan.yml` audits `main` daily, on lockfile pushes and on
+  demand, and keeps one open issue titled "Dependency advisories". An
+  advisory with no fix stays there until one ships.
 - **`HUSH_HUSH_STAGING_URL`/`HUSH_HUSH_STAGING_API_KEY` secrets aren't set
   yet.** `e2e.yml`'s smoke tests skip cleanly until a maintainer adds them —
   Actions secrets can't be read or set by anyone but the repo owner.
