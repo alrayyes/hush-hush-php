@@ -80,7 +80,7 @@ specific to this repo.
   [advisory-scan](https://github.com/alrayyes/advisory-scan) on the pull
   request and its base, and fails only on advisories the pull request adds.
   It runs when `composer.json`, `composer.lock`, `package.json` or `bun.lock`
-  change. `advisory-scan.yml` audits `main` daily, on lockfile pushes and on
+  change. `advisory-scan.yml` audits `main` daily, on lock file pushes and on
   demand, and keeps one open issue titled "Dependency advisories". An
   advisory with no fix stays there until one ships.
 - **`HUSH_HUSH_STAGING_URL`/`HUSH_HUSH_STAGING_API_KEY` secrets aren't set
