@@ -65,10 +65,12 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: composer
+        uses: ./.github/actions/composer-version
       - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ env.PHP_VERSION }}
-          tools: composer:2.9.5
+          tools: composer:${{ steps.composer.outputs.version }}
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
           bun-version-file: package.json
@@ -96,10 +98,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: recursive
+      - id: composer
+        uses: ./.github/actions/composer-version
       - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ env.PHP_VERSION }}
-          tools: composer:2.9.5
+          tools: composer:${{ steps.composer.outputs.version }}
           extensions: ffi
       - run: composer install --prefer-dist --no-progress
       # Not --strict: it treats "exact version constraints should be
@@ -121,10 +125,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: recursive
+      - id: composer
+        uses: ./.github/actions/composer-version
       - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ env.PHP_VERSION }}
-          tools: composer:2.9.5
+          tools: composer:${{ steps.composer.outputs.version }}
           extensions: ffi
           coverage: pcov
       - run: composer install --prefer-dist --no-progress
@@ -183,10 +189,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+      - id: composer
+        uses: ./.github/actions/composer-version
       - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ env.PHP_VERSION }}
-          tools: composer:2.9.5
+          tools: composer:${{ steps.composer.outputs.version }}
           coverage: pcov
       - run: composer install --prefer-dist --no-progress
       - run: |
@@ -256,10 +264,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: recursive
+      - id: composer
+        uses: ./.github/actions/composer-version
       - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ env.PHP_VERSION }}
-          tools: composer:2.9.5
+          tools: composer:${{ steps.composer.outputs.version }}
           extensions: ffi
       - run: composer install --prefer-dist --no-progress
       - name: Start Prism mock from the pinned spec
@@ -301,10 +311,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: recursive
+      - id: composer
+        uses: ./.github/actions/composer-version
       - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ env.PHP_VERSION }}
-          tools: composer:2.9.5
+          tools: composer:${{ steps.composer.outputs.version }}
           extensions: ffi
       - run: composer install --prefer-dist --no-progress
       - run: vendor/bin/phpunit --testsuite pact

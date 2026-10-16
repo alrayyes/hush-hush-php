@@ -20,4 +20,9 @@ if grep -n 'sha256:' scripts/composer.sh scripts/docs.sh >&2; then
   fail=1
 fi
 
+if grep -rnE 'tools:.*composer:[0-9]' .github/workflows >&2; then
+  echo "test-image-pins: a workflow hard-codes Composer's version" >&2
+  fail=1
+fi
+
 exit "$fail"

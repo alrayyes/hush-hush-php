@@ -2,7 +2,7 @@
 # early; CI is the gate that cannot be skipped. pre-commit judges only what
 # the commit contains ({staged_files}, no network); whole-tree checks live in
 # pre-push. PHP commands run through
-# scripts/composer.sh (the pinned composer:2.9.5 image) — see rules/php.md's
+# scripts/composer.sh (the Composer image pinned in docker/composer/Dockerfile) — see rules/php.md's
 # "no PHP interpreter" guidance.
 
 # Silent on a clean run, full detail on a failure. lefthook's default prints a

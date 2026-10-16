@@ -1,0 +1,17 @@
+# The Composer version scripts/composer.sh runs, read from docker/composer/Dockerfile
+# so setup-php installs the same one. Needs the repository checked out first.
+name: composer-version
+description: Reads the pinned Composer version from docker/composer/Dockerfile.
+outputs:
+  version:
+    description: The Composer version, such as 2.10.3.
+    value: ${{ steps.read.outputs.version }}
+runs:
+  using: composite
+  steps:
+    - id: read
+      shell: bash
+      run: |
+        ref=$(./scripts/image.sh composer)
+        version=${ref#composer:}
+        echo "version=${version%%@*}" >> "$GITHUB_OUTPUT"

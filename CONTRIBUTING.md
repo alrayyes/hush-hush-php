@@ -9,9 +9,9 @@
   single test does, on a transitive PHPUnit dependency's own syntax, not
   this repo's code. And **[Composer](https://getcomposer.org)** — the
   package manager this repo uses. No PHP interpreter on your machine? Run
-  everything through `scripts/composer.sh`, which wraps the pinned
-  `composer:2.9.5` image (see `rules/php.md`'s "no PHP interpreter"
-  guidance).
+  everything through `scripts/composer.sh`, which wraps the
+  Composer image pinned in `docker/composer/Dockerfile` (see `rules/php.md`'s
+  "no PHP interpreter" guidance).
 - **[bun](https://bun.sh)** for the tooling that isn't PHP — commitlint,
   Prettier, markdownlint, and the [lefthook](https://lefthook.dev) that runs
   the git hooks. There's a `package.json`, but nothing here is JavaScript; it
@@ -43,7 +43,7 @@ a plain clone.
 
 Running the Pact consumer tests (`vendor/bin/phpunit --testsuite pact`)
 needs PHP's `ffi` extension enabled — `scripts/composer.sh` alone doesn't
-provide that (the pinned `composer:2.9.5` image has no `ffi` extension), so
+provide that (the Composer image has no `ffi` extension), so
 run those specifically through a PHP install that does, matching
 `ci.yml`'s `pact-consumer` job.
 

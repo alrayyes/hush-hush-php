@@ -25,6 +25,8 @@ jobs:
     # or set for someone else's repo).
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: composer
+        uses: ./.github/actions/composer-version
       - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           # Matches ci.yml's own PHP_VERSION pin - phpunit/phpunit is
@@ -33,7 +35,7 @@ jobs:
           # outright before it could even reach the skip-when-no-
           # staging-secrets logic in tests/E2e/SmokeTest.php.
           php-version: "8.4"
-          tools: composer:2.9.5
+          tools: composer:${{ steps.composer.outputs.version }}
           extensions: ffi
       - run: composer install --prefer-dist --no-progress
       - name: Run smoke tests against staging hush-hush

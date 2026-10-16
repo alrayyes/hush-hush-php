@@ -52,7 +52,8 @@ specific to this repo.
   and trying to exclude a subdirectory.
 - **`config.platform.php: 8.4.99`** in `composer.json` makes Composer
   resolve as if on PHP 8.4 while the interpreter running is newer (the
-  pinned `composer:2.9.5` image bundles 8.5). It was added for
+  Composer image in `docker/composer/Dockerfile` bundles 8.5). It was
+  added for
   `phpdocumentor/json-path`'s support ceiling; phpDocumentor is gone, so
   it may now be removable.
 - **`scripts/composer.sh` passes arguments via `docker run`'s own argv
