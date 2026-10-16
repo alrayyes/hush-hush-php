@@ -4,13 +4,13 @@
 # league/flysystem ^1, which has no fix for PKSA-w9tt-7782-78jx and which
 # roave/security-advisories refuses to install (#295).
 #
-# The image tag and digest are pinned inline, so Dependabot can't see them:
-# bump both by hand when phpDocumentor releases.
+# The image tag and digest are pinned in docker/phpdoc/Dockerfile, where
+# Dependabot's docker ecosystem raises the bump.
 set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-PHPDOC_IMAGE="phpdoc/phpdoc:3.10.0@sha256:312ebf61ed88a6ea79aac768e43c9e9af0dd5bf3e710ed6d40ab8e53bfeeb121"
+PHPDOC_IMAGE=$(./scripts/image.sh phpdoc)
 
 docker run --rm --network none -u "$(id -u):$(id -g)" \
   -v "$(pwd):/data" \

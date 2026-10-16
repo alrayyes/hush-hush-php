@@ -42,6 +42,21 @@ updates:
         patterns: ["*"]
         update-types: [major]
 
+  # The images the scripts run (Composer, phpDocumentor) are pinned in one-line
+  # Dockerfiles, because this ecosystem reads Dockerfiles and not shell scripts.
+  - package-ecosystem: docker
+    directories:
+      - /docker/composer
+      - /docker/phpdoc
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Amsterdam
+    commit-message:
+      prefix: fix
+      include: scope
+
   # Nothing here is JavaScript. package.json exists so commitlint can
   # resolve the shared config it extends, which bunx alone cannot do.
   - package-ecosystem: bun
