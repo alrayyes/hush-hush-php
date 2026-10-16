@@ -62,6 +62,7 @@ image has neither, so run it through a PHP install that does.
 ./scripts/composer.sh exec -- phpunit --testsuite unit   # contract/pact/e2e need extra setup, see ci.yml
 composer infection                               # mutation testing; needs pcov/Xdebug, see above
 ./scripts/generate.sh                            # regenerate src/Generated from the pinned spec
+./scripts/docs.sh                                # build the API reference into site/ (needs Docker)
 
 bun run format:check   # prettier --check, add :write to fix
 bun run lint:md
