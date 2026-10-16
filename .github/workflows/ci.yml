@@ -28,6 +28,61 @@ env:
   PHP_VERSION: "8.4"
 
 jobs:
+  # Decides whether the dependency audit has anything to check. A workflow-level
+  # `paths:` filter would leave a required check pending forever, so the audit job
+  # gates on this output instead: a job skipped by `if:` counts as passing.
+  changes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      deps: ${{ steps.paths.outputs.deps }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      # A push to main has no base to diff against, so the audit always runs there.
+      - id: paths
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if [ "$EVENT" != "pull_request" ] ||
+            git diff --name-only "$BASE...$HEAD" |
+              grep -Eq '^(composer\.(json|lock)|package\.json|bun\.lock|\.github/workflows/ci\.yml)$'; then
+            echo "deps=true" >>"$GITHUB_OUTPUT"
+          else
+            echo "deps=false" >>"$GITHUB_OUTPUT"
+          fi
+
+  # Fails only on advisories this change adds over its base (rules/dependencies.md,
+  # #291). What is already on main is the scan's to track, in advisory-scan.yml.
+  # Both audits read their lockfile, so neither side needs an install.
+  audit:
+    needs: changes
+    if: needs.changes.outputs.deps == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          tools: composer:2.9.5
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: package.json
+      # Pinned to a main commit of alrayyes/advisory-scan until its first release; re-pin then.
+      # Both ecosystems in one step, so the gate compares one set of IDs.
+      - uses: alrayyes/advisory-scan@425418a63e80eb10142fbd2e82127b7ef3a51d68
+        with:
+          mode: gate
+          command: |
+            rc=0
+            composer audit --locked --abandoned=report || rc=1
+            bun audit || rc=1
+            exit "$rc"
+
   actionlint:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -58,7 +113,6 @@ jobs:
       - run: vendor/bin/php-cs-fixer fix --dry-run --diff
       - run: vendor/bin/rector process --dry-run
       - run: composer normalize --dry-run
-      - run: composer audit
 
   test:
     runs-on: ubuntu-24.04
@@ -169,13 +223,6 @@ jobs:
         run: bun run lint:md
       - name: sort-package-json --check
         run: bun run sort-package-json:check
-      # `bun run audit` carries `--ignore GHSA-vfj7-8cjw-p6xm` (braces): no
-      # patched release exists (the range is <= 3.0.3, the latest), and the
-      # only path is markdownlint-cli2 > micromatch, which globs this repo's own
-      # fixed patterns in dev tooling that doesn't ship. Remove the flag from
-      # package.json once braces has a fix (alrayyes/hush-hush-php#199).
-      - name: bun audit
-        run: bun run audit
 
   # Mechanics: grammar, spelling, the phonetic article. A right answer, so
   # this one gates rather than advises.
@@ -295,6 +342,7 @@ jobs:
   build:
     needs:
       - actionlint
+      - audit
       - lint
       - test
       - mutation
