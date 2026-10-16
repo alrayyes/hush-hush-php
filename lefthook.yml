@@ -77,9 +77,6 @@ pre-push:
     - name: rector-check
       run: ./scripts/composer.sh exec -- rector process --dry-run
 
-    - name: audit
-      run: ./scripts/composer.sh audit
-
     - name: test
       run: ./scripts/composer.sh exec -- phpunit --testsuite unit
 
@@ -97,9 +94,6 @@ pre-push:
 
     - name: sort-package-json:check
       run: bun run sort-package-json:check
-
-    - name: audit:bun
-      run: bun run audit
 
     # actionlint takes no file list and fetches its binary, so it runs over
     # the whole tree here rather than at pre-commit.

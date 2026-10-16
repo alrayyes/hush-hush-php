@@ -109,6 +109,10 @@ The `audit` job fails a pull request only for advisories it adds to
 unrelated pull requests red. `advisory-scan.yml` audits `main` and keeps one
 open "Dependency advisories" issue. There is no ignore list.
 
+No pre-push hook runs the audit: it would fail every push the day an
+advisory lands on `main`, whatever the push changed. To check by hand, run
+`./scripts/composer.sh audit` and `bun run audit`.
+
 ## Branching, review, and release
 
 Every change goes through a pull request — nothing is pushed straight to
