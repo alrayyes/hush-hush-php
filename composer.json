@@ -53,7 +53,6 @@
     "codegen": "bash scripts/generate.sh",
     "cs-fixer:fix": "php-cs-fixer fix",
     "cs-fixer:lint": "php-cs-fixer fix --dry-run --diff",
-    "docs": "bash scripts/docs.sh",
     "infection": "infection --threads=max --test-framework-options=\"--testsuite unit\"",
     "normalize:fix": "composer normalize",
     "normalize:lint": "composer normalize --dry-run",

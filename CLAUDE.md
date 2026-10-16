@@ -35,13 +35,14 @@ specific to this repo.
   requires `guzzlehttp/psr7: ^2.4.5`, which conflicts with Guzzle 8's own
   `^3.1` requirement. Guzzle 7.15.5 needs `psr7 ^2.13.1`, which is clean of
   every current psr7 security advisory (all affect only `<2.12.3`).
-- **phpDocumentor is not a Composer dependency.** `composer run docs`
-  (`scripts/docs.sh`) runs the official `phpdoc/phpdoc` image, pinned by
-  tag and digest in the script; Dependabot can't see that pin, so bump it
-  by hand. `phpdocumentor/phpdocumentor` requires `league/flysystem ^1`,
-  which has no fix for PKSA-w9tt-7782-78jx and which
-  `roave/security-advisories` refuses to install (#295). Taking it out
-  also dropped the `league/uri` pins its crash needed.
+- **phpDocumentor is not a Composer dependency.** `./scripts/docs.sh` (run
+  it on the host, since the Composer wrapper image has no Docker) runs the
+  official `phpdoc/phpdoc` image with no network, pinned by tag and digest
+  in the script; Dependabot can't see that pin, so bump it by hand.
+  `phpdocumentor/phpdocumentor` requires `league/flysystem ^1`, which has
+  no fix for PKSA-w9tt-7782-78jx and which `roave/security-advisories`
+  refuses to install (#295). Taking it out also dropped the `league/uri`
+  pins its crash needed.
 - **phpDocumentor's `--ignore`/`<ignore>` exclusion doesn't work in
   3.10.0** — neither the CLI flag nor the XML config element actually
   excludes `src/Generated` from the built site. `phpdoc.dist.xml` points

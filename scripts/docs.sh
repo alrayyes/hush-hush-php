@@ -12,6 +12,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 PHPDOC_IMAGE="phpdoc/phpdoc:3.10.0@sha256:312ebf61ed88a6ea79aac768e43c9e9af0dd5bf3e710ed6d40ab8e53bfeeb121"
 
-docker run --rm -u "$(id -u):$(id -g)" \
+docker run --rm --network none -u "$(id -u):$(id -g)" \
   -v "$(pwd):/data" \
   "$PHPDOC_IMAGE" run "$@"
