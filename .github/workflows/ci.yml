@@ -334,10 +334,9 @@ jobs:
   # One Pages site, one deployment: a second deploy replaces the first, so the
   # API reference and the reports are assembled here and shipped together. It
   # runs on pull requests too (nothing deploys there), so a broken phpdoc run
-  # or report step fails before the merge - league/uri 7.8.1 broke phpdoc
-  # once. The gate is "nothing failed" rather than a plain needs:, because
-  # the pull-request-only jobs are skipped on a push and a skipped need would
-  # skip this job with them.
+  # or report step fails before the merge. The gate is "nothing failed" rather
+  # than a plain needs:, because the pull-request-only jobs are skipped on a
+  # push and a skipped need would skip this job with them.
   build:
     needs:
       - actionlint
@@ -357,13 +356,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
-        with:
-          php-version: ${{ env.PHP_VERSION }}
-          tools: composer:2.9.5
-          extensions: ffi
-      - run: composer install --prefer-dist --no-progress
-      - run: vendor/bin/phpdoc
+      - run: bash scripts/docs.sh
       # phpDocumentor 3.10.0's config schema has no element for injecting an
       # arbitrary root-level static file into the built site (only <paths>,
       # <version>, <setting>, <template> - checked against

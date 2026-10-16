@@ -35,26 +35,23 @@ specific to this repo.
   requires `guzzlehttp/psr7: ^2.4.5`, which conflicts with Guzzle 8's own
   `^3.1` requirement. Guzzle 7.15.5 needs `psr7 ^2.13.1`, which is clean of
   every current psr7 security advisory (all affect only `<2.12.3`).
-- **`league/uri` is pinned to `7.5.1`** as a direct require-dev override —
-  a newer version, pulled in transitively by
-  `phpdocumentor/phpdocumentor@3.10.0`, crashed phpDocumentor with
-  `UriString.php: The base URI must be an absolute URI or null` on every
-  invocation, confirmed under both PHP 8.2 and 8.5 (not a PHP-version
-  issue — phpDocumentor's own dependency drifted past what 3.10.0 shipped
-  against). `league/uri-interfaces` no longer needs the same override —
-  Dependabot moved it to `7.8.1` (#13) without reproducing the crash,
-  and the docs build has stayed green since.
+- **phpDocumentor is not a Composer dependency.** `composer run docs`
+  (`scripts/docs.sh`) runs the official `phpdoc/phpdoc` image, pinned by
+  tag and digest in the script; Dependabot can't see that pin, so bump it
+  by hand. `phpdocumentor/phpdocumentor` requires `league/flysystem ^1`,
+  which has no fix for PKSA-w9tt-7782-78jx and which
+  `roave/security-advisories` refuses to install (#295). Taking it out
+  also dropped the `league/uri` pins its crash needed.
 - **phpDocumentor's `--ignore`/`<ignore>` exclusion doesn't work in
   3.10.0** — neither the CLI flag nor the XML config element actually
   excludes `src/Generated` from the built site. `phpdoc.dist.xml` points
   `<source>` directly at the hand-written files instead of scanning `src`
   and trying to exclude a subdirectory.
-- **`config.platform.php: 8.4.99`** in `composer.json` — a real PHP 8.5
-  environment (like the pinned `composer:2.9.5` image's bundled runtime) is
-  newer than `phpdocumentor/json-path`'s declared support ceiling
-  (`8.1.*|8.2.*|8.3.*|8.4.*`); this tells Composer to resolve as if on 8.4
-  while the interpreter actually running is 8.5, a standard pattern for a
-  dependency's metadata lagging a brand-new PHP release.
+- **`config.platform.php: 8.4.99`** in `composer.json` makes Composer
+  resolve as if on PHP 8.4 while the interpreter running is newer (the
+  pinned `composer:2.9.5` image bundles 8.5). It was added for
+  `phpdocumentor/json-path`'s support ceiling; phpDocumentor is gone, so
+  it may now be removable.
 - **`scripts/composer.sh` passes arguments via `docker run`'s own argv
   form, not a `sh -c "composer $*"` string.** The string form silently
   re-splits and glob-expands quoted arguments (confirmed live: `--ignore
@@ -92,14 +89,13 @@ specific to this repo.
   entry, no build step. Packagist installs straight from the tagged git
   commit; there's no artifact (`subject-path`) for the action to attest.
   Revisit if a release job ever starts producing one.
-- **`ci.yml` publishes the API reference and the test and coverage reports
-  as one Pages site**, per `rules/published-reports.md`. The `test` job
-  writes the reports on every run and uploads them as the `reports`
-  artifact. `build` needs every other job, downloads that into
-  `site/reports/`, builds the phpDocumentor reference into `site/` and
-  stages the site. It runs on pull requests too, so a broken step fails
-  before the merge. `pages-deploy` runs on a push to `main` only (the
-  `github-pages` environment admits nothing else) and then fetches the
-  live `coverage.xml`. A deploy replaces the whole site, which is why the
-  reports are rebuilt on every push to `main` whatever changed. The
-  contract, pact and mutation runs aren't in them.
+- **`ci.yml` publishes the API reference and the test and coverage reports as
+  one Pages site**, per `rules/published-reports.md`. The `test` job writes the
+  reports on every run and uploads them as the `reports` artifact. `build` needs
+  every other job, downloads that into `site/reports/`, builds the phpDocumentor
+  reference into `site/` through `scripts/docs.sh` and stages the site. It runs
+  on pull requests too, so a broken step fails before the merge. `pages-deploy`
+  runs on a push to `main` only (the `github-pages` environment admits nothing
+  else) and then fetches the live `coverage.xml`. A deploy replaces the whole
+  site, which is why the reports are rebuilt on every push to `main` whatever
+  changed. The contract, pact and mutation runs aren't in them.
