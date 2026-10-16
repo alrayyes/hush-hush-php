@@ -38,7 +38,9 @@ specific to this repo.
 - **phpDocumentor is not a Composer dependency.** `./scripts/docs.sh` (run
   it on the host, since the Composer wrapper image has no Docker) runs the
   official `phpdoc/phpdoc` image with no network, pinned by tag and digest
-  in the script; Dependabot can't see that pin, so bump it by hand.
+  in `docker/phpdoc/Dockerfile`, which Dependabot's docker ecosystem
+  tracks, as it does `docker/composer/`; the scripts read the pin back
+  through `scripts/image.sh`.
   `phpdocumentor/phpdocumentor` requires `league/flysystem ^1`, which has
   no fix for PKSA-w9tt-7782-78jx and which `roave/security-advisories`
   refuses to install (#295). Taking it out also dropped the `league/uri`

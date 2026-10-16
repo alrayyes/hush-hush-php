@@ -106,6 +106,7 @@ jobs:
       # avoided" as a failing warning, which directly fights this org's
       # deliberate pin-everything convention (see rules/dependencies.md).
       - run: composer validate
+      - run: sh scripts/test-image-pins.sh
       - run: vendor/bin/phpstan analyse --memory-limit=512M
       - run: vendor/bin/phpmd src text phpmd.xml.dist --exclude src/Generated
       - run: vendor/bin/phpcs
