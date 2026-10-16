@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.45](https://github.com/alrayyes/hush-hush-php/compare/v6.0.44...v6.0.45) (2026-10-16)
+
+
+### Bug Fixes
+
+* **deps:** run phpDocumentor from its image, not Composer ([#303](https://github.com/alrayyes/hush-hush-php/issues/303)) ([b82c1dd](https://github.com/alrayyes/hush-hush-php/commit/b82c1dd134b989208f803e0679446f3bbc73af91))
+
 ## [6.0.44](https://github.com/alrayyes/hush-hush-php/compare/v6.0.43...v6.0.44) (2026-10-16)
 
 
