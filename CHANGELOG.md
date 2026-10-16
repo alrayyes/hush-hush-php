@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.44](https://github.com/alrayyes/hush-hush-php/compare/v6.0.43...v6.0.44) (2026-10-16)
+
+
+### Bug Fixes
+
+* **deps:** bump symfony/expression-language to 6.4.48 ([#302](https://github.com/alrayyes/hush-hush-php/issues/302)) ([ef91bb2](https://github.com/alrayyes/hush-hush-php/commit/ef91bb2432172f0ef9cec1d4b3c102b8c0c77776))
+
 ## [6.0.43](https://github.com/alrayyes/hush-hush-php/compare/v6.0.42...v6.0.43) (2026-10-16)
 
 
