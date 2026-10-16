@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.43](https://github.com/alrayyes/hush-hush-php/compare/v6.0.42...v6.0.43) (2026-10-16)
+
+
+### Bug Fixes
+
+* **ci:** run the auto-merge workflows when their label is added ([#293](https://github.com/alrayyes/hush-hush-php/issues/293)) ([b81daf8](https://github.com/alrayyes/hush-hush-php/commit/b81daf8251073c7383ac82be8ee468b343fcb77c))
+
 ## [6.0.42](https://github.com/alrayyes/hush-hush-php/compare/v6.0.41...v6.0.42) (2026-10-16)
 
 
