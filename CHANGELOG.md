@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.0.46](https://github.com/alrayyes/hush-hush-php/compare/v6.0.45...v6.0.46) (2026-10-16)
+
+
+### Bug Fixes
+
+* **deps-dev:** bump phpunit/phpunit ([#309](https://github.com/alrayyes/hush-hush-php/issues/309)) ([955053a](https://github.com/alrayyes/hush-hush-php/commit/955053a1f85944c0e0254fd7878fd0a1d4a78fef))
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump the tooling group across 1 directory with 2 updates ([#310](https://github.com/alrayyes/hush-hush-php/issues/310)) ([ce34d83](https://github.com/alrayyes/hush-hush-php/commit/ce34d8352c3cf9c6b0b3a5174992678c830548c6))
+
 ## [6.0.45](https://github.com/alrayyes/hush-hush-php/compare/v6.0.44...v6.0.45) (2026-10-16)
 
 
