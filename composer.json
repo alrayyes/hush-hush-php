@@ -21,7 +21,7 @@
     "pact-foundation/pact-php": "10.2.1",
     "phpmd/phpmd": "3.0.0",
     "phpstan/phpstan": "2.3.1",
-    "phpunit/phpunit": "13.4.2",
+    "phpunit/phpunit": "13.4.3",
     "rector/rector": "2.7.0",
     "roave/security-advisories": "dev-latest",
     "squizlabs/php_codesniffer": "4.0.4"
