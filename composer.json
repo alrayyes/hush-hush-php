@@ -16,13 +16,13 @@
   },
   "require-dev": {
     "ergebnis/composer-normalize": "2.56.0",
-    "friendsofphp/php-cs-fixer": "3.95.27",
-    "infection/infection": "0.35.6",
+    "friendsofphp/php-cs-fixer": "3.95.28",
+    "infection/infection": "0.35.10",
     "pact-foundation/pact-php": "10.2.1",
     "phpmd/phpmd": "3.0.0",
-    "phpstan/phpstan": "2.3.4",
-    "phpunit/phpunit": "13.4.5",
-    "rector/rector": "2.8.3",
+    "phpstan/phpstan": "2.3.5",
+    "phpunit/phpunit": "13.4.6",
+    "rector/rector": "2.8.4",
     "roave/security-advisories": "dev-latest",
     "squizlabs/php_codesniffer": "4.0.4"
   },
