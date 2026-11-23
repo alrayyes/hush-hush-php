@@ -15,14 +15,14 @@
     "psr/http-factory": "1.1.0"
   },
   "require-dev": {
-    "ergebnis/composer-normalize": "2.57.0",
-    "friendsofphp/php-cs-fixer": "3.95.30",
-    "infection/infection": "0.35.10",
+    "ergebnis/composer-normalize": "2.58.0",
+    "friendsofphp/php-cs-fixer": "3.95.32",
+    "infection/infection": "0.35.12",
     "pact-foundation/pact-php": "10.2.1",
     "phpmd/phpmd": "3.0.0",
-    "phpstan/phpstan": "2.3.5",
-    "phpunit/phpunit": "13.4.6",
-    "rector/rector": "2.8.4",
+    "phpstan/phpstan": "2.3.7",
+    "phpunit/phpunit": "13.4.8",
+    "rector/rector": "2.8.5",
     "roave/security-advisories": "dev-latest",
     "squizlabs/php_codesniffer": "4.0.4"
   },
